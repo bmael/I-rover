@@ -1,0 +1,20 @@
+I-Rover
+========
+
+Allows to test strategies of exploration for a robot provided with different 
+sensors.
+
+This software provide methods for load and display a map in the TMX format, load
+ an exploration strategy written in Python and execute a mission using it.
+  
+Developpers
+-----------
+
+Noémie	   RULLIER    <>
+Julien 	   BIZEUL     <>
+Guillaume  COUTABLE   <>
+Brian 	   GOHIER     <>
+Thibaut    ROBERGE    <>
+Maël       BARBIN     <maelbar44@gmail.com>
+
+

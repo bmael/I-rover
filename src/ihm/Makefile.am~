@@ -1,0 +1,22 @@
+ACLOCAL_AMFLAGS = -I build-aux
+
+include $(top_srcdir)/build-aux/autotroll.mk
+
+# For a program:
+bin_PROGRAMS = ihm
+ihm_SOURCES = main.cpp \
+	mainwindow.cpp \
+	widgets/aboutdialog.cpp \
+	widgets/leftmenu.cpp \
+	widgets/mapmenu.cpp \
+	widgets/robotinformation.cpp 
+
+
+	
+ihm_CXXFLAGS = $(QT_CXXFLAGS) $(AM_CXXFLAGS)
+ihm_CPPFLAGS = $(QT_CPPFLAGS) $(AM_CPPFLAGS)
+ihm_LDFLAGS  = $(QT_LDFLAGS) $(LDFLAGS)
+ihm_LDADD    = $(QT_LIBS) $(LDADD)
+
+distdir = $(obj_DIR)
+
