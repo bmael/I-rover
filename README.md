@@ -13,6 +13,9 @@ IHM :
   * Display the robot information. See how to do this with Niiner & Thanatos21
   
 Robot : 
+  * Actuators done, need map object for questioning map (canGoNorth, canGoEast, ... of each MovementActuator)
+  * Robot done, have to do Destructors
+  * Waiting for Sensors
 
 Exploration : 
 
