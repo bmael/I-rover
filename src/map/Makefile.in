@@ -14,6 +14,7 @@
 # PARTICULAR PURPOSE.
 
 @SET_MAKE@
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -33,6 +34,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+bin_PROGRAMS = map$(EXEEXT)
 subdir = src/map
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -49,9 +51,75 @@ mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
-SOURCES =
-DIST_SOURCES =
+am__installdirs = "$(DESTDIR)$(bindir)"
+PROGRAMS = $(bin_PROGRAMS)
+am_map_OBJECTS = map-gestionnaireMap.$(OBJEXT) \
+	map-mapFactory.$(OBJEXT) map-parseur.$(OBJEXT) \
+	map-background.$(OBJEXT) map-cell.$(OBJEXT) \
+	map-field.$(OBJEXT) map-layers.$(OBJEXT) map-map.$(OBJEXT) \
+	map-objectLayers.$(OBJEXT) map-obstacle.$(OBJEXT) \
+	map-tileSet.$(OBJEXT) map-tileSetImage.$(OBJEXT)
+map_OBJECTS = $(am_map_OBJECTS)
+map_DEPENDENCIES = lib/libpugixml.a
+map_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(CXXLD) $(map_CXXFLAGS) $(CXXFLAGS) \
+	$(map_LDFLAGS) $(LDFLAGS) -o $@
+DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
+depcomp = $(SHELL) $(top_srcdir)/build-aux/depcomp
+am__depfiles_maybe = depfiles
+am__mv = mv -f
+CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+LTCXXCOMPILE = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+CXXLD = $(CXX)
+CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
+SOURCES = $(map_SOURCES)
+DIST_SOURCES = $(map_SOURCES)
+RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
+	html-recursive info-recursive install-data-recursive \
+	install-dvi-recursive install-exec-recursive \
+	install-html-recursive install-info-recursive \
+	install-pdf-recursive install-ps-recursive install-recursive \
+	installcheck-recursive installdirs-recursive pdf-recursive \
+	ps-recursive uninstall-recursive
+RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
+  distclean-recursive maintainer-clean-recursive
+AM_RECURSIVE_TARGETS = $(RECURSIVE_TARGETS:-recursive=) \
+	$(RECURSIVE_CLEAN_TARGETS:-recursive=) tags TAGS ctags CTAGS \
+	distdir
+ETAGS = etags
+CTAGS = ctags
+DIST_SUBDIRS = $(SUBDIRS)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+am__relativize = \
+  dir0=`pwd`; \
+  sed_first='s,^\([^/]*\)/.*$$,\1,'; \
+  sed_rest='s,^[^/]*/*,,'; \
+  sed_last='s,^.*/\([^/]*\)$$,\1,'; \
+  sed_butlast='s,/*[^/]*$$,,'; \
+  while test -n "$$dir1"; do \
+    first=`echo "$$dir1" | sed -e "$$sed_first"`; \
+    if test "$$first" != "."; then \
+      if test "$$first" = ".."; then \
+        dir2=`echo "$$dir0" | sed -e "$$sed_last"`/"$$dir2"; \
+        dir0=`echo "$$dir0" | sed -e "$$sed_butlast"`; \
+      else \
+        first2=`echo "$$dir2" | sed -e "$$sed_first"`; \
+        if test "$$first2" = "$$first"; then \
+          dir2=`echo "$$dir2" | sed -e "$$sed_rest"`; \
+        else \
+          dir2="../$$dir2"; \
+        fi; \
+        dir0="$$dir0"/"$$first"; \
+      fi; \
+    fi; \
+    dir1=`echo "$$dir1" | sed -e "$$sed_rest"`; \
+  done; \
+  reldir="$$dir2"
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
 AR = @AR@
@@ -185,9 +253,28 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-all: all-am
+SUBDIRS = lib
+map_SOURCES = controleur/sources/gestionnaireMap.cpp \
+		controleur/sources/mapFactory.cpp \
+		controleur/sources/parseur.cpp \
+		Map/background.cpp \
+		Map/cell.cpp \
+		Map/field.cpp \
+		Map/layers.cpp \
+		Map/map.cpp \
+		Map/objectLayers.cpp \
+		Map/obstacle.cpp \
+		tileset/sources/tileSet.cpp \
+		tileset/sources/tileSetImage.cpp
+
+map_CXXFLAGS = $(AM_CXXFLAGS)
+map_CPPFLAGS = $(AM_CPPFLAGS)
+map_LDFLAGS = $(LDFLAGS)
+map_LDADD = lib/libpugixml.a
+all: all-recursive
 
 .SUFFIXES:
+.SUFFIXES: .cpp .lo .o .obj
 $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -218,18 +305,401 @@ $(top_srcdir)/configure:  $(am__configure_deps)
 $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
+install-binPROGRAMS: $(bin_PROGRAMS)
+	@$(NORMAL_INSTALL)
+	test -z "$(bindir)" || $(MKDIR_P) "$(DESTDIR)$(bindir)"
+	@list='$(bin_PROGRAMS)'; test -n "$(bindir)" || list=; \
+	for p in $$list; do echo "$$p $$p"; done | \
+	sed 's/$(EXEEXT)$$//' | \
+	while read p p1; do if test -f $$p || test -f $$p1; \
+	  then echo "$$p"; echo "$$p"; else :; fi; \
+	done | \
+	sed -e 'p;s,.*/,,;n;h' -e 's|.*|.|' \
+	    -e 'p;x;s,.*/,,;s/$(EXEEXT)$$//;$(transform);s/$$/$(EXEEXT)/' | \
+	sed 'N;N;N;s,\n, ,g' | \
+	$(AWK) 'BEGIN { files["."] = ""; dirs["."] = 1 } \
+	  { d=$$3; if (dirs[d] != 1) { print "d", d; dirs[d] = 1 } \
+	    if ($$2 == $$4) files[d] = files[d] " " $$1; \
+	    else { print "f", $$3 "/" $$4, $$1; } } \
+	  END { for (d in files) print "f", d, files[d] }' | \
+	while read type dir files; do \
+	    if test "$$dir" = .; then dir=; else dir=/$$dir; fi; \
+	    test -z "$$files" || { \
+	    echo " $(INSTALL_PROGRAM_ENV) $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(INSTALL_PROGRAM) $$files '$(DESTDIR)$(bindir)$$dir'"; \
+	    $(INSTALL_PROGRAM_ENV) $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(INSTALL_PROGRAM) $$files "$(DESTDIR)$(bindir)$$dir" || exit $$?; \
+	    } \
+	; done
+
+uninstall-binPROGRAMS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(bin_PROGRAMS)'; test -n "$(bindir)" || list=; \
+	files=`for p in $$list; do echo "$$p"; done | \
+	  sed -e 'h;s,^.*/,,;s/$(EXEEXT)$$//;$(transform)' \
+	      -e 's/$$/$(EXEEXT)/' `; \
+	test -n "$$list" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(bindir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(bindir)" && rm -f $$files
+
+clean-binPROGRAMS:
+	@list='$(bin_PROGRAMS)'; test -n "$$list" || exit 0; \
+	echo " rm -f" $$list; \
+	rm -f $$list || exit $$?; \
+	test -n "$(EXEEXT)" || exit 0; \
+	list=`for p in $$list; do echo "$$p"; done | sed 's/$(EXEEXT)$$//'`; \
+	echo " rm -f" $$list; \
+	rm -f $$list
+map$(EXEEXT): $(map_OBJECTS) $(map_DEPENDENCIES) $(EXTRA_map_DEPENDENCIES) 
+	@rm -f map$(EXEEXT)
+	$(map_LINK) $(map_OBJECTS) $(map_LDADD) $(LIBS)
+
+mostlyclean-compile:
+	-rm -f *.$(OBJEXT)
+
+distclean-compile:
+	-rm -f *.tab.c
+
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/map-background.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/map-cell.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/map-field.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/map-gestionnaireMap.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/map-layers.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/map-map.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/map-mapFactory.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/map-objectLayers.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/map-obstacle.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/map-parseur.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/map-tileSet.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/map-tileSetImage.Po@am__quote@
+
+.cpp.o:
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ $<
+
+.cpp.obj:
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+
+.cpp.lo:
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
+
+map-gestionnaireMap.o: controleur/sources/gestionnaireMap.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -MT map-gestionnaireMap.o -MD -MP -MF $(DEPDIR)/map-gestionnaireMap.Tpo -c -o map-gestionnaireMap.o `test -f 'controleur/sources/gestionnaireMap.cpp' || echo '$(srcdir)/'`controleur/sources/gestionnaireMap.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/map-gestionnaireMap.Tpo $(DEPDIR)/map-gestionnaireMap.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='controleur/sources/gestionnaireMap.cpp' object='map-gestionnaireMap.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -c -o map-gestionnaireMap.o `test -f 'controleur/sources/gestionnaireMap.cpp' || echo '$(srcdir)/'`controleur/sources/gestionnaireMap.cpp
+
+map-gestionnaireMap.obj: controleur/sources/gestionnaireMap.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -MT map-gestionnaireMap.obj -MD -MP -MF $(DEPDIR)/map-gestionnaireMap.Tpo -c -o map-gestionnaireMap.obj `if test -f 'controleur/sources/gestionnaireMap.cpp'; then $(CYGPATH_W) 'controleur/sources/gestionnaireMap.cpp'; else $(CYGPATH_W) '$(srcdir)/controleur/sources/gestionnaireMap.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/map-gestionnaireMap.Tpo $(DEPDIR)/map-gestionnaireMap.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='controleur/sources/gestionnaireMap.cpp' object='map-gestionnaireMap.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -c -o map-gestionnaireMap.obj `if test -f 'controleur/sources/gestionnaireMap.cpp'; then $(CYGPATH_W) 'controleur/sources/gestionnaireMap.cpp'; else $(CYGPATH_W) '$(srcdir)/controleur/sources/gestionnaireMap.cpp'; fi`
+
+map-mapFactory.o: controleur/sources/mapFactory.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -MT map-mapFactory.o -MD -MP -MF $(DEPDIR)/map-mapFactory.Tpo -c -o map-mapFactory.o `test -f 'controleur/sources/mapFactory.cpp' || echo '$(srcdir)/'`controleur/sources/mapFactory.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/map-mapFactory.Tpo $(DEPDIR)/map-mapFactory.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='controleur/sources/mapFactory.cpp' object='map-mapFactory.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -c -o map-mapFactory.o `test -f 'controleur/sources/mapFactory.cpp' || echo '$(srcdir)/'`controleur/sources/mapFactory.cpp
+
+map-mapFactory.obj: controleur/sources/mapFactory.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -MT map-mapFactory.obj -MD -MP -MF $(DEPDIR)/map-mapFactory.Tpo -c -o map-mapFactory.obj `if test -f 'controleur/sources/mapFactory.cpp'; then $(CYGPATH_W) 'controleur/sources/mapFactory.cpp'; else $(CYGPATH_W) '$(srcdir)/controleur/sources/mapFactory.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/map-mapFactory.Tpo $(DEPDIR)/map-mapFactory.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='controleur/sources/mapFactory.cpp' object='map-mapFactory.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -c -o map-mapFactory.obj `if test -f 'controleur/sources/mapFactory.cpp'; then $(CYGPATH_W) 'controleur/sources/mapFactory.cpp'; else $(CYGPATH_W) '$(srcdir)/controleur/sources/mapFactory.cpp'; fi`
+
+map-parseur.o: controleur/sources/parseur.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -MT map-parseur.o -MD -MP -MF $(DEPDIR)/map-parseur.Tpo -c -o map-parseur.o `test -f 'controleur/sources/parseur.cpp' || echo '$(srcdir)/'`controleur/sources/parseur.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/map-parseur.Tpo $(DEPDIR)/map-parseur.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='controleur/sources/parseur.cpp' object='map-parseur.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -c -o map-parseur.o `test -f 'controleur/sources/parseur.cpp' || echo '$(srcdir)/'`controleur/sources/parseur.cpp
+
+map-parseur.obj: controleur/sources/parseur.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -MT map-parseur.obj -MD -MP -MF $(DEPDIR)/map-parseur.Tpo -c -o map-parseur.obj `if test -f 'controleur/sources/parseur.cpp'; then $(CYGPATH_W) 'controleur/sources/parseur.cpp'; else $(CYGPATH_W) '$(srcdir)/controleur/sources/parseur.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/map-parseur.Tpo $(DEPDIR)/map-parseur.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='controleur/sources/parseur.cpp' object='map-parseur.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -c -o map-parseur.obj `if test -f 'controleur/sources/parseur.cpp'; then $(CYGPATH_W) 'controleur/sources/parseur.cpp'; else $(CYGPATH_W) '$(srcdir)/controleur/sources/parseur.cpp'; fi`
+
+map-background.o: Map/background.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -MT map-background.o -MD -MP -MF $(DEPDIR)/map-background.Tpo -c -o map-background.o `test -f 'Map/background.cpp' || echo '$(srcdir)/'`Map/background.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/map-background.Tpo $(DEPDIR)/map-background.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Map/background.cpp' object='map-background.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -c -o map-background.o `test -f 'Map/background.cpp' || echo '$(srcdir)/'`Map/background.cpp
+
+map-background.obj: Map/background.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -MT map-background.obj -MD -MP -MF $(DEPDIR)/map-background.Tpo -c -o map-background.obj `if test -f 'Map/background.cpp'; then $(CYGPATH_W) 'Map/background.cpp'; else $(CYGPATH_W) '$(srcdir)/Map/background.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/map-background.Tpo $(DEPDIR)/map-background.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Map/background.cpp' object='map-background.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -c -o map-background.obj `if test -f 'Map/background.cpp'; then $(CYGPATH_W) 'Map/background.cpp'; else $(CYGPATH_W) '$(srcdir)/Map/background.cpp'; fi`
+
+map-cell.o: Map/cell.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -MT map-cell.o -MD -MP -MF $(DEPDIR)/map-cell.Tpo -c -o map-cell.o `test -f 'Map/cell.cpp' || echo '$(srcdir)/'`Map/cell.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/map-cell.Tpo $(DEPDIR)/map-cell.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Map/cell.cpp' object='map-cell.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -c -o map-cell.o `test -f 'Map/cell.cpp' || echo '$(srcdir)/'`Map/cell.cpp
+
+map-cell.obj: Map/cell.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -MT map-cell.obj -MD -MP -MF $(DEPDIR)/map-cell.Tpo -c -o map-cell.obj `if test -f 'Map/cell.cpp'; then $(CYGPATH_W) 'Map/cell.cpp'; else $(CYGPATH_W) '$(srcdir)/Map/cell.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/map-cell.Tpo $(DEPDIR)/map-cell.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Map/cell.cpp' object='map-cell.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -c -o map-cell.obj `if test -f 'Map/cell.cpp'; then $(CYGPATH_W) 'Map/cell.cpp'; else $(CYGPATH_W) '$(srcdir)/Map/cell.cpp'; fi`
+
+map-field.o: Map/field.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -MT map-field.o -MD -MP -MF $(DEPDIR)/map-field.Tpo -c -o map-field.o `test -f 'Map/field.cpp' || echo '$(srcdir)/'`Map/field.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/map-field.Tpo $(DEPDIR)/map-field.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Map/field.cpp' object='map-field.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -c -o map-field.o `test -f 'Map/field.cpp' || echo '$(srcdir)/'`Map/field.cpp
+
+map-field.obj: Map/field.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -MT map-field.obj -MD -MP -MF $(DEPDIR)/map-field.Tpo -c -o map-field.obj `if test -f 'Map/field.cpp'; then $(CYGPATH_W) 'Map/field.cpp'; else $(CYGPATH_W) '$(srcdir)/Map/field.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/map-field.Tpo $(DEPDIR)/map-field.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Map/field.cpp' object='map-field.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -c -o map-field.obj `if test -f 'Map/field.cpp'; then $(CYGPATH_W) 'Map/field.cpp'; else $(CYGPATH_W) '$(srcdir)/Map/field.cpp'; fi`
+
+map-layers.o: Map/layers.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -MT map-layers.o -MD -MP -MF $(DEPDIR)/map-layers.Tpo -c -o map-layers.o `test -f 'Map/layers.cpp' || echo '$(srcdir)/'`Map/layers.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/map-layers.Tpo $(DEPDIR)/map-layers.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Map/layers.cpp' object='map-layers.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -c -o map-layers.o `test -f 'Map/layers.cpp' || echo '$(srcdir)/'`Map/layers.cpp
+
+map-layers.obj: Map/layers.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -MT map-layers.obj -MD -MP -MF $(DEPDIR)/map-layers.Tpo -c -o map-layers.obj `if test -f 'Map/layers.cpp'; then $(CYGPATH_W) 'Map/layers.cpp'; else $(CYGPATH_W) '$(srcdir)/Map/layers.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/map-layers.Tpo $(DEPDIR)/map-layers.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Map/layers.cpp' object='map-layers.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -c -o map-layers.obj `if test -f 'Map/layers.cpp'; then $(CYGPATH_W) 'Map/layers.cpp'; else $(CYGPATH_W) '$(srcdir)/Map/layers.cpp'; fi`
+
+map-map.o: Map/map.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -MT map-map.o -MD -MP -MF $(DEPDIR)/map-map.Tpo -c -o map-map.o `test -f 'Map/map.cpp' || echo '$(srcdir)/'`Map/map.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/map-map.Tpo $(DEPDIR)/map-map.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Map/map.cpp' object='map-map.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -c -o map-map.o `test -f 'Map/map.cpp' || echo '$(srcdir)/'`Map/map.cpp
+
+map-map.obj: Map/map.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -MT map-map.obj -MD -MP -MF $(DEPDIR)/map-map.Tpo -c -o map-map.obj `if test -f 'Map/map.cpp'; then $(CYGPATH_W) 'Map/map.cpp'; else $(CYGPATH_W) '$(srcdir)/Map/map.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/map-map.Tpo $(DEPDIR)/map-map.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Map/map.cpp' object='map-map.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -c -o map-map.obj `if test -f 'Map/map.cpp'; then $(CYGPATH_W) 'Map/map.cpp'; else $(CYGPATH_W) '$(srcdir)/Map/map.cpp'; fi`
+
+map-objectLayers.o: Map/objectLayers.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -MT map-objectLayers.o -MD -MP -MF $(DEPDIR)/map-objectLayers.Tpo -c -o map-objectLayers.o `test -f 'Map/objectLayers.cpp' || echo '$(srcdir)/'`Map/objectLayers.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/map-objectLayers.Tpo $(DEPDIR)/map-objectLayers.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Map/objectLayers.cpp' object='map-objectLayers.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -c -o map-objectLayers.o `test -f 'Map/objectLayers.cpp' || echo '$(srcdir)/'`Map/objectLayers.cpp
+
+map-objectLayers.obj: Map/objectLayers.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -MT map-objectLayers.obj -MD -MP -MF $(DEPDIR)/map-objectLayers.Tpo -c -o map-objectLayers.obj `if test -f 'Map/objectLayers.cpp'; then $(CYGPATH_W) 'Map/objectLayers.cpp'; else $(CYGPATH_W) '$(srcdir)/Map/objectLayers.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/map-objectLayers.Tpo $(DEPDIR)/map-objectLayers.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Map/objectLayers.cpp' object='map-objectLayers.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -c -o map-objectLayers.obj `if test -f 'Map/objectLayers.cpp'; then $(CYGPATH_W) 'Map/objectLayers.cpp'; else $(CYGPATH_W) '$(srcdir)/Map/objectLayers.cpp'; fi`
+
+map-obstacle.o: Map/obstacle.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -MT map-obstacle.o -MD -MP -MF $(DEPDIR)/map-obstacle.Tpo -c -o map-obstacle.o `test -f 'Map/obstacle.cpp' || echo '$(srcdir)/'`Map/obstacle.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/map-obstacle.Tpo $(DEPDIR)/map-obstacle.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Map/obstacle.cpp' object='map-obstacle.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -c -o map-obstacle.o `test -f 'Map/obstacle.cpp' || echo '$(srcdir)/'`Map/obstacle.cpp
+
+map-obstacle.obj: Map/obstacle.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -MT map-obstacle.obj -MD -MP -MF $(DEPDIR)/map-obstacle.Tpo -c -o map-obstacle.obj `if test -f 'Map/obstacle.cpp'; then $(CYGPATH_W) 'Map/obstacle.cpp'; else $(CYGPATH_W) '$(srcdir)/Map/obstacle.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/map-obstacle.Tpo $(DEPDIR)/map-obstacle.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Map/obstacle.cpp' object='map-obstacle.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -c -o map-obstacle.obj `if test -f 'Map/obstacle.cpp'; then $(CYGPATH_W) 'Map/obstacle.cpp'; else $(CYGPATH_W) '$(srcdir)/Map/obstacle.cpp'; fi`
+
+map-tileSet.o: tileset/sources/tileSet.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -MT map-tileSet.o -MD -MP -MF $(DEPDIR)/map-tileSet.Tpo -c -o map-tileSet.o `test -f 'tileset/sources/tileSet.cpp' || echo '$(srcdir)/'`tileset/sources/tileSet.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/map-tileSet.Tpo $(DEPDIR)/map-tileSet.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='tileset/sources/tileSet.cpp' object='map-tileSet.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -c -o map-tileSet.o `test -f 'tileset/sources/tileSet.cpp' || echo '$(srcdir)/'`tileset/sources/tileSet.cpp
+
+map-tileSet.obj: tileset/sources/tileSet.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -MT map-tileSet.obj -MD -MP -MF $(DEPDIR)/map-tileSet.Tpo -c -o map-tileSet.obj `if test -f 'tileset/sources/tileSet.cpp'; then $(CYGPATH_W) 'tileset/sources/tileSet.cpp'; else $(CYGPATH_W) '$(srcdir)/tileset/sources/tileSet.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/map-tileSet.Tpo $(DEPDIR)/map-tileSet.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='tileset/sources/tileSet.cpp' object='map-tileSet.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -c -o map-tileSet.obj `if test -f 'tileset/sources/tileSet.cpp'; then $(CYGPATH_W) 'tileset/sources/tileSet.cpp'; else $(CYGPATH_W) '$(srcdir)/tileset/sources/tileSet.cpp'; fi`
+
+map-tileSetImage.o: tileset/sources/tileSetImage.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -MT map-tileSetImage.o -MD -MP -MF $(DEPDIR)/map-tileSetImage.Tpo -c -o map-tileSetImage.o `test -f 'tileset/sources/tileSetImage.cpp' || echo '$(srcdir)/'`tileset/sources/tileSetImage.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/map-tileSetImage.Tpo $(DEPDIR)/map-tileSetImage.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='tileset/sources/tileSetImage.cpp' object='map-tileSetImage.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -c -o map-tileSetImage.o `test -f 'tileset/sources/tileSetImage.cpp' || echo '$(srcdir)/'`tileset/sources/tileSetImage.cpp
+
+map-tileSetImage.obj: tileset/sources/tileSetImage.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -MT map-tileSetImage.obj -MD -MP -MF $(DEPDIR)/map-tileSetImage.Tpo -c -o map-tileSetImage.obj `if test -f 'tileset/sources/tileSetImage.cpp'; then $(CYGPATH_W) 'tileset/sources/tileSetImage.cpp'; else $(CYGPATH_W) '$(srcdir)/tileset/sources/tileSetImage.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/map-tileSetImage.Tpo $(DEPDIR)/map-tileSetImage.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='tileset/sources/tileSetImage.cpp' object='map-tileSetImage.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -c -o map-tileSetImage.obj `if test -f 'tileset/sources/tileSetImage.cpp'; then $(CYGPATH_W) 'tileset/sources/tileSetImage.cpp'; else $(CYGPATH_W) '$(srcdir)/tileset/sources/tileSetImage.cpp'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
+
+# This directory's subdirectories are mostly independent; you can cd
+# into them and run `make' without going through this Makefile.
+# To change the values of `make' variables: instead of editing Makefiles,
+# (1) if the variable is set in `config.status', edit `config.status'
+#     (which will cause the Makefiles to be regenerated when you run `make');
+# (2) otherwise, pass the desired values on the `make' command line.
+$(RECURSIVE_TARGETS):
+	@fail= failcom='exit 1'; \
+	for f in x $$MAKEFLAGS; do \
+	  case $$f in \
+	    *=* | --[!k]*);; \
+	    *k*) failcom='fail=yes';; \
+	  esac; \
+	done; \
+	dot_seen=no; \
+	target=`echo $@ | sed s/-recursive//`; \
+	list='$(SUBDIRS)'; for subdir in $$list; do \
+	  echo "Making $$target in $$subdir"; \
+	  if test "$$subdir" = "."; then \
+	    dot_seen=yes; \
+	    local_target="$$target-am"; \
+	  else \
+	    local_target="$$target"; \
+	  fi; \
+	  ($(am__cd) $$subdir && $(MAKE) $(AM_MAKEFLAGS) $$local_target) \
+	  || eval $$failcom; \
+	done; \
+	if test "$$dot_seen" = "no"; then \
+	  $(MAKE) $(AM_MAKEFLAGS) "$$target-am" || exit 1; \
+	fi; test -z "$$fail"
+
+$(RECURSIVE_CLEAN_TARGETS):
+	@fail= failcom='exit 1'; \
+	for f in x $$MAKEFLAGS; do \
+	  case $$f in \
+	    *=* | --[!k]*);; \
+	    *k*) failcom='fail=yes';; \
+	  esac; \
+	done; \
+	dot_seen=no; \
+	case "$@" in \
+	  distclean-* | maintainer-clean-*) list='$(DIST_SUBDIRS)' ;; \
+	  *) list='$(SUBDIRS)' ;; \
+	esac; \
+	rev=''; for subdir in $$list; do \
+	  if test "$$subdir" = "."; then :; else \
+	    rev="$$subdir $$rev"; \
+	  fi; \
+	done; \
+	rev="$$rev ."; \
+	target=`echo $@ | sed s/-recursive//`; \
+	for subdir in $$rev; do \
+	  echo "Making $$target in $$subdir"; \
+	  if test "$$subdir" = "."; then \
+	    local_target="$$target-am"; \
+	  else \
+	    local_target="$$target"; \
+	  fi; \
+	  ($(am__cd) $$subdir && $(MAKE) $(AM_MAKEFLAGS) $$local_target) \
+	  || eval $$failcom; \
+	done && test -z "$$fail"
+tags-recursive:
+	list='$(SUBDIRS)'; for subdir in $$list; do \
+	  test "$$subdir" = . || ($(am__cd) $$subdir && $(MAKE) $(AM_MAKEFLAGS) tags); \
+	done
+ctags-recursive:
+	list='$(SUBDIRS)'; for subdir in $$list; do \
+	  test "$$subdir" = . || ($(am__cd) $$subdir && $(MAKE) $(AM_MAKEFLAGS) ctags); \
+	done
+
+ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
+	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
+	unique=`for i in $$list; do \
+	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
+	  done | \
+	  $(AWK) '{ files[$$0] = 1; nonempty = 1; } \
+	      END { if (nonempty) { for (i in files) print i; }; }'`; \
+	mkid -fID $$unique
 tags: TAGS
-TAGS:
 
+TAGS: tags-recursive $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) \
+		$(TAGS_FILES) $(LISP)
+	set x; \
+	here=`pwd`; \
+	if ($(ETAGS) --etags-include --version) >/dev/null 2>&1; then \
+	  include_option=--etags-include; \
+	  empty_fix=.; \
+	else \
+	  include_option=--include; \
+	  empty_fix=; \
+	fi; \
+	list='$(SUBDIRS)'; for subdir in $$list; do \
+	  if test "$$subdir" = .; then :; else \
+	    test ! -f $$subdir/TAGS || \
+	      set "$$@" "$$include_option=$$here/$$subdir/TAGS"; \
+	  fi; \
+	done; \
+	list='$(SOURCES) $(HEADERS)  $(LISP) $(TAGS_FILES)'; \
+	unique=`for i in $$list; do \
+	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
+	  done | \
+	  $(AWK) '{ files[$$0] = 1; nonempty = 1; } \
+	      END { if (nonempty) { for (i in files) print i; }; }'`; \
+	shift; \
+	if test -z "$(ETAGS_ARGS)$$*$$unique"; then :; else \
+	  test -n "$$unique" || unique=$$empty_fix; \
+	  if test $$# -gt 0; then \
+	    $(ETAGS) $(ETAGSFLAGS) $(AM_ETAGSFLAGS) $(ETAGS_ARGS) \
+	      "$$@" $$unique; \
+	  else \
+	    $(ETAGS) $(ETAGSFLAGS) $(AM_ETAGSFLAGS) $(ETAGS_ARGS) \
+	      $$unique; \
+	  fi; \
+	fi
 ctags: CTAGS
-CTAGS:
+CTAGS: ctags-recursive $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) \
+		$(TAGS_FILES) $(LISP)
+	list='$(SOURCES) $(HEADERS)  $(LISP) $(TAGS_FILES)'; \
+	unique=`for i in $$list; do \
+	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
+	  done | \
+	  $(AWK) '{ files[$$0] = 1; nonempty = 1; } \
+	      END { if (nonempty) { for (i in files) print i; }; }'`; \
+	test -z "$(CTAGS_ARGS)$$unique" \
+	  || $(CTAGS) $(CTAGSFLAGS) $(AM_CTAGSFLAGS) $(CTAGS_ARGS) \
+	     $$unique
 
+GTAGS:
+	here=`$(am__cd) $(top_builddir) && pwd` \
+	  && $(am__cd) $(top_srcdir) \
+	  && gtags -i $(GTAGS_ARGS) "$$here"
+
+distclean-tags:
+	-rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH tags
 
 distdir: $(DISTFILES)
 	@srcdirstrip=`echo "$(srcdir)" | sed 's/[].[^$$\\*]/\\\\&/g'`; \
@@ -261,19 +731,51 @@ distdir: $(DISTFILES)
 	    || exit 1; \
 	  fi; \
 	done
+	@list='$(DIST_SUBDIRS)'; for subdir in $$list; do \
+	  if test "$$subdir" = .; then :; else \
+	    test -d "$(distdir)/$$subdir" \
+	    || $(MKDIR_P) "$(distdir)/$$subdir" \
+	    || exit 1; \
+	  fi; \
+	done
+	@list='$(DIST_SUBDIRS)'; for subdir in $$list; do \
+	  if test "$$subdir" = .; then :; else \
+	    dir1=$$subdir; dir2="$(distdir)/$$subdir"; \
+	    $(am__relativize); \
+	    new_distdir=$$reldir; \
+	    dir1=$$subdir; dir2="$(top_distdir)"; \
+	    $(am__relativize); \
+	    new_top_distdir=$$reldir; \
+	    echo " (cd $$subdir && $(MAKE) $(AM_MAKEFLAGS) top_distdir="$$new_top_distdir" distdir="$$new_distdir" \\"; \
+	    echo "     am__remove_distdir=: am__skip_length_check=: am__skip_mode_fix=: distdir)"; \
+	    ($(am__cd) $$subdir && \
+	      $(MAKE) $(AM_MAKEFLAGS) \
+	        top_distdir="$$new_top_distdir" \
+	        distdir="$$new_distdir" \
+		am__remove_distdir=: \
+		am__skip_length_check=: \
+		am__skip_mode_fix=: \
+	        distdir) \
+	      || exit 1; \
+	  fi; \
+	done
 check-am: all-am
-check: check-am
-all-am: Makefile
-installdirs:
-install: install-am
-install-exec: install-exec-am
-install-data: install-data-am
-uninstall: uninstall-am
+check: check-recursive
+all-am: Makefile $(PROGRAMS)
+installdirs: installdirs-recursive
+installdirs-am:
+	for dir in "$(DESTDIR)$(bindir)"; do \
+	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
+	done
+install: install-recursive
+install-exec: install-exec-recursive
+install-data: install-data-recursive
+uninstall: uninstall-recursive
 
 install-am: all-am
 	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
 
-installcheck: installcheck-am
+installcheck: installcheck-recursive
 install-strip:
 	if test -z '$(STRIP)'; then \
 	  $(MAKE) $(AM_MAKEFLAGS) INSTALL_PROGRAM="$(INSTALL_STRIP_PROGRAM)" \
@@ -295,84 +797,94 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
-clean: clean-am
+clean: clean-recursive
 
-clean-am: clean-generic clean-libtool mostlyclean-am
+clean-am: clean-binPROGRAMS clean-generic clean-libtool mostlyclean-am
 
-distclean: distclean-am
+distclean: distclean-recursive
+	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
-distclean-am: clean-am distclean-generic
+distclean-am: clean-am distclean-compile distclean-generic \
+	distclean-tags
 
-dvi: dvi-am
+dvi: dvi-recursive
 
 dvi-am:
 
-html: html-am
+html: html-recursive
 
 html-am:
 
-info: info-am
+info: info-recursive
 
 info-am:
 
 install-data-am:
 
-install-dvi: install-dvi-am
+install-dvi: install-dvi-recursive
 
 install-dvi-am:
 
-install-exec-am:
+install-exec-am: install-binPROGRAMS
 
-install-html: install-html-am
+install-html: install-html-recursive
 
 install-html-am:
 
-install-info: install-info-am
+install-info: install-info-recursive
 
 install-info-am:
 
 install-man:
 
-install-pdf: install-pdf-am
+install-pdf: install-pdf-recursive
 
 install-pdf-am:
 
-install-ps: install-ps-am
+install-ps: install-ps-recursive
 
 install-ps-am:
 
 installcheck-am:
 
-maintainer-clean: maintainer-clean-am
+maintainer-clean: maintainer-clean-recursive
+	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
-mostlyclean: mostlyclean-am
+mostlyclean: mostlyclean-recursive
 
-mostlyclean-am: mostlyclean-generic mostlyclean-libtool
+mostlyclean-am: mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool
 
-pdf: pdf-am
+pdf: pdf-recursive
 
 pdf-am:
 
-ps: ps-am
+ps: ps-recursive
 
 ps-am:
 
-uninstall-am:
+uninstall-am: uninstall-binPROGRAMS
 
-.MAKE: install-am install-strip
+.MAKE: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) ctags-recursive \
+	install-am install-strip tags-recursive
 
-.PHONY: all all-am check check-am clean clean-generic clean-libtool \
-	distclean distclean-generic distclean-libtool distdir dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-dvi install-dvi-am \
-	install-exec install-exec-am install-html install-html-am \
-	install-info install-info-am install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am
+.PHONY: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) CTAGS GTAGS \
+	all all-am check check-am clean clean-binPROGRAMS \
+	clean-generic clean-libtool ctags ctags-recursive distclean \
+	distclean-compile distclean-generic distclean-libtool \
+	distclean-tags distdir dvi dvi-am html html-am info info-am \
+	install install-am install-binPROGRAMS install-data \
+	install-data-am install-dvi install-dvi-am install-exec \
+	install-exec-am install-html install-html-am install-info \
+	install-info-am install-man install-pdf install-pdf-am \
+	install-ps install-ps-am install-strip installcheck \
+	installcheck-am installdirs installdirs-am maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags tags-recursive uninstall uninstall-am \
+	uninstall-binPROGRAMS
 
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

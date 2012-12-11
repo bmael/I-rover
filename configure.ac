@@ -15,6 +15,9 @@ AC_PROG_CXX
 # If you need to create a library, USE libtool:
 AC_PROG_LIBTOOL
 
+# Checks for libraries.
+AC_CHECK_LIB([pugixml], [next_attribute], [], [echo "pugixml library is required" exit -1])
+
 # If you happen to have some C code:
 #AC_LANG([C])
 #AC_PROG_CC
@@ -39,6 +42,7 @@ AC_CONFIG_FILES(Makefile
 		  src/Makefile
 		  src/ihm/Makefile
 		  src/map/Makefile
+		  src/map/lib/Makefile
 		  src/mission/Makefile
 		  src/robot/Makefile)
 		  
