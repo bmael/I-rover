@@ -9,11 +9,10 @@
 
 #include <cstdlib>
 #include <iostream>
-#include "robot.h"
-#include "wheels.h"
-#include "actuator.h"
-#include "rocketlauncher.h"
-#include "chains.h"
+#include <robot/robot.h>
+#include <robot/movementactuator/wheels.h>
+#include <robot/actuators/rocketlauncher.h>
+#include <robot/movementactuator/chains.h>
 using namespace std;
 
 int main() {
