@@ -2,20 +2,23 @@ INCLUDEPATH += ./
 DEPENDPATH += $$PWD
 
 HEADERS += \
-    $$PWD/robotinformation.h \
+    $$PWD/robotmenu.h \
     $$PWD/mapmenu.h \
     $$PWD/leftmenu.h \
-    widgets/aboutdialog.h
+    $$PWD/aboutdialog.h \
+    $$PWD/mission.h
 
 SOURCES += \
-    $$PWD/robotinformation.cpp \
+    $$PWD/robotmenu.cpp \
     $$PWD/mapmenu.cpp \
     $$PWD/leftmenu.cpp \
-    widgets/aboutdialog.cpp
+    $$PWD/aboutdialog.cpp \
+    $$PWD/mission.cpp
 
 FORMS += \
-    $$PWD/robotinformation.ui \
+    $$PWD/robotmenu.ui \
     $$PWD/mapmenu.ui \
     $$PWD/leftmenu.ui \
-    widgets/aboutdialog.ui
+    $$PWD/aboutdialog.ui \
+    $$PWD/mission.ui
  

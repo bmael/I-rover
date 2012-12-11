@@ -43,27 +43,11 @@ void MapMenu::on_browseMissionPushButton_clicked()
 }
 
 /**
-  * Start or Pause the current mission.
-  *
+  * Ask to load the map on the scene and ask to load robot information according to the mission selected.
   */
-void MapMenu::on_startPausePushButton_clicked()
+void MapMenu::on_loadPushButton_clicked()
 {
-    // verify the map and emit a signal if all is ok
-    //TODO the verification
     emit askLoadMap(ui->mapLineEdit->text());
-}
-
-/**
-  * Stop the current mission, ask to unload the map and the mission.
-  *
-  */
-void MapMenu::on_stopPushButton_clicked()
-{
-
-    ui->mapLineEdit->clear();
-    ui->missionLineEdit->clear();
-
-    emit askUnloadMap();
 }
 
 /**
@@ -76,3 +60,5 @@ void MapMenu::paintEvent(QPaintEvent *)
     QPainter p(this);
     style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 }
+
+

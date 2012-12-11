@@ -4,6 +4,8 @@
         <file alias="deploy">resources/icons/deployArrow.png</file>
         <file alias="quit">resources/icons/quit.png</file>
         <file alias="retract">resources/icons/retractArrow.png</file>
+        <file alias="deployBottom">resources/icons/deploy2bottom.png</file>
+        <file alias="retractTop">resources/icons/retract2Top.png</file>
     </qresource>
     <qresource prefix="/backgrounds">
         <file alias="widgetsbg">resources/backgrounds/bg-leftmenu.png</file>

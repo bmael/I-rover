@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>RobotInformation</class>
- <widget class="QWidget" name="RobotInformation">
+ <class>RobotMenu</class>
+ <widget class="QWidget" name="RobotMenu">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>314</width>
-    <height>72</height>
+    <height>95</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>314</width>
-    <height>72</height>
+    <height>0</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>314</width>
-    <height>72</height>
+    <height>16777215</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -52,6 +52,24 @@
      </item>
      <item>
       <widget class="QLabel" name="label">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>35</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>35</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <pointsize>14</pointsize>
@@ -61,6 +79,9 @@
        </property>
        <property name="text">
         <string>Robot</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
@@ -82,9 +103,33 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QLabel" name="label_2">
+      <widget class="QPushButton" name="missionPushButton">
        <property name="text">
         <string>Mission</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../resources.qrc">
+         <normaloff>:/icons/deployBottom</normaloff>:/icons/deployBottom</iconset>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <item>
+      <widget class="Mission" name="MissionInformation" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>314</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>314</width>
+         <height>0</height>
+        </size>
        </property>
       </widget>
      </item>
@@ -93,9 +138,13 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
-      <widget class="QLabel" name="label_3">
+      <widget class="QPushButton" name="informationPushButton">
        <property name="text">
-        <string>Informations</string>
+        <string>Information</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../resources.qrc">
+         <normaloff>:/icons/deployBottom</normaloff>:/icons/deployBottom</iconset>
        </property>
       </widget>
      </item>
@@ -103,6 +152,16 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <customwidgets>
+  <customwidget>
+   <class>Mission</class>
+   <extends>QWidget</extends>
+   <header>widgets/mission.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

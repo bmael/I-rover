@@ -45,7 +45,7 @@ void MainWindow::on_showHideLeftMenuPushButton_clicked()
     }
     else{
         ui->showHideLeftMenuPushButton->setIcon(QIcon(":/icons/retract"));
-        animation->setEndValue(300);
+        animation->setEndValue(314);
         animation->setEasingCurve(QEasingCurve::OutBack);
         _leftMenuHidden = false;
     }

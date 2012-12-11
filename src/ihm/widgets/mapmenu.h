@@ -19,15 +19,13 @@ protected:
     void paintEvent(QPaintEvent *); // Override of painEvent.
     
 private slots:
-    void on_browseMapPushButton_clicked();
-    void on_browseMissionPushButton_clicked();
-    void on_startPausePushButton_clicked();
-
-    void on_stopPushButton_clicked();
+    void on_browseMapPushButton_clicked();      // Open a File Dialog to choose the map file
+    void on_browseMissionPushButton_clicked();  // Open a File Dialog to choose the Mission file
+    void on_loadPushButton_clicked();           // Ask to load the map on the scene and mission information in RobotMenu
 
 signals:
-    void askLoadMap(QString file);
-    void askUnloadMap();
+    void askLoadMap(QString file);  // Emit to ask the loading of the map
+    void askUnloadMap();            // Emit to ask the unloading of the map from the scene
 
 private:
     Ui::MapMenu *ui;

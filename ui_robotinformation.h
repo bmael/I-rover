@@ -1,8 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'robotinformation.ui'
 **
-** Created: Thu Dec 6 11:52:48 2012
-**      by: Qt User Interface Compiler version 4.8.1
+** Created: Mon Dec 10 16:53:49 2012
+**      by: Qt User Interface Compiler version 4.8.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -56,17 +56,11 @@ public:
 
         label = new QLabel(RobotInformation);
         label->setObjectName(QString::fromUtf8("label"));
-        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(label->sizePolicy().hasHeightForWidth());
-        label->setSizePolicy(sizePolicy);
         QFont font;
         font.setPointSize(14);
         font.setBold(true);
         font.setWeight(75);
         label->setFont(font);
-        label->setAlignment(Qt::AlignCenter);
 
         horizontalLayout->addWidget(label);
 

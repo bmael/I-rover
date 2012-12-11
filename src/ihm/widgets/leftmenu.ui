@@ -38,7 +38,7 @@
       <widget class="MapMenu" name="mapMenuWidget" native="true"/>
      </item>
      <item>
-      <widget class="RobotInformation" name="robotInformationWidget" native="true">
+      <widget class="RobotMenu" name="robotInformationWidget" native="true">
        <property name="styleSheet">
         <string notr="true"/>
        </property>
@@ -69,9 +69,9 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>RobotInformation</class>
+   <class>RobotMenu</class>
    <extends>QWidget</extends>
-   <header>widgets/robotinformation.h</header>
+   <header>widgets/robotmenu.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
