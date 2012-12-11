@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'robotmenu.ui'
 **
-** Created: Tue Dec 11 13:15:41 2012
+** Created: Tue Dec 11 17:08:41 2012
 **      by: Qt User Interface Compiler version 4.8.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -22,6 +22,7 @@
 #include <QtGui/QVBoxLayout>
 #include <QtGui/QWidget>
 #include "widgets/mission.h"
+#include "widgets/robotinformation.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -39,12 +40,14 @@ public:
     Mission *MissionInformation;
     QHBoxLayout *horizontalLayout_3;
     QPushButton *informationPushButton;
+    QHBoxLayout *horizontalLayout_4;
+    RobotInformation *robotInformation;
 
     void setupUi(QWidget *RobotMenu)
     {
         if (RobotMenu->objectName().isEmpty())
             RobotMenu->setObjectName(QString::fromUtf8("RobotMenu"));
-        RobotMenu->resize(314, 95);
+        RobotMenu->resize(314, 97);
         RobotMenu->setMinimumSize(QSize(314, 0));
         RobotMenu->setMaximumSize(QSize(314, 16777215));
         RobotMenu->setStyleSheet(QString::fromUtf8(""));
@@ -118,6 +121,18 @@ public:
 
 
         verticalLayout->addLayout(horizontalLayout_3);
+
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
+        robotInformation = new RobotInformation(RobotMenu);
+        robotInformation->setObjectName(QString::fromUtf8("robotInformation"));
+        robotInformation->setMinimumSize(QSize(314, 0));
+        robotInformation->setMaximumSize(QSize(314, 0));
+
+        horizontalLayout_4->addWidget(robotInformation);
+
+
+        verticalLayout->addLayout(horizontalLayout_4);
 
 
         retranslateUi(RobotMenu);

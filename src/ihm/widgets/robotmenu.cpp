@@ -71,7 +71,7 @@ void RobotMenu::on_informationPushButton_clicked()
 
     if(_missionHidden){
         ui->informationPushButton->setIcon(QIcon(":/icons/retractTop"));
-        animation->setEndValue(160);
+        animation->setEndValue(70);
         animation->setEasingCurve(QEasingCurve::OutExpo);
         _missionHidden = false;
     }else{

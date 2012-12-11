@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'leftmenu.ui'
 **
-** Created: Tue Dec 11 13:15:41 2012
+** Created: Tue Dec 11 17:08:41 2012
 **      by: Qt User Interface Compiler version 4.8.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mission.ui'
 **
-** Created: Tue Dec 11 13:15:41 2012
+** Created: Tue Dec 11 17:08:41 2012
 **      by: Qt User Interface Compiler version 4.8.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -47,13 +47,13 @@ public:
     {
         if (Mission->objectName().isEmpty())
             Mission->setObjectName(QString::fromUtf8("Mission"));
-        Mission->resize(314, 130);
+        Mission->resize(314, 145);
         Mission->setMinimumSize(QSize(314, 0));
         Mission->setMaximumSize(QSize(314, 16777215));
         verticalLayout = new QVBoxLayout(Mission);
         verticalLayout->setSpacing(0);
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        verticalLayout->setContentsMargins(0, 0, 0, 4);
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);

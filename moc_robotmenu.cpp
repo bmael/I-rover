@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'robotmenu.h'
 **
-** Created: Tue Dec 11 13:15:48 2012
+** Created: Tue Dec 11 17:08:54 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.3)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_RobotMenu[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       1,   14, // methods
+       2,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -32,12 +32,14 @@ static const uint qt_meta_data_RobotMenu[] = {
 
  // slots: signature, parameters, type, tag, flags
       11,   10,   10,   10, 0x08,
+      42,   10,   10,   10, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_RobotMenu[] = {
     "RobotMenu\0\0on_missionPushButton_clicked()\0"
+    "on_informationPushButton_clicked()\0"
 };
 
 void RobotMenu::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -47,6 +49,7 @@ void RobotMenu::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         RobotMenu *_t = static_cast<RobotMenu *>(_o);
         switch (_id) {
         case 0: _t->on_missionPushButton_clicked(); break;
+        case 1: _t->on_informationPushButton_clicked(); break;
         default: ;
         }
     }
@@ -85,9 +88,9 @@ int RobotMenu::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 1)
+        if (_id < 2)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 1;
+        _id -= 2;
     }
     return _id;
 }
