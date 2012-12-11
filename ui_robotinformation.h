@@ -1,8 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'robotinformation.ui'
 **
-** Created: Tue Dec 11 18:21:14 2012
-**      by: Qt User Interface Compiler version 4.8.1
+** Created: Tue Dec 11 23:14:11 2012
+**      by: Qt User Interface Compiler version 4.8.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -42,7 +42,9 @@ public:
     {
         if (RobotInformation->objectName().isEmpty())
             RobotInformation->setObjectName(QString::fromUtf8("RobotInformation"));
-        RobotInformation->resize(185, 86);
+        RobotInformation->resize(314, 56);
+        RobotInformation->setMinimumSize(QSize(314, 0));
+        RobotInformation->setMaximumSize(QSize(314, 16777215));
         verticalLayout = new QVBoxLayout(RobotInformation);
         verticalLayout->setSpacing(0);
         verticalLayout->setContentsMargins(0, 0, 0, 0);
