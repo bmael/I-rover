@@ -80,5 +80,6 @@ void MainWindow::unloadMap()
 void MainWindow::on_actionAbout_triggered()
 {
     AboutDialog dial;
-    dial.show();
+    dial.exec();
 }
+

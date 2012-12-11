@@ -33,6 +33,10 @@ void RobotMenu::paintEvent(QPaintEvent *)
     style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 }
 
+/**
+ * Show or hide the Mission Widget with an animation
+ * @brief RobotMenu::on_missionPushButton_clicked
+ */
 void RobotMenu::on_missionPushButton_clicked()
 {
     QPropertyAnimation * animation = new QPropertyAnimation(ui->MissionInformation, "maximumHeight");

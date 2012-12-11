@@ -20,7 +20,7 @@ protected:
     
 private slots:
 
-    void on_missionPushButton_clicked();
+    void on_missionPushButton_clicked(); // Show or hide the mission widget
 
 signals:
 

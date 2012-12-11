@@ -17,13 +17,12 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_showHideLeftMenuPushButton_clicked(); //Show or hide the left menu with an animation.
-
-    void on_actionAbout_triggered();
+    void on_showHideLeftMenuPushButton_clicked();   // Show or hide the left menu with an animation.
+    void on_actionAbout_triggered();                // Display the About dialog
 
 public slots:
-    void mapLoader(QString file);   //Load the map on the scene.
-    void unloadMap();               //Unload the map.
+    void mapLoader(QString file);   // Load the map on the scene.
+    void unloadMap();               // Unload the map from the scene.
 
 private:
     Ui::MainWindow *ui;
