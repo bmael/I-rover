@@ -99,7 +99,7 @@
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
-         <widget class="QListView" name="listView_2"/>
+         <widget class="QListView" name="sensorsListView"/>
         </item>
        </layout>
       </widget>
@@ -121,7 +121,7 @@
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QListView" name="listView"/>
+         <widget class="QListView" name="actuatorsListView"/>
         </item>
        </layout>
       </widget>

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'leftmenu.ui'
 **
-** Created: Tue Dec 11 23:14:11 2012
+** Created: Wed Dec 12 00:54:01 2012
 **      by: Qt User Interface Compiler version 4.8.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -37,9 +37,14 @@ public:
     {
         if (LeftMenu->objectName().isEmpty())
             LeftMenu->setObjectName(QString::fromUtf8("LeftMenu"));
-        LeftMenu->resize(334, 300);
-        LeftMenu->setMinimumSize(QSize(0, 0));
-        LeftMenu->setMaximumSize(QSize(334, 300));
+        LeftMenu->resize(314, 54);
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(LeftMenu->sizePolicy().hasHeightForWidth());
+        LeftMenu->setSizePolicy(sizePolicy);
+        LeftMenu->setMinimumSize(QSize(314, 0));
+        LeftMenu->setMaximumSize(QSize(314, 16777215));
         horizontalLayout = new QHBoxLayout(LeftMenu);
         horizontalLayout->setSpacing(0);
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
@@ -48,11 +53,22 @@ public:
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         mapMenuWidget = new MapMenu(LeftMenu);
         mapMenuWidget->setObjectName(QString::fromUtf8("mapMenuWidget"));
+        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(mapMenuWidget->sizePolicy().hasHeightForWidth());
+        mapMenuWidget->setSizePolicy(sizePolicy1);
+        mapMenuWidget->setMinimumSize(QSize(314, 0));
+        mapMenuWidget->setMaximumSize(QSize(314, 16777215));
 
         verticalLayout->addWidget(mapMenuWidget);
 
         robotInformationWidget = new RobotMenu(LeftMenu);
         robotInformationWidget->setObjectName(QString::fromUtf8("robotInformationWidget"));
+        sizePolicy1.setHeightForWidth(robotInformationWidget->sizePolicy().hasHeightForWidth());
+        robotInformationWidget->setSizePolicy(sizePolicy1);
+        robotInformationWidget->setMinimumSize(QSize(314, 0));
+        robotInformationWidget->setMaximumSize(QSize(314, 16777215));
         robotInformationWidget->setStyleSheet(QString::fromUtf8(""));
 
         verticalLayout->addWidget(robotInformationWidget);

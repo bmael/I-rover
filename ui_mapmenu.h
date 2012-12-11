@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mapmenu.ui'
 **
-** Created: Tue Dec 11 23:14:11 2012
+** Created: Wed Dec 12 00:54:01 2012
 **      by: Qt User Interface Compiler version 4.8.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -49,6 +49,14 @@ public:
     QLineEdit *missionLineEdit;
     QPushButton *browseMissionPushButton;
     QSpacerItem *horizontalSpacer_7;
+    QHBoxLayout *horizontalLayout_7;
+    QSpacerItem *horizontalSpacer_11;
+    QLabel *label_4;
+    QHBoxLayout *horizontalLayout_8;
+    QSpacerItem *horizontalSpacer_12;
+    QLineEdit *strategyLineEdit;
+    QPushButton *strategyPushButton;
+    QSpacerItem *horizontalSpacer_13;
     QHBoxLayout *horizontalLayout_6;
     QSpacerItem *horizontalSpacer_10;
     QPushButton *loadPushButton;
@@ -58,7 +66,7 @@ public:
     {
         if (MapMenu->objectName().isEmpty())
             MapMenu->setObjectName(QString::fromUtf8("MapMenu"));
-        MapMenu->resize(314, 122);
+        MapMenu->resize(314, 155);
         MapMenu->setMinimumSize(QSize(314, 100));
         MapMenu->setMaximumSize(QSize(314, 16777215));
         verticalLayout = new QVBoxLayout(MapMenu);
@@ -114,7 +122,7 @@ public:
         horizontalLayout_3->setSpacing(0);
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
         horizontalLayout_3->setSizeConstraint(QLayout::SetDefaultConstraint);
-        horizontalSpacer_3 = new QSpacerItem(32, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        horizontalSpacer_3 = new QSpacerItem(36, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         horizontalLayout_3->addItem(horizontalSpacer_3);
 
@@ -158,7 +166,7 @@ public:
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setSpacing(0);
         horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
-        horizontalSpacer_4 = new QSpacerItem(15, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        horizontalSpacer_4 = new QSpacerItem(19, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         horizontalLayout_5->addItem(horizontalSpacer_4);
 
@@ -184,6 +192,50 @@ public:
 
 
         verticalLayout->addLayout(horizontalLayout_4);
+
+        horizontalLayout_7 = new QHBoxLayout();
+#ifndef Q_OS_MAC
+        horizontalLayout_7->setSpacing(-1);
+#endif
+        horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
+        horizontalSpacer_11 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_7->addItem(horizontalSpacer_11);
+
+        label_4 = new QLabel(MapMenu);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+
+        horizontalLayout_7->addWidget(label_4);
+
+        horizontalLayout_8 = new QHBoxLayout();
+        horizontalLayout_8->setSpacing(0);
+        horizontalLayout_8->setObjectName(QString::fromUtf8("horizontalLayout_8"));
+        horizontalSpacer_12 = new QSpacerItem(0, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_8->addItem(horizontalSpacer_12);
+
+        strategyLineEdit = new QLineEdit(MapMenu);
+        strategyLineEdit->setObjectName(QString::fromUtf8("strategyLineEdit"));
+        sizePolicy1.setHeightForWidth(strategyLineEdit->sizePolicy().hasHeightForWidth());
+        strategyLineEdit->setSizePolicy(sizePolicy1);
+        strategyLineEdit->setMinimumSize(QSize(110, 0));
+
+        horizontalLayout_8->addWidget(strategyLineEdit);
+
+        strategyPushButton = new QPushButton(MapMenu);
+        strategyPushButton->setObjectName(QString::fromUtf8("strategyPushButton"));
+
+        horizontalLayout_8->addWidget(strategyPushButton);
+
+        horizontalSpacer_13 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_8->addItem(horizontalSpacer_13);
+
+
+        horizontalLayout_7->addLayout(horizontalLayout_8);
+
+
+        verticalLayout->addLayout(horizontalLayout_7);
 
         horizontalLayout_6 = new QHBoxLayout();
         horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
@@ -217,6 +269,8 @@ public:
         browseMapPushButton->setText(QApplication::translate("MapMenu", "Browse", 0, QApplication::UnicodeUTF8));
         label_3->setText(QApplication::translate("MapMenu", "Select a mission", 0, QApplication::UnicodeUTF8));
         browseMissionPushButton->setText(QApplication::translate("MapMenu", "Browse", 0, QApplication::UnicodeUTF8));
+        label_4->setText(QApplication::translate("MapMenu", "Select the strategy ", 0, QApplication::UnicodeUTF8));
+        strategyPushButton->setText(QApplication::translate("MapMenu", "Browse", 0, QApplication::UnicodeUTF8));
         loadPushButton->setText(QApplication::translate("MapMenu", "Load", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 

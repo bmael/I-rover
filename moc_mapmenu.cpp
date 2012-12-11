@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mapmenu.h'
 **
-** Created: Tue Dec 11 23:14:30 2012
+** Created: Wed Dec 12 00:54:20 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.3)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MapMenu[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -38,6 +38,7 @@ static const uint qt_meta_data_MapMenu[] = {
       49,    8,    8,    8, 0x08,
       82,    8,    8,    8, 0x08,
      119,    8,    8,    8, 0x08,
+     151,    8,    8,    8, 0x08,
 
        0        // eod
 };
@@ -46,6 +47,7 @@ static const char qt_meta_stringdata_MapMenu[] = {
     "MapMenu\0\0file\0askLoadMap(QString)\0"
     "askUnloadMap()\0on_browseMapPushButton_clicked()\0"
     "on_browseMissionPushButton_clicked()\0"
+    "on_strategyPushButton_clicked()\0"
     "on_loadPushButton_clicked()\0"
 };
 
@@ -59,7 +61,8 @@ void MapMenu::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 1: _t->askUnloadMap(); break;
         case 2: _t->on_browseMapPushButton_clicked(); break;
         case 3: _t->on_browseMissionPushButton_clicked(); break;
-        case 4: _t->on_loadPushButton_clicked(); break;
+        case 4: _t->on_strategyPushButton_clicked(); break;
+        case 5: _t->on_loadPushButton_clicked(); break;
         default: ;
         }
     }
@@ -97,9 +100,9 @@ int MapMenu::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 6;
     }
     return _id;
 }

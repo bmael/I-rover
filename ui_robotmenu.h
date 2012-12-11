@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'robotmenu.ui'
 **
-** Created: Tue Dec 11 23:14:11 2012
+** Created: Wed Dec 12 00:54:01 2012
 **      by: Qt User Interface Compiler version 4.8.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -126,6 +126,11 @@ public:
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
         robotInformation = new RobotInformation(RobotMenu);
         robotInformation->setObjectName(QString::fromUtf8("robotInformation"));
+        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(robotInformation->sizePolicy().hasHeightForWidth());
+        robotInformation->setSizePolicy(sizePolicy1);
         robotInformation->setMinimumSize(QSize(314, 0));
         robotInformation->setMaximumSize(QSize(314, 0));
 

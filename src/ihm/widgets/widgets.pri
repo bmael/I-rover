@@ -7,7 +7,7 @@ HEADERS += \
     $$PWD/leftmenu.h \
     $$PWD/aboutdialog.h \
     $$PWD/mission.h \
-    widgets/robotinformation.h
+    $$PWD/robotinformation.h
 
 SOURCES += \
     $$PWD/robotmenu.cpp \
@@ -15,7 +15,7 @@ SOURCES += \
     $$PWD/leftmenu.cpp \
     $$PWD/aboutdialog.cpp \
     $$PWD/mission.cpp \
-    widgets/robotinformation.cpp
+    $$PWD/robotinformation.cpp
 
 FORMS += \
     $$PWD/robotmenu.ui \
@@ -23,5 +23,5 @@ FORMS += \
     $$PWD/leftmenu.ui \
     $$PWD/aboutdialog.ui \
     $$PWD/mission.ui \
-    widgets/robotinformation.ui
+    $$PWD/robotinformation.ui
  

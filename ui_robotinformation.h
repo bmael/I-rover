@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'robotinformation.ui'
 **
-** Created: Tue Dec 11 23:14:11 2012
+** Created: Wed Dec 12 00:54:01 2012
 **      by: Qt User Interface Compiler version 4.8.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -18,6 +18,7 @@
 #include <QtGui/QHBoxLayout>
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
+#include <QtGui/QListView>
 #include <QtGui/QSlider>
 #include <QtGui/QSpacerItem>
 #include <QtGui/QVBoxLayout>
@@ -35,14 +36,18 @@ public:
     QSlider *speedSlider;
     QHBoxLayout *horizontalLayout_2;
     QGroupBox *SensorsGroupBox;
+    QVBoxLayout *verticalLayout_3;
+    QListView *sensorsListView;
     QHBoxLayout *horizontalLayout;
     QGroupBox *ActuatorGroupBox;
+    QVBoxLayout *verticalLayout_2;
+    QListView *actuatorsListView;
 
     void setupUi(QWidget *RobotInformation)
     {
         if (RobotInformation->objectName().isEmpty())
             RobotInformation->setObjectName(QString::fromUtf8("RobotInformation"));
-        RobotInformation->resize(314, 56);
+        RobotInformation->resize(314, 484);
         RobotInformation->setMinimumSize(QSize(314, 0));
         RobotInformation->setMaximumSize(QSize(314, 16777215));
         verticalLayout = new QVBoxLayout(RobotInformation);
@@ -80,6 +85,15 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(SensorsGroupBox->sizePolicy().hasHeightForWidth());
         SensorsGroupBox->setSizePolicy(sizePolicy);
+        SensorsGroupBox->setMinimumSize(QSize(314, 0));
+        SensorsGroupBox->setMaximumSize(QSize(314, 16777215));
+        verticalLayout_3 = new QVBoxLayout(SensorsGroupBox);
+        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
+        sensorsListView = new QListView(SensorsGroupBox);
+        sensorsListView->setObjectName(QString::fromUtf8("sensorsListView"));
+
+        verticalLayout_3->addWidget(sensorsListView);
+
 
         horizontalLayout_2->addWidget(SensorsGroupBox);
 
@@ -92,6 +106,13 @@ public:
         ActuatorGroupBox->setObjectName(QString::fromUtf8("ActuatorGroupBox"));
         sizePolicy.setHeightForWidth(ActuatorGroupBox->sizePolicy().hasHeightForWidth());
         ActuatorGroupBox->setSizePolicy(sizePolicy);
+        verticalLayout_2 = new QVBoxLayout(ActuatorGroupBox);
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        actuatorsListView = new QListView(ActuatorGroupBox);
+        actuatorsListView->setObjectName(QString::fromUtf8("actuatorsListView"));
+
+        verticalLayout_2->addWidget(actuatorsListView);
+
 
         horizontalLayout->addWidget(ActuatorGroupBox);
 
