@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>314</width>
-    <height>56</height>
+    <height>484</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -82,9 +82,26 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="minimumSize">
+        <size>
+         <width>314</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>314</width>
+         <height>16777215</height>
+        </size>
+       </property>
        <property name="title">
         <string>Sensors</string>
        </property>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QListView" name="listView_2"/>
+        </item>
+       </layout>
       </widget>
      </item>
     </layout>
@@ -102,6 +119,11 @@
        <property name="title">
         <string>Actuators</string>
        </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QListView" name="listView"/>
+        </item>
+       </layout>
       </widget>
      </item>
     </layout>

@@ -154,6 +154,12 @@
     <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
       <widget class="RobotInformation" name="robotInformation" native="true">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="minimumSize">
         <size>
          <width>314</width>
