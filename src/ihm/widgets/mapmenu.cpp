@@ -42,6 +42,12 @@ void MapMenu::on_browseMissionPushButton_clicked()
     ui->missionLineEdit->setText(file);
 }
 
+void MapMenu::on_strategyPushButton_clicked()
+{
+    QString file = QFileDialog::getOpenFileName(this, "Open a strategy", QString());
+    ui->strategyLineEdit->setText(file);
+}
+
 /**
   * Ask to load the map on the scene and ask to load robot information according to the mission selected.
   */
@@ -60,5 +66,6 @@ void MapMenu::paintEvent(QPaintEvent *)
     QPainter p(this);
     style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 }
+
 
 
