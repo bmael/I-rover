@@ -13,6 +13,7 @@ RobotMenu::RobotMenu(QWidget *parent) :
     ui->setupUi(this);
 
     _missionHidden = true;
+    _informationHidden = true;
 
     qApp->setStyleSheet("RobotMenu {background-image: url(:/backgrounds/widgetsbg);}");
 }
@@ -59,4 +60,27 @@ void RobotMenu::on_missionPushButton_clicked()
 
     animation->start(QPropertyAnimation::DeleteWhenStopped);
 
+}
+
+void RobotMenu::on_informationPushButton_clicked()
+{
+    QPropertyAnimation * animation = new QPropertyAnimation(ui->robotInformation, "maximumHeight");
+
+    animation->setDuration(700);
+    animation->setStartValue(ui->robotInformation->maximumHeight());
+
+    if(_missionHidden){
+        ui->informationPushButton->setIcon(QIcon(":/icons/retractTop"));
+        animation->setEndValue(160);
+        animation->setEasingCurve(QEasingCurve::OutExpo);
+        _missionHidden = false;
+    }else{
+        animation->setEndValue(0);
+        animation->setEasingCurve(QEasingCurve::InExpo);
+
+        ui->informationPushButton->setIcon(QIcon(":/icons/deployBottom"));
+        _missionHidden = true;
+    }
+
+    animation->start(QPropertyAnimation::DeleteWhenStopped);
 }

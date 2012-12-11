@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>314</width>
-    <height>95</height>
+    <height>97</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -150,9 +150,35 @@
      </item>
     </layout>
    </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <widget class="RobotInformation" name="robotInformation" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>314</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>314</width>
+         <height>0</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
   </layout>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>RobotInformation</class>
+   <extends>QWidget</extends>
+   <header>widgets/robotinformation.h</header>
+   <container>1</container>
+  </customwidget>
   <customwidget>
    <class>Mission</class>
    <extends>QWidget</extends>

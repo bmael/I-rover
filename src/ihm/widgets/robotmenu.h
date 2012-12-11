@@ -22,11 +22,14 @@ private slots:
 
     void on_missionPushButton_clicked(); // Show or hide the mission widget
 
+    void on_informationPushButton_clicked();
+
 signals:
 
 private:
     Ui::RobotMenu *ui;
     bool _missionHidden;
+    bool _informationHidden;
 };
 
 #endif // ROBOTMENU_H
