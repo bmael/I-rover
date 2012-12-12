@@ -7,8 +7,7 @@
 
 #include "proximity.h"
 
-ProximitySensor::ProximitySensor() : sensibility_(1) {
-}
+ProximitySensor::ProximitySensor() : Sensor("Proximity"), sensibility_(1) {}
 
 ProximitySensor::ProximitySensor(int sensibility) : sensibility_(sensibility) {
 }
