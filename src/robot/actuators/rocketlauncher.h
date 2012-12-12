@@ -10,7 +10,7 @@
 
 #ifndef ROCKETLAUNCHER_H
 #define ROCKETLAUNCHER_H
-#include <robot/actuator.h>
+#include "actuator.h"
 
 /**
  * @class RocketLauncher
