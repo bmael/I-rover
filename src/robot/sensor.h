@@ -21,14 +21,42 @@
 class Sensor {
 
 public:
+    /**
+     * Default constructor
+     * @brief Sensor
+     */
     Sensor();
+
+    /**
+     * Copy constructor
+     * @brief Sensor
+     * @param orig
+     */
     Sensor(const Sensor& orig);
+
+    /**
+     * Constructor to set the name attribute
+     * @brief Sensor
+     * @param name
+     */
+    Sensor(const std::string name);
     //virtual void ObjectPresentation() const;
+
+    /**
+     * Destructor
+     * @brief ~Sensor
+     */
     virtual ~Sensor();
 
-protected:
-    std::string name;
+    /**
+     * Getter for the attribute name
+     * @brief getName
+     * @return name of the sensor
+     */
+    std::string getName() const;
 
+protected:
+    std::string name_;
 };
 
 #endif	/* SENSOR_H */

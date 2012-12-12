@@ -11,3 +11,12 @@
 *.lai
 *.la
 *.a
+
+*.pro
+*.pro.user
+moc_*
+ui_*
+qrc_*
+config.log
+config.status
+I-rover

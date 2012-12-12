@@ -1,9 +1,8 @@
 #include "gps.h"
 
-GpsSensor::GpsSensor() {
-}
+GpsSensor::GpsSensor() : Sensor("Gps") {}
 
-GpsSensor::GpsSensor(const GpsSensor& orig) {
+GpsSensor::GpsSensor(const GpsSensor& orig) : Sensor("Gps") {
     this->coordonnees.first = (orig.coordonnees).first;
     this->coordonnees.second = (orig.coordonnees).second;
 }

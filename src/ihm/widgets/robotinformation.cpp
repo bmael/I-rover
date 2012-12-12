@@ -7,6 +7,7 @@
 #include "chains.h"
 #include "wheels.h"
 #include "arms.h"
+#include "gps.h"
 
 #include <QDebug>
 
@@ -18,6 +19,8 @@ RobotInformation::RobotInformation(QWidget *parent) :
 
 
     _actuatorModel = new QStandardItemModel();
+    _sensorModel = new QStandardItemModel();
+
     ui->actuatorsListView->setModel(_actuatorModel);
     ui->sensorsListView->setModel(_sensorModel);
 
@@ -29,6 +32,10 @@ RobotInformation::RobotInformation(QWidget *parent) :
 
        Robot::getInstance()->addActuator(rocketlauncher);
        Robot::getInstance()->addActuator(arms);
+
+       GpsSensor * gps = new GpsSensor();
+       Robot::getInstance()->addSensor(gps);
+
 //////////////////////////////////////////////////////////////////////////////////
 
        // Initialize the actuators list

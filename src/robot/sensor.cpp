@@ -9,12 +9,14 @@
 
 #include "sensor.h"
 
-Sensor::Sensor() {
-}
+Sensor::Sensor() {}
 
-Sensor::Sensor(const Sensor& orig) {
-}
+Sensor::Sensor(const std::string name) : name_(name) {}
 
-Sensor::~Sensor() {
-}
+Sensor::Sensor(const Sensor& orig) {}
 
+Sensor::~Sensor() {}
+
+std::string Sensor::getName() const {
+    return this->name_;
+}

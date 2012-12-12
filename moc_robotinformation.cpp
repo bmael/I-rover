@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'robotinformation.h'
 **
-** Created: Wed Dec 12 12:52:11 2012
+** Created: Wed Dec 12 14:46:11 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.3)
 **
 ** WARNING! All changes made in this file will be lost!

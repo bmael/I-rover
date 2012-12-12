@@ -17,6 +17,12 @@ class GpsSensor : public Sensor {
          * \param orig Copy orig into a new Object
          */
         GpsSensor(const GpsSensor& orig);
+
+        /**
+         *
+         *
+         */
+        GpsSensor(const std::string& name);
         
         /**
          * Destructor
