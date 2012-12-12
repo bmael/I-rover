@@ -11,7 +11,28 @@
 
 using namespace std;
 
+Robot * Robot::_instance = NULL;
+
 Robot::Robot(const std::string name) : name_(name) {}
+
+Robot::Robot()
+{
+}
+
+/**
+ * Create an instance of Robot if does not exist and return it.
+ * @brief Robot::getInstance
+ * @return the current instance of the robot.
+ */
+Robot *Robot::getInstance()
+{
+    if(_instance == NULL){
+        _instance = new Robot();
+    }
+    return _instance;
+}
+
+
 Robot::~Robot(){
     for (list<Sensor*>::iterator it = getSensors()->begin(); it != getSensors()->end() ; ++it )
     {

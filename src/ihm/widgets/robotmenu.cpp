@@ -18,6 +18,8 @@ RobotMenu::RobotMenu(QWidget *parent) :
     qApp->setStyleSheet("RobotMenu {background-image: url(:/backgrounds/widgetsbg);}");
 
     connect(ui->MissionInformation,SIGNAL(askStopMission()),ui->robotInformation,SLOT(stopMission()));
+    connect(ui->MissionInformation,SIGNAL(askStartMission()),ui->robotInformation,SLOT(loadMovementActuator()));
+    connect(ui->robotInformation,SIGNAL(askLoadMovementActuator(MovementActuator*)),ui->MissionInformation,SLOT());
 }
 
 RobotMenu::~RobotMenu()

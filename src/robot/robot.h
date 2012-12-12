@@ -24,13 +24,20 @@
  */
 class Robot {
 
-public:
+private:
     /**
      * @brief Constructor
      *
      * @param name : robot's name
      */
     Robot(const std::string name);
+
+    Robot();
+
+
+public:
+
+    static Robot * getInstance();
 
     /**
      * @brief Destructor
@@ -186,11 +193,14 @@ public:
     //  QPixmap *getImage() const;
     //  void addObject(Objects object);
 
+
 private:
     std::string name_;
     std::list<Sensor*> sensors_;
     std::list<Actuator*> actuators_;
     MovementActuator * movementActuator_;
+    static Robot* _instance;
+
     //QPixmap* image_;
     //std::vector<Objects*> bag_;
 };

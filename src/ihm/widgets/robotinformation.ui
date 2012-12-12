@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>314</width>
-    <height>484</height>
+    <height>566</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -25,7 +25,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QVBoxLayout" name="verticalLayout_4">
    <property name="spacing">
     <number>0</number>
    </property>
@@ -122,6 +122,33 @@
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
          <widget class="QListView" name="actuatorsListView"/>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <widget class="QGroupBox" name="movementActuatorGroupBox">
+       <property name="title">
+        <string>Movement actuator</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QRadioButton" name="ChainsRadioButton">
+          <property name="text">
+           <string>Chains</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="wheelsRadioButton">
+          <property name="text">
+           <string>Wheels</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>

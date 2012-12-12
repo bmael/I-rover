@@ -4,6 +4,8 @@
 
 #include "rocketlauncher.h"
 #include "robot.h"
+#include "chains.h"
+#include "wheels.h"
 
 #include <QDebug>
 
@@ -17,17 +19,19 @@ RobotInformation::RobotInformation(QWidget *parent) :
     _actuatorModel = new QStandardItemModel();
     ui->actuatorsListView->setModel(_actuatorModel);
 
-        Robot robot1("Wall-E");
-        qDebug() << QString::fromStdString(robot1.getName());
+        qDebug() << QString::fromStdString(Robot::getInstance()->getName());
 
        RocketLauncher * rocketlauncher = new RocketLauncher();
 
-       robot1.addActuator(rocketlauncher);
 
 
-       for(unsigned int i = 0; i< robot1.getActuators()->size();i++){
-           qDebug() << QString::fromStdString(robot1.getActuators()->front()->getName());
-           QStandardItem *item = new QStandardItem(QString::fromStdString(robot1.getActuators()->front()->getName()));
+       Robot::getInstance()->addActuator(rocketlauncher);
+
+
+       for(unsigned int i = 0; i< Robot::getInstance()->getActuators()->size();i++){
+           qDebug() << QString::fromStdString(Robot::getInstance()->getActuators()->front()->getName());
+           QStandardItem *item = new QStandardItem(QString::fromStdString(Robot::getInstance()->getActuators()->front()->getName()));
+           item->setEditable(false);
            _actuatorModel->setItem(i,item);
            ui->actuatorsListView->update();
        }
@@ -49,4 +53,22 @@ void RobotInformation::stopMission()
 //    _actuatorModel->removeRows(0,_actuatorModel->rowCount());
     _actuatorModel->clear();
     ui->actuatorsListView->update();
+}
+
+/**
+ * Load the right movement actuator according to radiobox button.
+ * @brief RobotInformation::loadMovementActuator
+ * @param act
+ */
+void RobotInformation::loadMovementActuator()
+{
+    MovementActuator * act;
+    if(ui->ChainsRadioButton->isChecked()){
+        act = new Chains();
+    }
+    if(ui->wheelsRadioButton->isChecked()){
+        act = new Wheels();
+    }
+
+    emit askLoadMovementActuator(act);
 }

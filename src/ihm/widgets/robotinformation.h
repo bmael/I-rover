@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QStandardItemModel>
+#include "movementactuator.h"
 
 namespace Ui {
 class RobotInformation;
@@ -18,6 +19,10 @@ public:
     
 public slots:
     void stopMission();
+    void loadMovementActuator();
+
+signals:
+    void askLoadMovementActuator(MovementActuator * act);
 
 private:
     Ui::RobotInformation *ui;
