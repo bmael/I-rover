@@ -48,6 +48,7 @@ HEADERS += confdefs.h \
            src/map/Map/map.h \
            src/map/Map/objectLayers.h \
            src/map/Map/obstacle.h \
+           src/robot/actuators/arms.h \
            src/robot/actuators/rocketlauncher.h \
            src/map/controleur/headers/gestionnaireMap.h \
            src/map/controleur/headers/mapFactory.h \
@@ -84,6 +85,7 @@ SOURCES += src/ihm/main.cpp \
            src/map/Map/map.cpp \
            src/map/Map/objectLayers.cpp \
            src/map/Map/obstacle.cpp \
+           src/robot/actuators/arms.cpp \
            src/robot/actuators/rocketlauncher.cpp \
            src/map/controleur/sources/gestionnaireMap.cpp \
            src/map/controleur/sources/mapFactory.cpp \

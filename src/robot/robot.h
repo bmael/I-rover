@@ -52,6 +52,20 @@ public:
     const std::string getName() const;
 
     /**
+     * @brief Give a name to the robot
+     *
+     * @param name : the name given to the robot
+     */
+    void setName(std::string name);
+
+    /**
+     * @brief Give or modify a movement actuator to the robot
+     *
+     * @param m : the movement actuator given to the robot
+     */
+    void setMovementActuator(MovementActuator * m);
+
+    /**
      * @brief Number of sensors
      *
      * @return Number of sensors the robot has
@@ -177,13 +191,6 @@ public:
      * @param direction : the direction where execute the action
      */
     void doAction(Actuator * a, Direction direction);
-
-    /**
-     * @brief Modify the robot's movement actuator
-     *
-     * @param m : movement actuator
-     */
-    void setMovementActuator(MovementActuator* m);
 
     //    /**
     //     * @brief getImage

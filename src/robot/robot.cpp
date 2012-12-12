@@ -55,6 +55,11 @@ const string Robot::getName() const{
     return name_;
 }
 
+void Robot::setName(string name)
+{
+    name_ = name;
+}
+
 bool Robot::canGoNorth(){
     return movementActuator_->canGoNorth();
 }
