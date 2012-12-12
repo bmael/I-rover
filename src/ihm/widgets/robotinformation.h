@@ -16,6 +16,9 @@ public:
     explicit RobotInformation(QWidget *parent = 0);
     ~RobotInformation();
     
+public slots:
+    void stopMission();
+
 private:
     Ui::RobotInformation *ui;
     QStandardItemModel * _actuatorModel;

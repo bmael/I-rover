@@ -20,11 +20,8 @@ protected:
     
 private slots:
 
-    void on_missionPushButton_clicked(); // Show or hide the mission widget
-
-    void on_informationPushButton_clicked();
-
-signals:
+    void on_missionPushButton_clicked();        // Show or hide the mission widget
+    void on_informationPushButton_clicked();    // Show or hide the Robot information widget
 
 private:
     Ui::RobotMenu *ui;

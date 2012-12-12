@@ -25,7 +25,7 @@ RobotInformation::RobotInformation(QWidget *parent) :
        robot1.addActuator(rocketlauncher);
 
 
-       for(int i = 0; i< robot1.getActuators()->size();i++){
+       for(unsigned int i = 0; i< robot1.getActuators()->size();i++){
            qDebug() << QString::fromStdString(robot1.getActuators()->front()->getName());
            QStandardItem *item = new QStandardItem(QString::fromStdString(robot1.getActuators()->front()->getName()));
            _actuatorModel->setItem(i,item);
@@ -36,4 +36,17 @@ RobotInformation::RobotInformation(QWidget *parent) :
 RobotInformation::~RobotInformation()
 {
     delete ui;
+}
+
+/**
+ * Called when the user want to stop the mission. Cleared the robotInformation.
+ * @brief RobotInformation::stopMission
+ */
+void RobotInformation::stopMission()
+{
+
+    //Clear the actuators list
+//    _actuatorModel->removeRows(0,_actuatorModel->rowCount());
+    _actuatorModel->clear();
+    ui->actuatorsListView->update();
 }

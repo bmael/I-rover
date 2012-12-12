@@ -12,3 +12,12 @@ Mission::~Mission()
 {
     delete ui;
 }
+
+/**
+ * Ask to stop the current mission
+ * @brief Mission::on_stopPushButton_clicked
+ */
+void Mission::on_stopPushButton_clicked()
+{
+    emit askStopMission();
+}

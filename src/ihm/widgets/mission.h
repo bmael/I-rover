@@ -15,6 +15,12 @@ public:
     explicit Mission(QWidget *parent = 0);
     ~Mission();
     
+private slots:
+    void on_stopPushButton_clicked();
+
+signals:
+    void askStopMission();
+
 private:
     Ui::Mission *ui;
 };
