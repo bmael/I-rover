@@ -27,6 +27,7 @@ signals:
 private:
     Ui::RobotInformation *ui;
     QStandardItemModel * _actuatorModel;
+    QStandardItemModel * _sensorModel;
 };
 
 #endif // ROBOTINFORMATION_H

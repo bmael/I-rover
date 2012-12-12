@@ -8,15 +8,12 @@
 #include "proximity.h"
 
 ProximitySensor::ProximitySensor() : sensibility_(1) {
-    this->id_type_ = 2;
 }
 
 ProximitySensor::ProximitySensor(int sensibility) : sensibility_(sensibility) {
-    this->id_type_ = 2;
 }
 
 ProximitySensor::ProximitySensor(const ProximitySensor& orig) {
-    this->id_type_ = 2;
 }
 
 ProximitySensor::~ProximitySensor() {

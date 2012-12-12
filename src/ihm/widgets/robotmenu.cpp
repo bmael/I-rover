@@ -19,7 +19,7 @@ RobotMenu::RobotMenu(QWidget *parent) :
 
     connect(ui->MissionInformation,SIGNAL(askStopMission()),ui->robotInformation,SLOT(stopMission()));
     connect(ui->MissionInformation,SIGNAL(askStartMission()),ui->robotInformation,SLOT(loadMovementActuator()));
-    connect(ui->robotInformation,SIGNAL(askLoadMovementActuator(MovementActuator*)),ui->MissionInformation,SLOT());
+    connect(ui->robotInformation,SIGNAL(askLoadMovementActuator(MovementActuator*)),ui->MissionInformation,SLOT(loadMovementActuator(MovementActuator*)));
 }
 
 RobotMenu::~RobotMenu()

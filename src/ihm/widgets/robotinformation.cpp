@@ -6,6 +6,7 @@
 #include "robot.h"
 #include "chains.h"
 #include "wheels.h"
+#include "arms.h"
 
 #include <QDebug>
 
@@ -18,22 +19,40 @@ RobotInformation::RobotInformation(QWidget *parent) :
 
     _actuatorModel = new QStandardItemModel();
     ui->actuatorsListView->setModel(_actuatorModel);
+    ui->sensorsListView->setModel(_sensorModel);
 
-        qDebug() << QString::fromStdString(Robot::getInstance()->getName());
-
+///////////////////////////////////////// DEBUG ///////////////////////////////////
+       qDebug() << QString::fromStdString(Robot::getInstance()->getName());
        RocketLauncher * rocketlauncher = new RocketLauncher();
-
+       Arms * arms = new Arms();
 
 
        Robot::getInstance()->addActuator(rocketlauncher);
+       Robot::getInstance()->addActuator(arms);
+//////////////////////////////////////////////////////////////////////////////////
 
-
-       for(unsigned int i = 0; i< Robot::getInstance()->getActuators()->size();i++){
-           qDebug() << QString::fromStdString(Robot::getInstance()->getActuators()->front()->getName());
-           QStandardItem *item = new QStandardItem(QString::fromStdString(Robot::getInstance()->getActuators()->front()->getName()));
+       // Initialize the actuators list
+       int cptRow = 0;
+       for (std::list<Actuator*>::iterator it = Robot::getInstance()->getActuators()->begin(); it != Robot::getInstance()->getActuators()->end() ; ++it )
+       {
+           qDebug() << QString::fromStdString((*it)->getName());
+           QStandardItem *item = new QStandardItem(QString::fromStdString((*it)->getName()));
            item->setEditable(false);
-           _actuatorModel->setItem(i,item);
+           _actuatorModel->setItem(cptRow,item);
            ui->actuatorsListView->update();
+           cptRow ++;
+       }
+
+       //Initialize the sensors list
+       cptRow = 0;
+       for (std::list<Sensor*>::iterator it = Robot::getInstance()->getSensors()->begin(); it != Robot::getInstance()->getSensors()->end() ; ++it )
+       {
+           qDebug() << QString::fromStdString((*it)->getName());
+           QStandardItem *item = new QStandardItem(QString::fromStdString((*it)->getName()));
+           item->setEditable(false);
+           _sensorModel->setItem(cptRow,item);
+           ui->sensorsListView->update();
+           cptRow ++;
        }
 }
 
@@ -50,9 +69,12 @@ void RobotInformation::stopMission()
 {
 
     //Clear the actuators list
-//    _actuatorModel->removeRows(0,_actuatorModel->rowCount());
     _actuatorModel->clear();
     ui->actuatorsListView->update();
+
+    //set enabled radioButtons for the movement actuator
+    ui->ChainsRadioButton->setEnabled(true);
+    ui->wheelsRadioButton->setEnabled(true);
 }
 
 /**
@@ -62,13 +84,14 @@ void RobotInformation::stopMission()
  */
 void RobotInformation::loadMovementActuator()
 {
-    MovementActuator * act;
-    if(ui->ChainsRadioButton->isChecked()){
-        act = new Chains();
-    }
+    MovementActuator * act = NULL;
     if(ui->wheelsRadioButton->isChecked()){
         act = new Wheels();
     }
 
+    ui->ChainsRadioButton->setEnabled(false);
+    ui->wheelsRadioButton->setEnabled(false);
+
     emit askLoadMovementActuator(act);
+
 }
