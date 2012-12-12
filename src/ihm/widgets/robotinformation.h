@@ -2,6 +2,7 @@
 #define ROBOTINFORMATION_H
 
 #include <QWidget>
+#include <QStandardItemModel>
 
 namespace Ui {
 class RobotInformation;
@@ -17,6 +18,7 @@ public:
     
 private:
     Ui::RobotInformation *ui;
+    QStandardItemModel * _actuatorModel;
 };
 
 #endif // ROBOTINFORMATION_H
