@@ -74,7 +74,6 @@ RobotInformation::~RobotInformation()
  */
 void RobotInformation::stopMission()
 {
-
     //Clear the actuators list
     _actuatorModel->clear();
     ui->actuatorsListView->update();
@@ -82,6 +81,10 @@ void RobotInformation::stopMission()
     //set enabled radioButtons for the movement actuator
     ui->ChainsRadioButton->setEnabled(true);
     ui->wheelsRadioButton->setEnabled(true);
+
+    //Clear the sensors list
+    _sensorModel->clear();
+    ui->sensorsListView->update();
 }
 
 /**

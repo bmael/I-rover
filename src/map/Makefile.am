@@ -1,5 +1,3 @@
-SUBDIRS = lib
-
 bin_PROGRAMS = map
 map_SOURCES = controleur/sources/gestionnaireMap.cpp \
 		controleur/sources/mapFactory.cpp \
@@ -17,4 +15,4 @@ map_SOURCES = controleur/sources/gestionnaireMap.cpp \
 map_CXXFLAGS = $(AM_CXXFLAGS)
 map_CPPFLAGS = $(AM_CPPFLAGS)
 map_LDFLAGS = $(LDFLAGS)
-map_LDADD = lib/libpugixml.a
+map_LDADD = ../../lib/libpugixml.a

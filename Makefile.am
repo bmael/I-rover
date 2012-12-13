@@ -1,5 +1,5 @@
 ACLOCAL_AMFLAGS = -I build-aux
 
-SUBDIRS = src
+SUBDIRS = src lib
 
 EXTRA_DIST = bootstrap build-aux/test.sh

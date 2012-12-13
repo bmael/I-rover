@@ -39,10 +39,10 @@ if $QMAKE; then :; else
 fi
 
 AC_CONFIG_FILES(Makefile
+		  lib/Makefile
 		  src/Makefile
 		  src/ihm/Makefile
 		  src/map/Makefile
-		  src/map/lib/Makefile
 		  src/mission/Makefile
 		  src/robot/Makefile)
 		  
