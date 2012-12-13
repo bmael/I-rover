@@ -15,6 +15,7 @@
 #include "chains.h"
 #include "gps.h"
 #include "proximity.h"
+#include "camera.h"
 
 /**
  * \file mission_parser.h
