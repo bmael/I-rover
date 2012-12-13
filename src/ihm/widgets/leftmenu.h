@@ -16,8 +16,9 @@ public:
     ~LeftMenu();
     
 signals:
-    void askMapLoad(QString file);
-    void askUnloadMap();
+    void askMapLoad(QString file); // Transmit the signal to ask the loading of the map from Mapmenu Widget
+    void askUnloadMap();           // Transmit the signal to ask the unloading of the map from Mapmenu Widget
+    void askLoadRobot();           // Transmit the signal to ask the loading of the robot from Mapmenu Widget
 
 private:
     Ui::LeftMenu *ui;

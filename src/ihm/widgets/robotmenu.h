@@ -23,6 +23,9 @@ private slots:
     void on_missionPushButton_clicked();        // Show or hide the mission widget
     void on_informationPushButton_clicked();    // Show or hide the Robot information widget
 
+public slots:
+    void loadRobotInformation();                // Load the robot information
+
 private:
     Ui::RobotMenu *ui;
     bool _missionHidden;

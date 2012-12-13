@@ -61,6 +61,11 @@ void MapMenu::on_loadPushButton_clicked()
     // Initialize the robot
     Robot::getInstance()->clear(); //clear the old version of the robot
 
+    // Call the parser of mission to initialize the current robot.
+    //TODO
+
+    emit askLoadRobot();
+
     // Ask to load the Robot information
     //TODO connect in left menu : this/robotmenu
     //     connect in robotmenu : robotmenu/robotinformation

@@ -12,13 +12,21 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    // Initialization of the scene and its components.
     _scene = new QGraphicsScene;
     _mapItem = new QGraphicsPixmapItem;
-    _scene->addItem(_mapItem);
-       ui->mapGraphicsView->setScene(_scene);
+    _robotItem = new QGraphicsPixmapItem;
 
+    _scene->addItem(_mapItem);
+    _scene->addItem(_robotItem);
+    ui->mapGraphicsView->setScene(_scene);
+
+    // connection for loading/unloading the map
     connect(ui->leftMenuWidget, SIGNAL(askMapLoad(QString)), this, SLOT(mapLoader(QString)));
     connect(ui->leftMenuWidget, SIGNAL(askUnloadMap()), this, SLOT(unloadMap()));
+
+    // conection for loading/unloading robot
+    connect(ui->leftMenuWidget, SIGNAL(askLoadRobot()), this, SLOT(loadRobot()));
 }
 
 MainWindow::~MainWindow()
@@ -61,7 +69,6 @@ void MainWindow::on_showHideLeftMenuPushButton_clicked()
 void MainWindow::mapLoader(QString file)
 {
     _mapItem->setPixmap(QPixmap(file));
-
 }
 
 /**
@@ -70,6 +77,16 @@ void MainWindow::mapLoader(QString file)
 void MainWindow::unloadMap()
 {
     _mapItem->setPixmap(QPixmap());
+}
+
+/**
+ *Load the curretn version of the robot to the map.
+ * @brief MainWindow::loadRobot
+ */
+void MainWindow::loadRobot()
+{
+    _robotItem->setPixmap(QPixmap(":/robot/robot"));
+    qDebug() << "robot pixmap set";
 }
 
 

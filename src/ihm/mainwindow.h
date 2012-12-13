@@ -23,11 +23,13 @@ private slots:
 public slots:
     void mapLoader(QString file);   // Load the map on the scene.
     void unloadMap();               // Unload the map from the scene.
+    void loadRobot();               // Load the robot on the scene.
 
 private:
     Ui::MainWindow *ui;
     QGraphicsScene * _scene;
     QGraphicsPixmapItem * _mapItem;
+    QGraphicsPixmapItem * _robotItem;
 
     bool _leftMenuHidden;
 };

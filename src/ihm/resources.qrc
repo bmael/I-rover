@@ -10,4 +10,7 @@
     <qresource prefix="/backgrounds">
         <file alias="widgetsbg">resources/backgrounds/bg-leftmenu.png</file>
     </qresource>
+    <qresource prefix="/robot">
+        <file alias="robot">resources/robot/robot.png</file>
+    </qresource>
 </RCC>
