@@ -27,6 +27,7 @@ public slots:
     void loadRobotInformation();                // Load the robot information
 
 signals:
+    void askUnloadMap();    // Emit when the mission is stopping.
     void askUnloadRobot();  // Emit when the mission is stoping.
 
 private:

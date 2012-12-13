@@ -21,7 +21,6 @@ signals:
     void askLoadRobot();           // Transmit the signal to ask the loading of the robot from Mapmenu Widget
     void askUnloadRobot();         // Transmit the signal to ask the unloading of the robot from RobotInformation Widget
 
-
 private:
     Ui::LeftMenu *ui;
 
