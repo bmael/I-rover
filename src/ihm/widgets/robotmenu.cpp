@@ -19,7 +19,7 @@ RobotMenu::RobotMenu(QWidget *parent) :
 
     // Connection for starting/stoping mission
     connect(ui->MissionInformation,SIGNAL(askStopMission()),ui->robotInformation,SLOT(stopMission()));
-    connect(ui->MissionInformation, SIGNAL(askStopMission()), this, SIGNAL(askUnloadRobot());
+    connect(ui->MissionInformation, SIGNAL(askStopMission()), this, SIGNAL(askUnloadRobot()));
     connect(ui->MissionInformation,SIGNAL(askStartMission()),ui->robotInformation,SLOT(loadMovementActuator()));
 
     // connection for loading movement actuator

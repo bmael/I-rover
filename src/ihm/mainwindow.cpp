@@ -27,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // conection for loading/unloading robot
     connect(ui->leftMenuWidget, SIGNAL(askLoadRobot()), this, SLOT(loadRobot()));
+    connect(ui->leftMenuWidget,SIGNAL(askUnloadRobot()), this, SLOT(unloadRobot()));
 }
 
 MainWindow::~MainWindow()
