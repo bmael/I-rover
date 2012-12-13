@@ -26,6 +26,9 @@ private slots:
 public slots:
     void loadRobotInformation();                // Load the robot information
 
+signals:
+    void askUnloadRobot();  // Emit when the mission is stoping.
+
 private:
     Ui::RobotMenu *ui;
     bool _missionHidden;
