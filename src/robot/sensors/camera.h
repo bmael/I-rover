@@ -10,7 +10,7 @@ public:
     CameraSensor(const CameraSensor& orig);
     ~CameraSensor();
 
-    Object getObject(int X, int Y) const;
+    //Object getObject(int X, int Y) const;
 };
 
 #endif // CAMERA_H
