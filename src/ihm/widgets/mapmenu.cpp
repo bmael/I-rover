@@ -7,6 +7,8 @@
 #include <QPainter>
 #include <QStyle>
 
+#include "robot.h"
+
 MapMenu::MapMenu(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MapMenu)
@@ -53,7 +55,15 @@ void MapMenu::on_strategyPushButton_clicked()
   */
 void MapMenu::on_loadPushButton_clicked()
 {
+    // Ask to load the map to the scene.
     emit askLoadMap(ui->mapLineEdit->text());
+
+    // Initialize the robot
+    Robot::getInstance()->clear(); //clear the old version of the robot
+
+    // Ask to load the Robot information
+    //TODO connect in left menu : this/robotmenu
+    //     connect in robotmenu : robotmenu/robotinformation
 }
 
 /**

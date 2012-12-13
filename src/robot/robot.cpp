@@ -151,6 +151,11 @@ void Robot::doAction(Actuator * a, Direction direction)
         a->doAction(direction) ;
 }
 
+void Robot::clear()
+{
+
+}
+
 int Robot::lastDirection() const
 {
      return movementActuator_->lastDirection();

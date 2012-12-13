@@ -200,6 +200,12 @@ public:
     //  QPixmap *getImage() const;
     //  void addObject(Objects object);
 
+    /**
+     *Clear the current robot. Erase all sensors, actuators and the name of the robot.
+     * @brief clear
+     */
+    void clear();
+
 
 private:
     std::string name_;
