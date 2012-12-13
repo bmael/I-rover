@@ -15546,6 +15546,11 @@ if $QMAKE; then :; else
   as_fn_error $? "Calling $QMAKE failed." "$LINENO" 5
 fi
 
+echo "OBJECTS_DIR = .cmp/ojb" >> I-rover.pro
+echo "MOC_DIR = .cmp/moc" >> I-rover.pro
+echo "RCC_DIR = .cmp/rcc" >> I-rover.pro
+echo "UI_DIR = .cmp/ui" >> I-rover.pro 
+
 ac_config_files="$ac_config_files Makefile lib/Makefile src/Makefile src/ihm/Makefile src/map/Makefile src/mission/Makefile src/robot/Makefile"
 
 		  

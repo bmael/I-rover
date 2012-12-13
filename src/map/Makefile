@@ -75,7 +75,8 @@ am_map_OBJECTS = map-gestionnaireMap.$(OBJEXT) \
 	map-background.$(OBJEXT) map-cell.$(OBJEXT) \
 	map-field.$(OBJEXT) map-layers.$(OBJEXT) map-map.$(OBJEXT) \
 	map-objectLayers.$(OBJEXT) map-obstacle.$(OBJEXT) \
-	map-tileSet.$(OBJEXT) map-tileSetImage.$(OBJEXT)
+	map-tileSet.$(OBJEXT) map-tileSetImage.$(OBJEXT) \
+	map-tile.$(OBJEXT)
 map_OBJECTS = $(am_map_OBJECTS)
 map_DEPENDENCIES = ../../lib/libpugixml.a
 map_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
@@ -248,7 +249,8 @@ map_SOURCES = controleur/sources/gestionnaireMap.cpp \
 		Map/objectLayers.cpp \
 		Map/obstacle.cpp \
 		tileset/sources/tileSet.cpp \
-		tileset/sources/tileSetImage.cpp
+		tileset/sources/tileSetImage.cpp \
+		tileset/sources/tile.cpp 
 
 map_CXXFLAGS = $(AM_CXXFLAGS)
 map_CPPFLAGS = $(AM_CPPFLAGS)
@@ -354,6 +356,7 @@ include ./$(DEPDIR)/map-mapFactory.Po
 include ./$(DEPDIR)/map-objectLayers.Po
 include ./$(DEPDIR)/map-obstacle.Po
 include ./$(DEPDIR)/map-parseur.Po
+include ./$(DEPDIR)/map-tile.Po
 include ./$(DEPDIR)/map-tileSet.Po
 include ./$(DEPDIR)/map-tileSetImage.Po
 
@@ -545,6 +548,20 @@ map-tileSetImage.obj: tileset/sources/tileSetImage.cpp
 #	source='tileset/sources/tileSetImage.cpp' object='map-tileSetImage.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -c -o map-tileSetImage.obj `if test -f 'tileset/sources/tileSetImage.cpp'; then $(CYGPATH_W) 'tileset/sources/tileSetImage.cpp'; else $(CYGPATH_W) '$(srcdir)/tileset/sources/tileSetImage.cpp'; fi`
+
+map-tile.o: tileset/sources/tile.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -MT map-tile.o -MD -MP -MF $(DEPDIR)/map-tile.Tpo -c -o map-tile.o `test -f 'tileset/sources/tile.cpp' || echo '$(srcdir)/'`tileset/sources/tile.cpp
+	$(am__mv) $(DEPDIR)/map-tile.Tpo $(DEPDIR)/map-tile.Po
+#	source='tileset/sources/tile.cpp' object='map-tile.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -c -o map-tile.o `test -f 'tileset/sources/tile.cpp' || echo '$(srcdir)/'`tileset/sources/tile.cpp
+
+map-tile.obj: tileset/sources/tile.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -MT map-tile.obj -MD -MP -MF $(DEPDIR)/map-tile.Tpo -c -o map-tile.obj `if test -f 'tileset/sources/tile.cpp'; then $(CYGPATH_W) 'tileset/sources/tile.cpp'; else $(CYGPATH_W) '$(srcdir)/tileset/sources/tile.cpp'; fi`
+	$(am__mv) $(DEPDIR)/map-tile.Tpo $(DEPDIR)/map-tile.Po
+#	source='tileset/sources/tile.cpp' object='map-tile.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(map_CPPFLAGS) $(CPPFLAGS) $(map_CXXFLAGS) $(CXXFLAGS) -c -o map-tile.obj `if test -f 'tileset/sources/tile.cpp'; then $(CYGPATH_W) 'tileset/sources/tile.cpp'; else $(CYGPATH_W) '$(srcdir)/tileset/sources/tile.cpp'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo

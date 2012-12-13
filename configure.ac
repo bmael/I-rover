@@ -38,6 +38,11 @@ if $QMAKE; then :; else
   AC_MSG_ERROR([Calling $QMAKE failed.])
 fi
 
+echo "OBJECTS_DIR = .cmp/ojb" >> I-rover.pro
+echo "MOC_DIR = .cmp/moc" >> I-rover.pro
+echo "RCC_DIR = .cmp/rcc" >> I-rover.pro
+echo "UI_DIR = .cmp/ui" >> I-rover.pro 
+
 AC_CONFIG_FILES(Makefile
 		  lib/Makefile
 		  src/Makefile
