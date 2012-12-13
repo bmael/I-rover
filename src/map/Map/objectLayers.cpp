@@ -46,3 +46,14 @@ void ObjectLayers::setTailleY(int& tailleY){
 void ObjectLayers::setCellsTab(ensCells& cellsMap){
 	cellsMap_=cellsMap;
 }
+
+std::ostream& ObjectLayers::operator<<(std::ostream& os)
+{
+	os << "\t l'ObjectLayer d'une taille de " << tailleX_ << " * " << tailleY_ << " et est composé de : \n";
+	ensCells::iterator it;
+	for(it = cellsMap_.begin(); it != cellsMap_.end(); ++it)
+	{
+		os << "\t\t" << *((*it).second);
+	}
+	return os;
+}

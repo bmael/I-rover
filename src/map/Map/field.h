@@ -54,6 +54,13 @@ public:
 	virtual void setTailleY(int& tailleY);
 	virtual void setCellsTab(ensCells& cellsMap);
 	//@}
+	
+	virtual std::ostream& operator<<(std::ostream& os);
+	
+//	virtual std::ostream& operator<<(std::ostream& os, const Layer& ly);
+//	virtual std::ostream& operator<<(std::ostream& os, const Background& bg);
+//	virtual std::ostream& operator<<(std::ostream& os, const Field& fd);
+//	virtual std::ostream& operator<<(std::ostream& os, const ObjectLayers& ol);
 };
 
 

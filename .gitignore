@@ -20,3 +20,5 @@ qrc_*
 config.log
 config.status
 I-rover
+
+*~

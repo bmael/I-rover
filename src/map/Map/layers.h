@@ -15,6 +15,7 @@
 
 #include "cell.h"
 
+//a container for cells, identified by their coordinates
 typedef struct std::map<std::pair<int, int>, Cell*> ensCells;
 
 /**
@@ -63,6 +64,14 @@ public:
 	virtual void setCellsTab(ensCells& cellsMap) = 0;
 	//@}
 	
+	virtual std::ostream& operator<<(std::ostream& os) = 0;
+	
+	virtual Cell* findCellFromLayer(const std::pair<int, int>& p);
+	
+//	virtual std::ostream& operator<<(std::ostream& os, const Layer& ly) = 0;
+//	virtual std::ostream& operator<<(std::ostream& os, const Background& bg) = 0;
+//	virtual std::ostream& operator<<(std::ostream& os, const Field& fd) = 0;
+//	virtual std::ostream& operator<<(std::ostream& os, const ObjectLayers& ol) = 0;
 	
 protected:
 

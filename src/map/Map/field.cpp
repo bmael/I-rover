@@ -47,3 +47,14 @@ void Field::setTailleY(int& tailleY){
 void Field::setCellsTab(ensCells& cellsMap){
 	cellsMap_=cellsMap;
 }
+
+std::ostream& Field::operator<<(std::ostream& os)
+{
+	os << "\t le Field d'une taille de " << tailleX_ << " * " << tailleY_ << " et est composé de : \n";
+	ensCells::iterator it;
+	for(it = cellsMap_.begin(); it != cellsMap_.end(); ++it)
+	{
+		os << "\t\tcle : " << (*it).first.first << ", " << (*it).first.second << " : " << *((*it).second);
+	}
+	return os;
+}

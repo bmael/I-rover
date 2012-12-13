@@ -12,7 +12,9 @@ Cell::Cell(const int& x, const int& y, Obstacle* tile):
 x_(x), y_(y) , tile_(tile) {}
 
 Cell::Cell(const int& x, const int& y):
-x_(x), y_(y) {}
+x_(x), y_(y) {
+	tile_=NULL;
+}
 
 Cell::Cell(const Cell& c):
 x_(c.x_), y_(c.y_) {}
@@ -42,4 +44,10 @@ void Cell::setY(int& y){
 
 void Cell::setTile(Obstacle* tile){
 	tile_=tile;
+}
+
+std::ostream& operator<<(std::ostream& os, const Cell& c)
+{
+	os << "Cellule à la position : (" << c.getX() << ", " << c.getY() << ") contient " << *(c.getTile()) << std::endl;
+	return os;
 }

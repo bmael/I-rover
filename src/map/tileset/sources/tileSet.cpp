@@ -13,15 +13,15 @@ TileSet::~TileSet()
 	delete image_;
 }
 
-//void TileSet::addTile(const Tile& tile)
-//{
-//	tiles_.insert(tile);
-//}
+void TileSet::addTile(Tile* tile)
+{
+	tiles_.insert(tile);
+}
 
-//void TileSet::removeTile(const Tile& tile)
-//{
-//	tiles_.erase(tile);
-//}
+void TileSet::removeTile(Tile* tile)
+{
+	tiles_.erase(tile);
+}
 
 int TileSet::getFirstGid() const
 {
@@ -48,22 +48,23 @@ const TileSetImage* TileSet::getTileSetImage() const
 	return image_;
 }
 
-//Tile* TileSet::getTile(const int& tileId) const
-//{
-//	Tile* t;
-//	ensTileTrie::iterator it=tiles_.begin();
-//	while(it!=tiles_.end() && it->getTileId!=tileId)
-//	{
-//		++it;
-//	}
-//	
-//	if(it==tiles_.end())
-//	{
-//		t = new Tile();
-//	}
-//	else
-//	{
-//		t = (*it);
-//	}
-//	return t;
-//}
+Tile* TileSet::getTile(const int& tileId) 
+{
+	Tile* t = new Tile();
+	ensTileTrie::iterator it=tiles_.begin();
+	t->getTileId();
+	while(it!=tiles_.end() && (**it).getTileId()!=tileId)
+	{
+		++it;
+	}
+	
+	if(it==tiles_.end())
+	{
+		t = new Tile();
+	}
+	else
+	{
+		t = (*it);
+	}
+	return t;
+}

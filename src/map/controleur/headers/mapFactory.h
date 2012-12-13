@@ -88,7 +88,7 @@ class MapFactory{
 		*	\param tileId the id of the tile
 		*	\return A new instance of Obstacle object
 		*/
-		Obstacle* createObstacle(TileSet* tileset, const bool& passable, const bool& alterable, const int& tileId);
+		Obstacle* createObstacle(TileSet * tileset, const int& tileId, const std::string& type, const std::map<std::string,std::string>& propriete);
 		
 		
 		

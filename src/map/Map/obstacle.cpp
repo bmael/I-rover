@@ -8,13 +8,14 @@
 
 #include "obstacle.h"
 
-Obstacle::Obstacle(){}
+Obstacle::Obstacle(): tileId_(-1)
+{}
 
-Obstacle::Obstacle(TileSet * tileset, const bool& passable, const bool& alterable, const int& tileId):
-tileset_(tileset), passable_(passable), alterable_(alterable), tileId_(tileId) {}
+Obstacle::Obstacle(TileSet * tileset, const int& tileId, const std::string& type, const std::map<std::string,std::string>& propriete):
+tileset_(tileset), tileId_(tileId), type_(type), propriete_(propriete) {}
 
 Obstacle::Obstacle(const Obstacle& o):
-passable_(o.passable_), alterable_(o.alterable_), tileId_(o.tileId_) {}
+tileset_(o.tileset_), tileId_(o.tileId_), type_(o.type_), propriete_(o.propriete_) {}
 
 Obstacle::~Obstacle(){}
 
@@ -22,30 +23,46 @@ TileSet * Obstacle::getTileset() const{
 	return tileset_;
 }
 
-bool Obstacle::getPassable() const{
-	return passable_;
-}
-
-bool Obstacle::getAlterable() const{
-	return alterable_;
-}
-
 int Obstacle::getTileId() const{
 	return tileId_;
+}
+
+std::string Obstacle::getType() const{
+	return type_;
+}
+
+std::map<std::string,std::string> Obstacle::getPropriete() const{
+	return propriete_;
 }
 
 void Obstacle::setTileset(TileSet * tileset){
 	tileset_=tileset;
 }
 
-void Obstacle::setPassable(bool& passable){
-	passable_=passable;
-}
-
-void Obstacle::setAlterable(bool& alterable){
-	alterable_=alterable;
-}
-
 void Obstacle::setTileId(int& tileId){
 	tileId_=tileId;
+}
+
+void Obstacle::setType(std::string& type){
+	type_=type;
+}
+
+void Obstacle::setPropriete(std::map<std::string,std::string>& propriete){
+	propriete_=propriete;
+}
+
+std::ostream& operator<<(std::ostream& os, const Obstacle& o)
+{
+	os << "l'obstacle " << o.getTileId() << " de type : " << o.getType().c_str();
+	return os;
+}
+
+bool Obstacle::operator==(const Obstacle& o) const
+{
+	return tileId_ == o.tileId_;
+}
+
+bool Obstacle::operator!=(const Obstacle& o) const
+{
+	return tileId_ != o.tileId_;
 }

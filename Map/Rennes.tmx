@@ -1,196 +1,233 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="10" height="10" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="TilesetObject" tilewidth="32" tileheight="32">
-  <properties>
-   <property name="alterable" value="true"/>
-  </properties>
   <image source="Tilesets/TilesetObject.png" width="160" height="320"/>
   <tile id="0">
    <properties>
-    <property name="alterable" value="true"/>
-    <property name="passable" value="false"/>
+    <property name="name" value="reindeer"/>
+    <property name="type" value="object"/>
    </properties>
   </tile>
   <tile id="1">
    <properties>
-    <property name="alterable" value="false"/>
-    <property name="passable" value="true"/>
+    <property name="name" value="sleigh"/>
+    <property name="type" value="object"/>
    </properties>
   </tile>
  </tileset>
  <tileset firstgid="51" name="TilesetField" tilewidth="32" tileheight="32">
-  <properties>
-   <property name="alterable" value="false"/>
-   <property name="passable" value="false"/>
-  </properties>
   <image source="Tilesets/TilesetField.png" width="512" height="512"/>
+  <tile id="35">
+   <properties>
+    <property name="name" value="snow"/>
+    <property name="type" value="field"/>
+   </properties>
+  </tile>
+  <tile id="36">
+   <properties>
+    <property name="name" value="snow"/>
+    <property name="type" value="field"/>
+   </properties>
+  </tile>
   <tile id="37">
    <properties>
-    <property name="passable" value="false"/>
+    <property name="name" value="river"/>
+    <property name="type" value="field"/>
    </properties>
   </tile>
   <tile id="39">
    <properties>
-    <property name="passable" value="false"/>
+    <property name="name" value="river"/>
+    <property name="type" value="field"/>
    </properties>
   </tile>
   <tile id="41">
    <properties>
-    <property name="passable" value="false"/>
+    <property name="name" value="river"/>
+    <property name="type" value="field"/>
    </properties>
   </tile>
   <tile id="93">
    <properties>
-    <property name="passable" value="false"/>
+    <property name="type" value="fixed"/>
+   </properties>
+  </tile>
+  <tile id="94">
+   <properties>
+    <property name="type" value="fixed"/>
    </properties>
   </tile>
   <tile id="97">
    <properties>
-    <property name="passable" value="false"/>
+    <property name="type" value="fixed"/>
    </properties>
   </tile>
   <tile id="98">
    <properties>
-    <property name="passable" value="false"/>
+    <property name="type" value="fixed"/>
    </properties>
   </tile>
   <tile id="102">
    <properties>
-    <property name="passable" value="false"/>
+    <property name="type" value="fixed"/>
    </properties>
   </tile>
   <tile id="103">
    <properties>
-    <property name="passable" value="false"/>
+    <property name="type" value="fixed"/>
    </properties>
   </tile>
   <tile id="129">
    <properties>
-    <property name="alterable" value="false"/>
-    <property name="passable" value="true"/>
+    <property name="name" value="bridge"/>
+    <property name="type" value="field"/>
    </properties>
   </tile>
   <tile id="131">
    <properties>
-    <property name="passable" value="true"/>
+    <property name="name" value="trail"/>
+    <property name="type" value="field"/>
    </properties>
   </tile>
   <tile id="132">
    <properties>
-    <property name="passable" value="true"/>
+    <property name="name" value="trail"/>
+    <property name="type" value="field"/>
    </properties>
   </tile>
   <tile id="133">
    <properties>
-    <property name="passable" value="true"/>
+    <property name="name" value="trail"/>
+    <property name="type" value="field"/>
    </properties>
   </tile>
   <tile id="134">
    <properties>
-    <property name="passable" value="true"/>
+    <property name="name" value="trail"/>
+    <property name="type" value="field"/>
    </properties>
   </tile>
   <tile id="135">
    <properties>
-    <property name="passable" value="true"/>
+    <property name="name" value="trail"/>
+    <property name="type" value="field"/>
    </properties>
   </tile>
   <tile id="136">
    <properties>
-    <property name="passable" value="true"/>
+    <property name="name" value="trail"/>
+    <property name="type" value="field"/>
    </properties>
   </tile>
   <tile id="137">
    <properties>
-    <property name="passable" value="true"/>
+    <property name="name" value="trail"/>
+    <property name="type" value="field"/>
    </properties>
   </tile>
   <tile id="138">
    <properties>
-    <property name="passable" value="true"/>
+    <property name="name" value="trail"/>
+    <property name="type" value="field"/>
    </properties>
   </tile>
   <tile id="139">
    <properties>
-    <property name="passable" value="true"/>
+    <property name="name" value="trail"/>
+    <property name="type" value="field"/>
    </properties>
   </tile>
   <tile id="140">
    <properties>
-    <property name="passable" value="true"/>
+    <property name="name" value="trail"/>
+    <property name="type" value="field"/>
    </properties>
   </tile>
   <tile id="141">
    <properties>
-    <property name="passable" value="true"/>
+    <property name="name" value="trail"/>
+    <property name="type" value="field"/>
    </properties>
   </tile>
   <tile id="142">
    <properties>
-    <property name="passable" value="true"/>
+    <property name="name" value="trail"/>
+    <property name="type" value="field"/>
    </properties>
   </tile>
   <tile id="143">
    <properties>
-    <property name="passable" value="true"/>
+    <property name="name" value="trail"/>
+    <property name="type" value="field"/>
    </properties>
   </tile>
   <tile id="144">
    <properties>
-    <property name="passable" value="true"/>
+    <property name="name" value="trail"/>
+    <property name="type" value="field"/>
    </properties>
   </tile>
   <tile id="145">
    <properties>
-    <property name="passable" value="true"/>
+    <property name="name" value="trail"/>
+    <property name="type" value="field"/>
    </properties>
   </tile>
   <tile id="149">
    <properties>
-    <property name="alterable" value="true"/>
-    <property name="passable" value="false"/>
+    <property name="name" value="stick"/>
+    <property name="type" value="object"/>
    </properties>
   </tile>
   <tile id="152">
    <properties>
-    <property name="passable" value="false"/>
+    <property name="type" value="fixed"/>
    </properties>
   </tile>
   <tile id="153">
    <properties>
-    <property name="passable" value="false"/>
+    <property name="type" value="fixed"/>
    </properties>
   </tile>
   <tile id="154">
    <properties>
-    <property name="passable" value="false"/>
+    <property name="name" value="snow"/>
+    <property name="type" value="field"/>
    </properties>
   </tile>
   <tile id="156">
    <properties>
-    <property name="alterable" value="false"/>
-    <property name="passable" value="false"/>
+    <property name="type" value="fixed"/>
    </properties>
   </tile>
   <tile id="157">
    <properties>
-    <property name="alterable" value="false"/>
-    <property name="passable" value="false"/>
+    <property name="type" value="fixed"/>
    </properties>
   </tile>
-  <tile id="164">
+  <tile id="163">
    <properties>
-    <property name="passable" value="false"/>
+    <property name="type" value="fixed"/>
    </properties>
   </tile>
   <tile id="165">
    <properties>
-    <property name="passable" value="false"/>
+    <property name="type" value="fixed"/>
+   </properties>
+  </tile>
+  <tile id="183">
+   <properties>
+    <property name="type" value="fixed"/>
+   </properties>
+  </tile>
+  <tile id="184">
+   <properties>
+    <property name="type" value="fixed"/>
    </properties>
   </tile>
   <tile id="196">
    <properties>
-    <property name="passable" value="false"/>
+    <property name="type" value="fixed"/>
    </properties>
   </tile>
  </tileset>
@@ -298,7 +335,7 @@
    <tile gid="149"/>
   </data>
  </layer>
- <layer name="Object" width="10" height="10">
+ <layer name="Object" width="10" height="10" visible="0">
   <data>
    <tile gid="0"/>
    <tile gid="0"/>

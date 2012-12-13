@@ -40,3 +40,23 @@ void Background::setTailleY(int& tailleY){
 void Background::setCellsTab(ensCells& cellsMap){
 	cellsMap_=cellsMap;
 }
+
+std::ostream& Background::operator<<(std::ostream& os)
+{
+	os << "\t le background d'une taille de " << tailleX_ << " * " << tailleY_ << std::endl;
+	return os;
+}
+
+//std::ostream& Background::operator<<(std::ostream& os, const Background& bg)
+//{
+//	os << "\t le background d'une taille de " << 
+//}
+
+//std::ostream& Background::operator<<(std::ostream& os, const Field& fd)
+//{
+//	
+//}
+//std::ostream& Background::operator<<(std::ostream& os, const ObjectLayers& ol)
+//{
+//	
+//}

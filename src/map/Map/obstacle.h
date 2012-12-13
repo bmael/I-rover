@@ -9,6 +9,10 @@
 #ifndef OBSTACLE_H
 #define OBSTACLE_H
 
+#include <string>
+#include <map>
+#include <iostream>
+
 #include "../tileset/headers/tileSet.h"
 
 /**
@@ -22,11 +26,11 @@ public:
 	/**
 	 * \brief Constructor
 	 * \param tileset
-	 * \param passable
-	 * \param alterable
+	 * \param type
 	 * \param tileId
+	 * \param propriete All the properties of the obstacle
 	 */
-	Obstacle(TileSet * tileset, const bool& passable, const bool& alterable, const int& tileId);
+	Obstacle(TileSet * tileset, const int& tileId, const std::string& type, const std::map<std::string,std::string>& propriete);
 	
 	/**
 	 * \brief Default constructor
@@ -47,28 +51,32 @@ public:
 	//! \name Getters
 	//@{
 	TileSet* getTileset() const;
-	bool getPassable() const;
-	bool getAlterable() const;
 	int getTileId() const;
+	std::string getType() const;
+	std::map<std::string,std::string> getPropriete() const;
 	//@}
 	
 	//! \name Setters
 	//@{
 	void setTileset(TileSet * tileset);
-	void setPassable(bool& passable);
-	void setAlterable(bool& alterable);
 	void setTileId(int& tileId);
+	void setType(std::string& type);
+	void setPropriete(std::map<std::string,std::string>& propriete);
 	//@}
 	
+	bool operator==(const Obstacle& o) const;
 	
+	bool operator!=(const Obstacle& o) const;
 private:
 	
 	TileSet * tileset_;
-	bool passable_; // Specify if the robot can pass on the object
-	bool alterable_; // Specify if the property passable of the obstacle can be change
 	int tileId_;
+	std::string type_;
+	std::map<std::string,std::string> propriete_;
 	
 };
+
+std::ostream& operator<<(std::ostream& os, const Obstacle& o);
 
 
 #endif

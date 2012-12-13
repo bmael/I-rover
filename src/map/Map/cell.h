@@ -68,4 +68,6 @@ private:
 	Obstacle* tile_;
 };
 
+std::ostream& operator<<(std::ostream& os, const Cell& c);
+
 #endif

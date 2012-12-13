@@ -33,6 +33,8 @@ public:
 	TileSet* createTileSet(const int& firstGid, const char* name, const int tileWidth, const int tileHeight, const TileSetImage* image);
 		
 	TileSetImage* createTileSetImage(const char* source, const int& width, const int height);
+	
+	Tile* createTile(const int& tileId);
 		
 	void testParsing() const;
 	

@@ -6,6 +6,7 @@
 #include "field.h"
 #include "objectLayers.h"
 #include "../tileset/headers/tileSet.h"
+#include <iostream>
 
 
 
@@ -30,21 +31,37 @@ public:
 	const int getTailleX() const;
 	const int getTailleY() const;
 	const MAPORIENTATION getMapOrientation() const;
+//<<<<<<< HEAD
+//	std::vector<Layers*> getLayers() const;
+//=======
+	Background* getBackground() const;
+	Field* getField() const;
+	std::vector<ObjectLayers*> getObjectLayers() const;
+//>>>>>>> Essai-No-avec-modif-de-map-(les-layers)-et-ajout-de-la-fonction-qui-permet-de-retourner-le-type-des-cellules
 	
 	
 	
 	//Methods
-	void addLayer(Layers* layer);
-	void addTileSets(TileSet* tileSet);
+//<<<<<<< HEAD
+//	void addLayer(Layers* layer);
+	void addTileSets(std::vector<TileSet*> tileSets);
+//=======
+	void addObjectLayers(ObjectLayers* layer);
+//	void addTileSets(TileSet* tileSet);
+//>>>>>>> Essai-No-avec-modif-de-map-(les-layers)-et-ajout-de-la-fonction-qui-permet-de-retourner-le-type-des-cellules
 
 private:
 	const int tailleX_;
 	const int tailleY_;
 	const MAPORIENTATION orientation_;
-	std::vector<Layers*> layers_;
+	Background* background_;
+	Field* field_;
+	std::vector<ObjectLayers*> objectLayers_;
 	std::vector<TileSet*> tileSets_;
 
 };
+
+std::ostream& operator<<(std::ostream& os, const Map& map);
 
 #endif
 

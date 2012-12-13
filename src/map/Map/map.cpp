@@ -1,10 +1,11 @@
 #include "map.h"
 
 
-Map::Map(Background* layerBg, Field* layerField, const int& tailleX, const int& tailleY, const MAPORIENTATION& mapOrient): tailleX_(tailleX), tailleY_(tailleY), orientation_(mapOrient)
+Map::Map(Background* layerBg, Field* layerField, const int& tailleX, const int& tailleY, const MAPORIENTATION& mapOrient): tailleX_(tailleX), tailleY_(tailleY), orientation_(mapOrient), background_(layerBg), field_(layerField) {}
+
+Map::~Map()
 {
-	layers_.push_back(layerBg);
-	layers_.push_back(layerField);
+
 }
 
 const int Map::getTailleX() const
@@ -17,12 +18,44 @@ const int Map::getTailleY() const
 	return tailleY_;
 }
 
-void Map::addLayer(Layers* layer)
-{
-	layers_.push_back(layer);
+Background* Map::getBackground() const{
+	return background_;
 }
 
-void Map::addTileSets(TileSet* tileSet)
+Field* Map::getField() const{
+	return field_;
+}
+
+std::vector<ObjectLayers*> Map::getObjectLayers() const{
+	return objectLayers_;
+}
+
+void Map::addObjectLayers(ObjectLayers* layer)
 {
-	tileSets_.push_back(tileSet);
+	objectLayers_.push_back(layer);
+}
+
+void Map::addTileSets(std::vector<TileSet*> tileSets)
+{
+	tileSets_.insert(tileSets_.end(), tileSets.begin(), tileSets.end());
+}
+
+//std::vector<Layers*> Map::getLayers() const
+//{
+//	return layers_;
+//}
+
+std::ostream& operator<<(std::ostream& os, const Map& map)
+{
+	os << "la map possede " << map.getObjectLayers().size()+2 << " layers : \n";
+	map.getBackground()->operator<<(os);
+	map.getField()->operator<<(os);
+	
+	std::vector<ObjectLayers*>::iterator it;
+	std::vector<ObjectLayers*> ly = map.getObjectLayers();
+	for(it = ly.begin(); it != ly.end(); ++it)
+	{
+		(*it)->operator<<(os);
+	}
+ 	return os;
 }

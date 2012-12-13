@@ -33,6 +33,37 @@ class GestionnaireMap
 		*	GestionnaireMap destructor
 		*/
 		~GestionnaireMap();
+	
+		/*!
+		 *	\brief Type of the cell
+		 *	\param x
+		 *	\param y
+		 *	Return true if the cell's type is different of field
+		 */
+		bool proximitySensor(const int& x, const int& y);
+	
+		/*!
+		 *	\brief Name of the cell
+		 *	\param x
+		 *	\param y
+		 *	Return the name of the object of a cell
+		 */
+		std::vector<std::string> cameraSensor(const int& x, const int& y);
+	
+		/*!
+		 *	\brief Name of the cell of type field
+		 *	\param x
+		 *	\param y
+		 *	Return the name of the field of a cell
+		 */
+		std::string getFieldValue(const int& x, const int& y);
+	
+		/*!
+		 *	\brief Delete the object on the layer
+		 *	\param x
+		 *	\param y
+		 */
+		void deleteObject(const int& x, const int& y);
 		
 	private:
 		Map* map_; /*!< An instance of Map object */
