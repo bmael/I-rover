@@ -24,7 +24,7 @@ private slots:
     void on_informationPushButton_clicked();    // Show or hide the Robot information widget
 
 public slots:
-    void loadRobotInformation();                // Load the robot information
+    void loadRobotInformation();    // Load the robot information
 
 signals:
     void askUnloadMap();    // Emit when the mission is stopping.

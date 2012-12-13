@@ -10,6 +10,10 @@
 #include "robot.h"
 #include "gestionnaireMap.h"
 
+/**
+ * @brief Constructs a new MapMenu.
+ * @param parent
+ */
 MapMenu::MapMenu(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MapMenu)
@@ -24,8 +28,9 @@ MapMenu::~MapMenu()
 }
 
 /**
-  * Open a file dialog to choose a map and write the path of the file on the
+  * @brief Open a file dialog to choose a map and write the path of the file on the
   * lineEdit.
+  * @pre The Map have to be a TMX File
   *
   */
 void MapMenu::on_browseMapPushButton_clicked()
@@ -35,8 +40,9 @@ void MapMenu::on_browseMapPushButton_clicked()
 }
 
 /**
-  * Open a file dialog to choose a mission and write the path of the file on the
+  * @brief Open a file dialog to choose a mission and write the path of the file on the
   * lineEdit.
+  * @pre The Mission have to be in a right XML format
   *
   */
 void MapMenu::on_browseMissionPushButton_clicked()
@@ -45,6 +51,10 @@ void MapMenu::on_browseMissionPushButton_clicked()
     ui->missionLineEdit->setText(file);
 }
 
+/**
+ * @brief Open a file dialog to choose a exploration startegy.
+ * @pre The strategy have to be in python
+ */
 void MapMenu::on_strategyPushButton_clicked()
 {
     QString file = QFileDialog::getOpenFileName(this, "Open a strategy", QString());
@@ -52,7 +62,7 @@ void MapMenu::on_strategyPushButton_clicked()
 }
 
 /**
-  * Ask to load the map on the scene and ask to load robot information according to the mission selected.
+  * @brief Ask to load the map on the scene and ask to load robot information according to the mission selected.
   */
 void MapMenu::on_loadPushButton_clicked()
 {
@@ -76,7 +86,7 @@ void MapMenu::on_loadPushButton_clicked()
 }
 
 /**
-  * Override paintEvent for MapMenu. Need it to apply a css to a QWidget.
+  * @brief Override paintEvent for MapMenu. Need it to apply a css to a QWidget.
   */
 void MapMenu::paintEvent(QPaintEvent *)
 {

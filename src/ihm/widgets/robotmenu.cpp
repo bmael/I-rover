@@ -6,6 +6,10 @@
 #include <QStyle>
 #include <QPropertyAnimation>
 
+/**
+ * @brief Constructs a new RobotMenu widget
+ * @param parent
+ */
 RobotMenu::RobotMenu(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::RobotMenu)
@@ -29,13 +33,16 @@ RobotMenu::RobotMenu(QWidget *parent) :
 
 }
 
+/**
+ * @brief Destroys the RobotMenu widget.
+ */
 RobotMenu::~RobotMenu()
 {
     delete ui;
 }
 
 /**
-  * Override paintEvent for RobotInformation. Need it to apply a css to a QWidget.
+  * @brief Override paintEvent for RobotInformation. Need it to apply a css to a QWidget.
   */
 void RobotMenu::paintEvent(QPaintEvent *)
 {
@@ -46,8 +53,7 @@ void RobotMenu::paintEvent(QPaintEvent *)
 }
 
 /**
- * Show or hide the Mission Widget with an animation
- * @brief RobotMenu::on_missionPushButton_clicked
+ * @brief Show or hide the Mission Widget with an animation
  */
 void RobotMenu::on_missionPushButton_clicked()
 {
@@ -73,6 +79,9 @@ void RobotMenu::on_missionPushButton_clicked()
 
 }
 
+/**
+ * @brief Show or hide the RobotInformation Widget with an animation
+ */
 void RobotMenu::on_informationPushButton_clicked()
 {
     QPropertyAnimation * animation = new QPropertyAnimation(ui->robotInformation, "maximumHeight");
@@ -97,10 +106,9 @@ void RobotMenu::on_informationPushButton_clicked()
 }
 
 /**
- *Called when the user click on Load button.
+ * @brief  Called when the user click on Load button.
  * The robot has been initialized by mapMenu widget. Now we have to refresh the new curretn
  * robot information.
- * @brief RobotMenu::loadRobotInformation
  */
 void RobotMenu::loadRobotInformation()
 {

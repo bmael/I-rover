@@ -11,6 +11,10 @@
 
 #include <QDebug>
 
+/**
+ * @brief Constructs a new RobotInformation widget
+ * @param parent
+ */
 RobotInformation::RobotInformation(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::RobotInformation)
@@ -63,14 +67,16 @@ RobotInformation::RobotInformation(QWidget *parent) :
        }
 }
 
+/**
+ * @brief Destroys the RobotInformation widget
+ */
 RobotInformation::~RobotInformation()
 {
     delete ui;
 }
 
 /**
- * Called when the user want to stop the mission. Cleared the robotInformation.
- * @brief RobotInformation::stopMission
+ * @brief Called when the user want to stop the mission. Cleared the robotInformation.
  */
 void RobotInformation::stopMission()
 {
@@ -94,8 +100,7 @@ void RobotInformation::stopMission()
 }
 
 /**
- * Load the right movement actuator according to radiobox button.
- * @brief RobotInformation::loadMovementActuator
+ * @brief Load the right movement actuator according to radiobox button.
  * @param act
  */
 void RobotInformation::loadMovementActuator()

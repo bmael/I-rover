@@ -5,7 +5,10 @@
 #include <QDebug>
 #include "widgets/aboutdialog.h"
 
-
+/**
+ * @brief Constructs a new MainWindow widget. It's the main window of our application
+ * @param parent
+ */
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -30,13 +33,16 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->leftMenuWidget,SIGNAL(askUnloadRobot()), this, SLOT(unloadRobot()));
 }
 
+/**
+ * @brief Destroys the MainWindow widget
+ */
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
 /**
-  * Show or hide the left menu with an animation.
+  * @brief Show or hide the left menu with an animation.
   */
 void MainWindow::on_showHideLeftMenuPushButton_clicked()
 {
@@ -64,8 +70,8 @@ void MainWindow::on_showHideLeftMenuPushButton_clicked()
 }
 
 /**
-  * Load the map from the given file to the Scene
-  *
+  * @brief  Load the map from the given file to the Scene
+  * @param file, the path to the mapfile.
   */
 void MainWindow::mapLoader(QString file)
 {
@@ -73,7 +79,7 @@ void MainWindow::mapLoader(QString file)
 }
 
 /**
-  * Unload the map from the Scene.
+  * @brief Unload the map from the Scene.
   *Set an empty mapitem for the map
   */
 void MainWindow::unloadMap()
@@ -82,8 +88,7 @@ void MainWindow::unloadMap()
 }
 
 /**
- *Load the curretn version of the robot to the map.
- * @brief MainWindow::loadRobot
+ *@brief Load the curretn version of the robot to the map.
  */
 void MainWindow::loadRobot()
 {
@@ -92,9 +97,8 @@ void MainWindow::loadRobot()
 }
 
 /**
- *Unload the robot from the scene.
+ *@brief Unload the robot from the scene.
  *set an empty pixmap for the robot.
- * @brief MainWindow::unloadRobot
  */
 void MainWindow::unloadRobot()
 {
@@ -103,8 +107,7 @@ void MainWindow::unloadRobot()
 
 
 /**
-  * Show the About dialog.
-  *
+  * @brief Show the About dialog.
   */
 void MainWindow::on_actionAbout_triggered()
 {

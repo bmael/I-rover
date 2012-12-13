@@ -3,6 +3,13 @@
 
 #include <QDebug>
 #include <QPropertyAnimation>
+
+/**
+ * @brief Constructs a new LeftMenu widget. This widget is visible according to the
+ * value of the parameter hide.
+ * @param parent
+ * @param hide false by default
+ */
 LeftMenu::LeftMenu(QWidget *parent, bool hide) :
     QWidget(parent),
     ui(new Ui::LeftMenu)
@@ -21,6 +28,9 @@ LeftMenu::LeftMenu(QWidget *parent, bool hide) :
 
 }
 
+/**
+ * @brief Destroys the LeftMenu
+ */
 LeftMenu::~LeftMenu()
 {
     delete ui;
