@@ -73,6 +73,7 @@ void MainWindow::mapLoader(QString file)
 
 /**
   * Unload the map from the Scene.
+  *Set an empty mapitem for the map
   */
 void MainWindow::unloadMap()
 {
@@ -87,6 +88,16 @@ void MainWindow::loadRobot()
 {
     _robotItem->setPixmap(QPixmap(":/robot/robot"));
     qDebug() << "robot pixmap set";
+}
+
+/**
+ *Unload the robot from the scene.
+ *set an empty pixmap for the robot.
+ * @brief MainWindow::unloadRobot
+ */
+void MainWindow::unloadRobot()
+{
+    _robotItem->setPixmap(QPixmap());
 }
 
 

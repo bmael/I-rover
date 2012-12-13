@@ -85,6 +85,12 @@ void RobotInformation::stopMission()
     //Clear the sensors list
     _sensorModel->clear();
     ui->sensorsListView->update();
+
+    // ask to unload the map from the scene
+    // TODO
+
+    // ask to unload the robot from the scene
+    // TODO
 }
 
 /**

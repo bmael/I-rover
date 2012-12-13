@@ -24,6 +24,7 @@ public slots:
     void mapLoader(QString file);   // Load the map on the scene.
     void unloadMap();               // Unload the map from the scene.
     void loadRobot();               // Load the robot on the scene.
+    void unloadRobot();             // Unload the robot from the scene.
 
 private:
     Ui::MainWindow *ui;
