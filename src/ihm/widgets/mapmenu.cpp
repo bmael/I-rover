@@ -8,6 +8,7 @@
 #include <QStyle>
 
 #include "robot.h"
+#include "gestionnaireMap.h"
 
 MapMenu::MapMenu(QWidget *parent) :
     QWidget(parent),
@@ -55,6 +56,9 @@ void MapMenu::on_strategyPushButton_clicked()
   */
 void MapMenu::on_loadPushButton_clicked()
 {
+    // Initialize the map
+    GestionnaireMap * g = new GestionnaireMap((char *)ui->mapLineEdit->text().toStdString().c_str());
+
     // Ask to load the map to the scene.
     emit askLoadMap(ui->mapLineEdit->text());
 
