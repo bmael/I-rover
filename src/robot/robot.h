@@ -52,7 +52,7 @@ public:
      * @param mact
      */
     void init(std::string name, std::list<Sensor*> sensors, std::list<Actuator*> actuators,
-              MovementActuator* mact);
+              MovementActuator* mact, std::pair<int, int> coord);
 
     /**
      * @brief Destructor

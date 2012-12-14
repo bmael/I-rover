@@ -32,12 +32,12 @@ Robot *Robot::getInstance()
     return _instance;
 }
 
-void Robot::init(string name, list<Sensor*> sensors, list<Actuator*> actuators, MovementActuator* mact)
+void Robot::init(string name, list<Sensor*> sensors, list<Actuator*> actuators, MovementActuator* mact, pair<int,int> coord)
 {
     name_ = name;
     sensors_ = sensors;
     actuators_ = actuators;
-    //coord_ = coord;
+    coord_ = coord;
     movementActuator_ = mact;
 }
 
