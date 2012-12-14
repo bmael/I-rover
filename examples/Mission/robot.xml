@@ -16,6 +16,6 @@
     <mission>
 		<description>A simple textual description</description>
 		<objective>Destroy</objective>
-		<targets>9</targets>
+		<targets name="rainders" number="9"/>
     </mission>
 </robot>

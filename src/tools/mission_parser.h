@@ -67,12 +67,12 @@ std::string parse_objective(const char* file_path);
 
 
 /**
- * \brief This function parses the XML file entered as a parameter and returns an int corresponding to the mission targets.
- * If the XML file does not contains a mission targets, the returned int is 0.
+ * \brief This function parses the XML file entered as a parameter and returns an std::pair<std::string,int> corresponding to the mission targets ans its number.
+ * If the XML file does not contains a mission targets, the returned std::pair<std::string,int> is empty.
  * \param file_path The relative or absolute path of the file you want to parse
- * \return An int that correspond to the mission targets, or an 0 if the XML file does not contain a mission targets
+ * \return An std::pair<std::string,int> that correspond to the mission targets and its number, or an empty std::pair<std::string,int> if the XML file does not contain a mission targets.
  */
-int parse_targets(const char* file_path);
+std::pair<std::string,int> parse_targets(const char* file_path);
 
 
 /**

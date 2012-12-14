@@ -128,15 +128,16 @@ std::string parse_objective(const char* file_path) {
 }
 
 
-int parse_targets(const char* file_path) {
-	int res;
+std::pair<std::string,int> parse_targets(const char* file_path) {
+	std::pair<std::string,int> res;
     pugi::xml_document doc;
     pugi::xml_parse_result result = doc.load_file(file_path);
 
     if (result) {
 		// retrieving the mission node
-		pugi::xml_node mission = doc.child("robot").child("mission");
-		res = mission.child("targets").text().as_int();
+		pugi::xml_node targets = doc.child("robot").child("mission").child("targets");
+		res.first = targets.attribute("name").value();
+		res.second = targets.attribute("number").as_int();
     }
     
     return res;
