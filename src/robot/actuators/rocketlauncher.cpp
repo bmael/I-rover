@@ -14,10 +14,6 @@ RocketLauncher::~RocketLauncher(){
 
 void RocketLauncher::doAction(const int &x, const int &y)
 {
-// Si la ressource en (x, y) est un arbre alors détruire obstacle
-
-//    if (map->ressourceString(x,y) == "Arbre")
-//    {
-//        map->destroyMapRessource(x,y) ; //On détruit la ressource
-//    }
+    //Non-exhaustif list to complete (waiting for Guillaume and Noemie part)
+    //    GestionnaireMap.deleteObject(coord.first-1, coord.second);
 }

@@ -199,15 +199,22 @@ public:
      * @brief Ordonnee of the robot
      * @return the ordonnee of the robot
      */
-    int getX() const;
+    int getX();
 
     /**
      * @brief Abscisse of the robot
      * @return The abcisse of the robot
      */
-    int getY() const;
+    int getY();
+
 
     /**
+     * @brief Count of targets destroyed by the robot
+     * @return The count of targets destroyed by the robot
+     */
+    int getTargetsDestroyed();
+
+     /**
      * @brief Modify the Ordonnee
      * @param newX : the new Ordonnee
      */
@@ -231,13 +238,13 @@ public:
      */
     void clear();
 
-
 private:
     Coord coord_;
     std::string name_;
     std::list<Sensor*> sensors_;
     std::list<Actuator*> actuators_;
     MovementActuator * movementActuator_;
+    int targetsDestroyed_;
     static Robot* _instance;
 
     //QPixmap* image_;
