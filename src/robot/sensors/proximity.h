@@ -13,44 +13,38 @@
 #include "sensor.h"
 
 /**
- * This class represents a proximity sensor, that allows a Robot to "know" if objects are arround him
+ * @class ProximitySensor
+ * @brief This class represents a proximity sensor, that allows a Robot to "know" if objects are arround him
  */
 class ProximitySensor : public Sensor {
 public:
     /**
-     * Default constructor
+     * @brief Default constructor
      */
     ProximitySensor();
     
     /**
-     * Constructor with a sensibility parameter
-     * \param sensisility The sensibility(in number of cases) of the sensor
+     * @brief Constructor with a sensibility parameter
+     * @param param sensibility The sensibility(in number of cases) of the sensor
      */
     ProximitySensor(int sensibility);
     
     /**
-     * Copy constructor
-     * \param orig Copy orig into a new Object
+     * @brief Destructor
      */
-    ProximitySensor(const ProximitySensor& orig);
+    ~ProximitySensor();
     
     /**
-     * Destructor
-     */
-    virtual ~ProximitySensor();
-    
-    /**
-     * Getter for sensibility
-     * \return sensibility
+     * @brief Getter for sensibility
+     * @return sensibility
      */
     int getProximitySensibility() const;
     
     /**
-     * This method return a list of Cells detected by the Proximity sensor.
-     * We return only the Cells containing Obstacles that can't be passed by the Robot.
-     * \return A std::list of Cell pointers containing the detected obstacles
+     * @brief This method return a list of std::list<std::pair<int,int> >, representing position of objects detected by the Proximity sensor on the map.
+     * @return A std::list<std::pair<int,int> > representing the position on the map of the detected objects
      */
-    //std::list<Cell*> getObstacles();
+    std::list<std::pair<int,int> > doAction();
     
 private:
     int sensibility_;

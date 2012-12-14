@@ -12,9 +12,6 @@ ProximitySensor::ProximitySensor() : Sensor("Proximity"), sensibility_(1) {}
 ProximitySensor::ProximitySensor(int sensibility) : Sensor("Proximity"), sensibility_(sensibility) {
 }
 
-ProximitySensor::ProximitySensor(const ProximitySensor& orig) : Sensor("Proximity") {
-}
-
 ProximitySensor::~ProximitySensor() {
 }
 
@@ -22,6 +19,21 @@ int ProximitySensor::getProximitySensibility() const {
     return this->sensibility_;
 }
 
-//std::list<Cell*> getObstacles() {
-//    return 0;
+//std::list<std::pair<int,int> > ProximitySensor::doAction() {
+//    std::list<std::pair<int,int> > res;
+
+//	// Retrieving the position of the robot
+//    int positionX = Robot::getInstance()->getX();
+//    int positionY = Robot::getInstance()->getY();
+//    
+//    // Searching on the Cells arround the robot if there is an object
+//    for ( int x = positionX - sensibility_ ; x <= positionX + sensibility_ ; x++ ) {
+//    	for ( int y = positionY - sensibility_ ; y <= positionY + sensibility_ ; y++ ) {
+//    		if ( GestionnaireMap::getInstance()->proximitySensor() ) {
+//    			res.push_back(std::pair<int,int>(x,y));
+//    		}
+//       	}
+//    }
+//    
+//    return res;
 //}

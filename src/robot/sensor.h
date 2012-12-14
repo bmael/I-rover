@@ -12,11 +12,10 @@
 #define	SENSOR_H
 
 #include <iostream>
+
 /**
  * @class Sensor
- * @brief A sensor for the robot
- *
- * Allow the robot to destroy obstacles like rocks or trees
+ * @brief A sensor for the robot that allow it to know informations on its environment(the map)
  */
 class Sensor {
 
@@ -26,14 +25,7 @@ public:
      * @brief Sensor
      */
     Sensor();
-
-    /**
-     * Copy constructor
-     * @brief Sensor
-     * @param orig
-     */
-    Sensor(const Sensor& orig);
-
+    
     /**
      * Constructor to set the name attribute
      * @brief Sensor

@@ -2,10 +2,9 @@
 
 CameraSensor::CameraSensor() : Sensor("Camera") {}
 
-CameraSensor::CameraSensor(const CameraSensor& orig) : Sensor("Camera") {}
-
 CameraSensor::~CameraSensor() {}
 
-//Object getObject(int X, int Y) const {
-//    // Not yet implemented
+//std::vector<std::string> CameraSensor::doAction(const int& x, const int& y) {
+//	//Can't call getInstance because I don't have the path to the TMX file
+//	return GestionnaireMap::getInstance()->cameraSensor(x,y);
 //}

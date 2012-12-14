@@ -13,8 +13,6 @@ Sensor::Sensor() {}
 
 Sensor::Sensor(const std::string name) : name_(name) {}
 
-Sensor::Sensor(const Sensor& orig) {}
-
 Sensor::~Sensor() {}
 
 std::string Sensor::getName() const {
