@@ -214,6 +214,12 @@ public:
      */
     int getTargetsDestroyed();
 
+    /**
+     * @brief Movement actuator of the robot
+     * @return the movement actuator of the robot
+     */
+    MovementActuator* getMovementActuator();
+
      /**
      * @brief Modify the Ordonnee
      * @param newX : the new Ordonnee
@@ -237,6 +243,7 @@ public:
      * @brief clear
      */
     void clear();
+
 
 private:
     Coord coord_;

@@ -168,6 +168,10 @@ int Robot::getTargetsDestroyed(){
     return targetsDestroyed_;
 }
 
+MovementActuator* Robot::getMovementActuator(){
+    return movementActuator_;
+}
+
 void Robot::setX(int newX){
     coord_.first = newX;
 }
