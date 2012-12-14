@@ -20,19 +20,9 @@ class GestionnaireMap
 {
 	public:
 	
-		/*!
-		*	\brief Constructor
-		*
-		*	GestionnaireMap constructor
-		*/
-		GestionnaireMap(char* tmxpath);
-				
-		/*!
-		*	\brief Destructor
-		*
-		*	GestionnaireMap destructor
-		*/
-		~GestionnaireMap();
+		static GestionnaireMap* getInstance(char* tmxpath);
+		
+		static void kill();
 	
 		/*!
 		 *	\brief Type of the cell
@@ -72,6 +62,26 @@ class GestionnaireMap
 		
 	private:
 	
+		//to avoid copy
+		GestionnaireMap(const GestionnaireMap&);
+		void operator=(const GestionnaireMap&);
+	
+		/*!
+		*	\brief Constructor
+		*
+		*	GestionnaireMap constructor
+		*/
+		GestionnaireMap(char* tmxpath);
+		
+		/*!
+		*	\brief Destructor
+		*
+		*	GestionnaireMap destructor
+		*/
+		~GestionnaireMap();
+		
+		static GestionnaireMap* gestionnaire_;
+		
 		Map* map_; /*!< An instance of Map object */
 		Parseur* parseurTMX_; /*!< The TMX parsor */
 };

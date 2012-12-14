@@ -8,7 +8,7 @@ MapFactory::MapFactory()
 
 MapFactory* MapFactory::getInstance()
 {
-	if(NULL != mapFactory_)
+	if(NULL == mapFactory_)
 	{
 		mapFactory_ = new MapFactory();
 	}
