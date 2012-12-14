@@ -1,5 +1,25 @@
 #include "../headers/gestionnaireMap.h"
 
+GestionnaireMap* GestionnaireMap::gestionnaire_ = NULL;
+
+GestionnaireMap* GestionnaireMap::getInstance(char* tmxpath)
+{
+	if(NULL == gestionnaire_)
+	{
+		gestionnaire_ = new GestionnaireMap(tmxpath);
+	}
+	return gestionnaire_;
+}
+
+void GestionnaireMap::kill()
+{
+	if(NULL != gestionnaire_)
+	{
+		delete gestionnaire_;
+		gestionnaire_ = NULL;
+	}
+}
+
 GestionnaireMap::GestionnaireMap(char* tmxpath)
 {
 	parseurTMX_ = new Parseur(tmxpath);
