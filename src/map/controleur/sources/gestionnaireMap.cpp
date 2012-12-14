@@ -4,13 +4,18 @@ GestionnaireMap::GestionnaireMap(char* tmxpath)
 {
 	parseurTMX_ = new Parseur(tmxpath);
 	map_ = parseurTMX_->doParsing();
-	std::cout << *map_ << std::endl;
+//	std::cout << *map_ << std::endl;
 }
 
 GestionnaireMap::~GestionnaireMap()
 {
 	delete parseurTMX_;
 	delete map_;
+}
+
+Map* GestionnaireMap::getMap()
+{
+	return map_;
 }
 
 bool GestionnaireMap::proximitySensor(const int& x, const int& y){

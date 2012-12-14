@@ -26,7 +26,7 @@ class GestionnaireMap
 		*	GestionnaireMap constructor
 		*/
 		GestionnaireMap(char* tmxpath);
-		
+				
 		/*!
 		*	\brief Destructor
 		*
@@ -65,7 +65,13 @@ class GestionnaireMap
 		 */
 		void deleteObject(const int& x, const int& y);
 		
+		/*!
+		*	\brief Return the map
+		*/
+		Map* getMap();
+		
 	private:
+	
 		Map* map_; /*!< An instance of Map object */
 		Parseur* parseurTMX_; /*!< The TMX parsor */
 };
