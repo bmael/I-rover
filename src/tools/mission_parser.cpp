@@ -109,6 +109,8 @@ std::string parse_description(const char* file_path) {
 		res = mission.child("description").text().as_string();
     }
     
+    std::cout << "[Parser_desc] " << res << std::endl;
+
     return res;
 }
 
