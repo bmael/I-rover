@@ -88,7 +88,8 @@ void MapMenu::on_loadPushButton_clicked()
     Robot::getInstance()->init(std::string(""),
                                parse_sensors(missionPath),
                                parse_actuators(missionPath),
-                               parse_movementActuator(missionPath));
+                               parse_movementActuator(missionPath),
+                               parse_start_position(missionPath));
 
     emit askLoadRobot();
     qDebug() << "[MapMenu] " << QString::fromStdString(parse_description(missionPath)) ;

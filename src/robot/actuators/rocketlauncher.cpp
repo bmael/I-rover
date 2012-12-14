@@ -1,4 +1,5 @@
 #include "rocketlauncher.h"
+#include "gestionnaireMap.h"
 using namespace std;
 
 RocketLauncher::RocketLauncher() : Actuator("RocketLaucher")
@@ -11,7 +12,7 @@ RocketLauncher::RocketLauncher() : Actuator("RocketLaucher")
 RocketLauncher::~RocketLauncher(){
 }
 
-void RocketLauncher::doAction(Direction direction)
+void RocketLauncher::doAction(const int &x, const int &y)
 {
 // Si la ressource en (x, y) est un arbre alors détruire obstacle
 
