@@ -24,6 +24,9 @@ RobotMenu::RobotMenu(QWidget *parent) :
     // Connection for loading the mission
     connect(this, SIGNAL(askLoadMission(QString)), ui->MissionInformation, SLOT(loadMissionDescription(QString)));
 
+    // Connection for loading the robot information
+    connect(this, SIGNAL(askLoadRobot()), ui->robotInformation, SLOT(loadRobotInformation()));
+
     // Connection for starting/stoping mission
     connect(ui->MissionInformation,SIGNAL(askStopMission()),ui->robotInformation,SLOT(stopMission()));
     connect(ui->MissionInformation, SIGNAL(askStopMission()), this, SIGNAL(askUnloadMap()));
@@ -108,11 +111,4 @@ void RobotMenu::on_informationPushButton_clicked()
     animation->start(QPropertyAnimation::DeleteWhenStopped);
 }
 
-/**
- * @brief  Called when the user click on Load button.
- * The robot has been initialized by mapMenu widget. Now we have to refresh the new curretn
- * robot information.
- */
-void RobotMenu::loadRobotInformation()
-{
-}
+

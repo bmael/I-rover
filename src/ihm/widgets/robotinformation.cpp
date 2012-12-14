@@ -28,43 +28,6 @@ RobotInformation::RobotInformation(QWidget *parent) :
     ui->actuatorsListView->setModel(_actuatorModel);
     ui->sensorsListView->setModel(_sensorModel);
 
-///////////////////////////////////////// DEBUG ///////////////////////////////////
-//       qDebug() << QString::fromStdString(Robot::getInstance()->getName());
-//       RocketLauncher * rocketlauncher = new RocketLauncher();
-//       Arms * arms = new Arms();
-
-
-//       Robot::getInstance()->addActuator(rocketlauncher);
-//       Robot::getInstance()->addActuator(arms);
-
-//       GpsSensor * gps = new GpsSensor();
-//       Robot::getInstance()->addSensor(gps);
-
-//////////////////////////////////////////////////////////////////////////////////
-
-       // Initialize the actuators list
-       int cptRow = 0;
-       for (std::list<Actuator*>::iterator it = Robot::getInstance()->getActuators()->begin(); it != Robot::getInstance()->getActuators()->end() ; ++it )
-       {
-           qDebug() << QString::fromStdString((*it)->getName());
-           QStandardItem *item = new QStandardItem(QString::fromStdString((*it)->getName()));
-           item->setEditable(false);
-           _actuatorModel->setItem(cptRow,item);
-           ui->actuatorsListView->update();
-           cptRow ++;
-       }
-
-       //Initialize the sensors list
-       cptRow = 0;
-       for (std::list<Sensor*>::iterator it = Robot::getInstance()->getSensors()->begin(); it != Robot::getInstance()->getSensors()->end() ; ++it )
-       {
-           qDebug() << QString::fromStdString((*it)->getName());
-           QStandardItem *item = new QStandardItem(QString::fromStdString((*it)->getName()));
-           item->setEditable(false);
-           _sensorModel->setItem(cptRow,item);
-           ui->sensorsListView->update();
-           cptRow ++;
-       }
 }
 
 /**
@@ -114,5 +77,42 @@ void RobotInformation::loadMovementActuator()
     ui->wheelsRadioButton->setEnabled(false);
 
     emit askLoadMovementActuator(act);
+
+}
+
+/**
+ * @brief Load the current robot information after the loading asked by the user.
+ */
+void RobotInformation::loadRobotInformation()
+{
+    // Initialize the actuators list
+    int cptRow = 0;
+    for (std::list<Actuator*>::iterator it = Robot::getInstance()->getActuators()->begin(); it != Robot::getInstance()->getActuators()->end() ; ++it )
+    {
+        qDebug() << QString::fromStdString((*it)->getName());
+        QStandardItem *item = new QStandardItem(QString::fromStdString((*it)->getName()));
+        item->setEditable(false);
+        _actuatorModel->setItem(cptRow,item);
+        ui->actuatorsListView->update();
+        cptRow ++;
+    }
+
+    //Initialize the sensors list
+    cptRow = 0;
+    for (std::list<Sensor*>::iterator it = Robot::getInstance()->getSensors()->begin(); it != Robot::getInstance()->getSensors()->end() ; ++it )
+    {
+        qDebug() << QString::fromStdString((*it)->getName());
+        QStandardItem *item = new QStandardItem(QString::fromStdString((*it)->getName()));
+        item->setEditable(false);
+        _sensorModel->setItem(cptRow,item);
+        ui->sensorsListView->update();
+        cptRow ++;
+    }
+
+    if(Robot::getInstance()->getMovementActuator()->getName() == "Chains"){
+        ui->ChainsRadioButton->setChecked(true);
+    }else{
+        ui->wheelsRadioButton->setChecked(true);
+    }
 
 }

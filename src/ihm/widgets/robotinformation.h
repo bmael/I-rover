@@ -20,6 +20,7 @@ public:
 public slots:
     void stopMission();             // Clear actuator and sensor view, ask to unload map and robot from the scene
     void loadMovementActuator();    // Initialize the robot movement actuator according to the user choice.
+    void loadRobotInformation();    // Load the robot information.
 
 signals:
     void askLoadMovementActuator(MovementActuator * act); // Emit when the user choice has been done.

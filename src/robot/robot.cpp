@@ -44,6 +44,7 @@ void Robot::init(string name, list<Sensor*> sensors, list<Actuator*> actuators, 
 
 Robot::~Robot(){
     clear();
+    delete movementActuator_;
     delete _instance;
 }
 
@@ -198,10 +199,11 @@ void Robot::clear()
         *it = 0;
     }
 
-    if (movementActuator_)
-    {
-        delete movementActuator_;
-    }
+//    if (movementActuator_)
+//    {
+//        delete movementActuator_;
+//        movementActuator_ = 0;
+//    }
 }
 
 

@@ -91,7 +91,10 @@ void MapMenu::on_loadPushButton_clicked()
                                parse_start_position((char *)ui->missionLineEdit->text().toStdString().c_str()));
 
     emit askLoadRobot();
-    emit askLoadMission(QString::fromStdString(parse_description((char *)ui->missionLineEdit->text().toStdString().c_str())));
+
+    QString desc = QString::fromStdString(parse_description((char *)ui->missionLineEdit->text().toStdString().c_str()));
+    qDebug() << desc;
+    emit askLoadMission(desc);
 }
 
 /**
