@@ -17,8 +17,5 @@ Arms::~Arms(){
 void Arms::doAction(const int &x, const int &y)
 {
     //Non-exhaustif list to complete (waiting for Guillaume and Noemie part)
-    //if (GestionnaireMap.getFieldValue(coord.first-1, coord.second) == "rainders")
-    //{
     //    GestionnaireMap.deleteObject(coord.first-1, coord.second);
-    //}
 }

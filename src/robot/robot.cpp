@@ -155,12 +155,16 @@ void Robot::doAction(Actuator * a, const int &x, const int &y)
         a->doAction(x,y) ;
 }
 
-int Robot::getX() const{
+int Robot::getX(){
     return coord_.first;
 }
 
-int Robot::getY() const{
+int Robot::getY(){
     return coord_.second;
+}
+
+int Robot::getTargetsDestroyed(){
+    return targetsDestroyed_;
 }
 
 void Robot::setX(int newX){
