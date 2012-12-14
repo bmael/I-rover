@@ -29,16 +29,16 @@ RobotInformation::RobotInformation(QWidget *parent) :
     ui->sensorsListView->setModel(_sensorModel);
 
 ///////////////////////////////////////// DEBUG ///////////////////////////////////
-       qDebug() << QString::fromStdString(Robot::getInstance()->getName());
-       RocketLauncher * rocketlauncher = new RocketLauncher();
-       Arms * arms = new Arms();
+//       qDebug() << QString::fromStdString(Robot::getInstance()->getName());
+//       RocketLauncher * rocketlauncher = new RocketLauncher();
+//       Arms * arms = new Arms();
 
 
-       Robot::getInstance()->addActuator(rocketlauncher);
-       Robot::getInstance()->addActuator(arms);
+//       Robot::getInstance()->addActuator(rocketlauncher);
+//       Robot::getInstance()->addActuator(arms);
 
-       GpsSensor * gps = new GpsSensor();
-       Robot::getInstance()->addSensor(gps);
+//       GpsSensor * gps = new GpsSensor();
+//       Robot::getInstance()->addSensor(gps);
 
 //////////////////////////////////////////////////////////////////////////////////
 
