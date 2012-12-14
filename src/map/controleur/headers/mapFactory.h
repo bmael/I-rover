@@ -8,7 +8,7 @@
 *	\version 1.0
 */
 
-#include "../../tileset/headers/tileSet.h"
+#include "tileSet.h"
 #include "../../Map/map.h"
 #include <vector>
 

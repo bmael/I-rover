@@ -13,6 +13,8 @@
 #include "mapFactory.h"
 #include <iostream>
 #include <string>
+#include "tile.h"
+
 
 /*!
 *	\class Parseur

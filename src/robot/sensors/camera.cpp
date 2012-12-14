@@ -2,9 +2,9 @@
 
 CameraSensor::CameraSensor() : Sensor("Camera") {}
 
-CameraSensor(const CameraSensor& orig) : Sensor("Camera") {}
+CameraSensor::CameraSensor(const CameraSensor& orig) : Sensor("Camera") {}
 
-~CameraSensor() {}
+CameraSensor::~CameraSensor() {}
 
 //Object getObject(int X, int Y) const {
 //    // Not yet implemented
