@@ -134,7 +134,7 @@ string Robot::SensorsToString(){
     out = "The robots contains the following sensors : \n";
     for (list<Sensor*>::iterator it = this->getSensors()->begin(); it != this->getSensors()->end() ; ++it )
     {
-        //out += (*it)->getName(); A COMPLETER PAR JULIEN
+        out += (*it)->getName();
     }
     return out;
 }
