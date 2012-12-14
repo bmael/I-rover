@@ -33,10 +33,10 @@ public:
 
     /**
      * @brief Destroy the object
-     *
-     * @param direction : Object destroy at this direction
+     * @param x : the ordonnee where the actuator need to be activate
+     * @param y : the abcisse where the actuator need to be activate
      */
-    void doAction(Direction direction);
+    void doAction(const int &x, const int &y);
 };
 
 #endif // ROCKETLAUNCHER_H

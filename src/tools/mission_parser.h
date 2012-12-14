@@ -45,7 +45,7 @@ std::list<Actuator*> parse_actuators(const char* file_path);
  * \param file_path The relative or absolute path of the file you want to parse
  * \return A std::list that contains pointers to the MovementActuator contained in the XML file, or empty if the XML file does not contain MovementActuator
  */
-std::list<MovementActuator*> parse_movementActuator(const char* file_path);
+MovementActuator* parse_movementActuator(const char* file_path);
 
 
 /**

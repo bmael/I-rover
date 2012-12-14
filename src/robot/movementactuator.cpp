@@ -13,7 +13,7 @@ MovementActuator::~MovementActuator()
 {
 }
 
-void MovementActuator::doAction(Direction direction)
+void MovementActuator::doAction(const int &x, const int &y)
 {
    //Nothing to do
 }

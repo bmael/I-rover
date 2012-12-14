@@ -74,11 +74,10 @@ std::list<Actuator*> parse_actuators(const char* file_path) {
     return list_actuators;
 }
 
-std::list<MovementActuator*> parse_movementActuator(const char* file_path) {
-    std::list<MovementActuator*> list_mov;
+MovementActuator* parse_movementActuator(const char* file_path) {
     pugi::xml_document doc;
     pugi::xml_parse_result result = doc.load_file(file_path);
-
+    MovementActuator * mov = 0;
     if (result) {
 		// retrieving the sensors node
 		pugi::xml_node movementActuator = doc.child("robot").child("movementActuator");
@@ -86,19 +85,17 @@ std::list<MovementActuator*> parse_movementActuator(const char* file_path) {
 		std::string s(movementActuator.attribute("type").value());
 
 		if (s.compare("Wheels") == 0) {
-			MovementActuator * mov = new Wheels();
-			list_mov.push_back(mov);
+            mov = new Wheels();
 		}
 		else if (s.compare("Chains") == 0) {
-			MovementActuator * mov = new Chains();
-			list_mov.push_back(mov);
+            mov = new Chains();
 		}
 		else {
 			std::cerr << "Not yet implemented" << std::endl;
 		}
     }
 
-    return list_mov;
+    return mov;
 }
 
 std::string parse_description(const char* file_path) {

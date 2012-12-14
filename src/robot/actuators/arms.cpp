@@ -1,4 +1,5 @@
 #include "arms.h"
+#include "gestionnaireMap.h"
 using namespace std;
 
 Arms::Arms() : Actuator("Arms")
@@ -13,12 +14,11 @@ Arms::~Arms(){
  *
  * @param direction : move the object on this direction
  */
-void Arms::doAction(Direction direction)
+void Arms::doAction(const int &x, const int &y)
 {
-// Si la ressource en (x, y) est un arbre alors détruire obstacle
-
-//    if (map->ressourceString(x,y) == "WoodenBoxes")
-//    {
-//        map->moveMapRessource(x,y) ; //On détruit la ressource
-//    }
+    //Non-exhaustif list to complete (waiting for Guillaume and Noemie part)
+    //if (GestionnaireMap.getFieldValue(coord.first-1, coord.second) == "rainders")
+    //{
+    //    GestionnaireMap.deleteObject(coord.first-1, coord.second);
+    //}
 }

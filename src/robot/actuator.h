@@ -33,7 +33,6 @@ public :
 
     /**
      * @brief Construtor
-     *
      * @param name : Actuator's name
      */
     Actuator(const std::string name);
@@ -45,16 +44,14 @@ public :
 
     /**
       * @brief Activate the action of the actuator
-      *
-      * @param direction : direction of the action
-      *
+      * @param x : the ordonnee where the actuator need to be activate
+      * @param y : the abcisse where the actuator need to be activate
       * @return True if the action has been done, false otherwise
       */
-    virtual void doAction(Direction direction) = 0;
+    virtual void doAction(const int &x, const int &y) = 0;
 
     /**
      * @brief Actuator's name
-     *
      * @return The actuator's name
      */
     std::string getName();

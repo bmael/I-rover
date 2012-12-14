@@ -32,27 +32,19 @@ Robot *Robot::getInstance()
     return _instance;
 }
 
-void Robot::init(std::string name, std::list<Sensor*> sensors, std::list<Actuator*> actuators, std::list<MovementActuator*> mact)
+void Robot::init(string name, list<Sensor*> sensors, list<Actuator*> actuators, MovementActuator* mact)
 {
+    name_ = name;
+    sensors_ = sensors;
+    actuators_ = actuators;
+    //coord_ = coord;
+    movementActuator_ = mact;
 }
 
 
 Robot::~Robot(){
-    for (list<Sensor*>::iterator it = getSensors()->begin(); it != getSensors()->end() ; ++it )
-    {
-        //delete *it;
-        //Not implemented yet !
-    }
-    for (list<Actuator*>::iterator it = getActuators()->begin(); it != getActuators()->end() ; ++it )
-    {
-        //delete *it;
-        //Julien -> Not implemented yet !
-    }
-
-    if (movementActuator_)
-    {
-        //delete movementActuator_;
-    }
+    clear();
+    delete _instance;
 }
 
 const string Robot::getName() const{
@@ -62,6 +54,14 @@ const string Robot::getName() const{
 void Robot::setName(string name)
 {
     name_ = name;
+}
+
+void Robot::setMovementActuator(MovementActuator* m)
+{
+    if (movementActuator_){
+        delete movementActuator_ ;
+    }
+    movementActuator_ = m ;
 }
 
 bool Robot::canGoNorth(){
@@ -149,28 +149,58 @@ list<Sensor*>* Robot::getSensors()
     return &sensors_;
 }
 
-void Robot::doAction(Actuator * a, Direction direction)
+void Robot::doAction(Actuator * a, const int &x, const int &y)
 {
     if (a)
-        a->doAction(direction) ;
+        a->doAction(x,y) ;
 }
 
-void Robot::clear()
-{
+int Robot::getX() const{
+    return coord_.first;
+}
 
+int Robot::getY() const{
+    return coord_.second;
+}
+
+void Robot::setX(int newX){
+    coord_.first = newX;
+}
+
+void Robot::setY(int newY){
+    coord_.second = newY;
+}
+
+const Coord& Robot::getPosition() const
+{
+    return coord_ ;
 }
 
 int Robot::lastDirection() const
 {
-     return movementActuator_->lastDirection();
+    return movementActuator_->lastDirection();
 }
 
-void Robot::setMovementActuator(MovementActuator* m)
+void Robot::clear()
 {
-    if (movementActuator_){
-        delete movementActuator_ ;
+    for (list<Sensor*>::iterator it = getSensors()->begin(); it != getSensors()->end() ; ++it )
+    {
+        delete *it;
+        *it = 0;
     }
-    movementActuator_ = m ;
+    for (list<Actuator*>::iterator it = getActuators()->begin(); it != getActuators()->end() ; ++it )
+    {
+        delete *it;
+        *it = 0;
+    }
+
+    if (movementActuator_)
+    {
+        delete movementActuator_;
+    }
 }
+
+
+
 
 

@@ -22,12 +22,13 @@
 /**
  * @class Robot
  */
+typedef std::pair<int,int> Coord;
+
 class Robot {
 
 private:
     /**
      * @brief Constructor
-     *
      * @param name : robot's name
      */
     Robot(const std::string name);
@@ -50,7 +51,8 @@ public:
      * @param actuators
      * @param mact
      */
-    void init(std::string name, std::list<Sensor*> sensors, std::list<Actuator*> actuators, std::list<MovementActuator*> mact);
+    void init(std::string name, std::list<Sensor*> sensors, std::list<Actuator*> actuators,
+              MovementActuator* mact);
 
     /**
      * @brief Destructor
@@ -59,105 +61,90 @@ public:
 
     /**
      * @brief Robot's name
-     *
      * @return Robot's name
      */
     const std::string getName() const;
 
     /**
      * @brief Give a name to the robot
-     *
      * @param name : the name given to the robot
      */
     void setName(std::string name);
 
     /**
      * @brief Give or modify a movement actuator to the robot
-     *
      * @param m : the movement actuator given to the robot
      */
     void setMovementActuator(MovementActuator * m);
 
     /**
      * @brief Number of sensors
-     *
      * @return Number of sensors the robot has
      */
     int sensorsCount() const ;
 
     /**
      * @brief Number of actuators
-     *
      * @return Number of actuators the robot has
      */
     int actuatorsCount() const ;
 
     /**
      * @brief Add a sensor
-     *
      * @param sensor : Sensor to add
      */
     void addSensor (Sensor* sensor) ;
 
     /**
      * @brief Add an actuator
-     *
      * @param actuator : Actuator to add
      */
     void addActuator(Actuator* actuator);
 
     /**
      * @brief Possible movement of the robot
-     *
      * @return True if the Robot can move at North, false otherwise
      */
     bool canGoNorth();
 
     /**
      * @brief Possible movement of the robot
-     *
      * @return True if the Robot can move at South, false otherwise
      */
     bool canGoSouth();
 
     /**
      * @brief Possible movement of the robot
-     *
      * @return True if the Robot can move at East, false otherwise
      */
     bool canGoEast();
 
     /**
      * @brief Possible movement of the robot
-     *
      * @return True if the Robot can move at West, false otherwise
      */
     bool canGoWest();
 
     /**
      * @brief Movement of the robot
-     *
      * @return Move the robot at North
      */
     void goNorth();
 
     /**
      * @brief Movement of the robot
-     *
      * @return Move the robot at South
      */
     void goSouth();
 
     /**
      * @brief Movement of the robot
-     *
      * @return Move the robot at East
      */
     void goEast();
 
     /**
      * @brief Movement of the robot
-     *
      * @return Move the robot at East
      */
     void goWest();
@@ -165,28 +152,24 @@ public:
 
     /**
      * @brief A display of all actuators
-     *
      * @return A string that display robot's actuators
      */
     std::string ActuatorsToString();
 
     /**
      * @brief A display of all sensors
-     *
      * @return A string that display robot's sensors
      */
     std::string SensorsToString();
 
     /**
      * @brief Robot's actuators
-     *
      * @return A list of robot's actuators
      */
     std::list<Actuator *>* getActuators();
 
     /**
      * @brief Robot's sensors
-     *
      * @return A list of robot's sensors
      */
     std::list<Sensor*>* getSensors();
@@ -198,12 +181,11 @@ public:
 
     /**
      * @brief Activate an activator to a given direction
-     *
      * @param a : the actuator to activate
-     *
-     * @param direction : the direction where execute the action
+     * @param x : the ordonnee where the actuator need to be activate
+     * @param y : the abcisse where the actuator need to be activate
      */
-    void doAction(Actuator * a, Direction direction);
+    void doAction(Actuator * a, const int &x, const int &y);
 
     //    /**
     //     * @brief getImage
@@ -214,6 +196,36 @@ public:
     //  void addObject(Objects object);
 
     /**
+     * @brief Ordonnee of the robot
+     * @return the ordonnee of the robot
+     */
+    int getX() const;
+
+    /**
+     * @brief Abscisse of the robot
+     * @return The abcisse of the robot
+     */
+    int getY() const;
+
+    /**
+     * @brief Modify the Ordonnee
+     * @param newX : the new Ordonnee
+     */
+    void setX(int newX);
+
+    /**
+     * @brief Modify the Abcisse
+     * @param new : the new Abcisse
+     */
+    void setY(int newY);
+
+    /**
+     * @brief Robot::getPosition
+     * @return The position (x,y) of the robot
+     */
+    const Coord& getPosition() const;
+
+    /**
      *Clear the current robot. Erase all sensors, actuators and the name of the robot.
      * @brief clear
      */
@@ -221,6 +233,7 @@ public:
 
 
 private:
+    Coord coord_;
     std::string name_;
     std::list<Sensor*> sensors_;
     std::list<Actuator*> actuators_;
