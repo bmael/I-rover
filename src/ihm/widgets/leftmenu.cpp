@@ -26,6 +26,9 @@ LeftMenu::LeftMenu(QWidget *parent, bool hide) :
     connect(ui->robotInformationWidget,SIGNAL(askUnloadRobot()), this, SIGNAL(askUnloadRobot()));
     connect(ui->robotInformationWidget,SIGNAL(askUnloadMap()), this, SIGNAL(askUnloadMap()));
 
+    // Connection to load/unloading the mission
+    connect(ui->mapMenuWidget,SIGNAL(askLoadMission(QString)), this, SIGNAL(askLoadMission(QString)));
+
 }
 
 /**

@@ -21,6 +21,9 @@ RobotMenu::RobotMenu(QWidget *parent) :
 
     qApp->setStyleSheet("RobotMenu {background-image: url(:/backgrounds/widgetsbg);}");
 
+    // Connection for loading the mission
+    connect(this, SIGNAL(askLoadMission(QString)), ui->MissionInformation, SLOT(loadMissionDescription(QString)));
+
     // Connection for starting/stoping mission
     connect(ui->MissionInformation,SIGNAL(askStopMission()),ui->robotInformation,SLOT(stopMission()));
     connect(ui->MissionInformation, SIGNAL(askStopMission()), this, SIGNAL(askUnloadMap()));

@@ -26,6 +26,7 @@ private slots:
 
 signals:
     void askLoadMap(QString file);  // Emit to ask the loading of the map
+    void askLoadMission(QString description); // Emit to ask the loading of the description
     void askUnloadMap();            // Emit to ask the unloading of the map from the scene
     void askLoadRobot();            // Emit to ask the loading of the robot on the scene
 

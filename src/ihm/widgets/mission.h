@@ -18,7 +18,8 @@ public:
 
 public slots:
     void loadMovementActuator(MovementActuator * act); // Create a new Movement actuator for the current robot according to the user choice.
-    
+    void loadMissionDescription(QString description);  // Load mission description
+
 private slots:
     void on_stopPushButton_clicked();  // The user wants to stop the mission
     void on_startPushButton_clicked(); // The user wants to start the mission

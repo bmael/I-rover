@@ -91,10 +91,8 @@ void MapMenu::on_loadPushButton_clicked()
                                parse_movementActuator(missionPath));
 
     emit askLoadRobot();
-
-    // Ask to load the Robot information
-    //TODO connect in left menu : this/robotmenu
-    //     connect in robotmenu : robotmenu/robotinformation
+    qDebug() << "[MapMenu] " << QString::fromStdString(parse_description(missionPath)) ;
+    emit askLoadMission(QString::fromStdString(parse_description(missionPath)));
 }
 
 /**

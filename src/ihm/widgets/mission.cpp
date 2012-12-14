@@ -2,6 +2,8 @@
 #include "ui_mission.h"
 #include "robot.h"
 
+#include <QDebug>
+
 Mission::Mission(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Mission)
@@ -21,7 +23,17 @@ Mission::~Mission()
  */
 void Mission::loadMovementActuator(MovementActuator *act)
 {
-//    Robot::getInstance()->
+    //    Robot::getInstance()->
+}
+
+/**
+ * @brief Load the description of the mission selected by the user and display it.
+ * @param description
+ */
+void Mission::loadMissionDescription(QString description)
+{
+    qDebug() << description;
+    ui->descriptionTextBrowser->setText(description);
 }
 
 /**

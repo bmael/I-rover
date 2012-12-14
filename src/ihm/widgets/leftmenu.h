@@ -20,6 +20,7 @@ signals:
     void askUnloadMap();           // Transmit the signal to ask the unloading of the map from Mapmenu Widget
     void askLoadRobot();           // Transmit the signal to ask the loading of the robot from Mapmenu Widget
     void askUnloadRobot();         // Transmit the signal to ask the unloading of the robot from RobotInformation Widget
+    void askLoadMission(QString);  // Transmit the signal to ask the loading of the mission from Mapmenu widget.
 
 private:
     Ui::LeftMenu *ui;

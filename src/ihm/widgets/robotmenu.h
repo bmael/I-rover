@@ -29,6 +29,7 @@ public slots:
 signals:
     void askUnloadMap();    // Emit when the mission is stopping.
     void askUnloadRobot();  // Emit when the mission is stoping.
+    void askLoadMission(QString); // Transmit the signal to ask the mission loading from LeftMenu widget.
 
 private:
     Ui::RobotMenu *ui;

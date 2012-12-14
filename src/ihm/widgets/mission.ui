@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>314</width>
-    <height>145</height>
+    <height>149</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -103,7 +103,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QTextBrowser" name="textBrowser"/>
+      <widget class="QTextBrowser" name="descriptionTextBrowser"/>
      </item>
      <item>
       <spacer name="horizontalSpacer_6">
