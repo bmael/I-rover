@@ -79,7 +79,7 @@ MovementActuator* parse_movementActuator(const char* file_path) {
     pugi::xml_parse_result result = doc.load_file(file_path);
     MovementActuator * mov = 0;
     if (result) {
-		// retrieving the sensors node
+		// retrieving the movementActuator node
 		pugi::xml_node movementActuator = doc.child("robot").child("movementActuator");
 
 		std::string s(movementActuator.attribute("type").value());
@@ -134,7 +134,7 @@ std::pair<std::string,int> parse_targets(const char* file_path) {
     pugi::xml_parse_result result = doc.load_file(file_path);
 
     if (result) {
-		// retrieving the mission node
+		// retrieving the targets node
 		pugi::xml_node targets = doc.child("robot").child("mission").child("targets");
 		res.first = targets.attribute("name").value();
 		res.second = targets.attribute("number").as_int();
@@ -150,7 +150,7 @@ std::pair<int,int> parse_start_position(const char* file_path) {
     pugi::xml_parse_result result = doc.load_file(file_path);
 
     if (result) {
-		// retrieving the start position node
+		// retrieving the startPosition node
 		pugi::xml_node start_position = doc.child("robot").child("startPosition");
 		res.first = start_position.attribute("coordinateX").as_int();
 		res.second = start_position.attribute("coordinateY").as_int();
