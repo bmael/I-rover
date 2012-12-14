@@ -37,7 +37,20 @@ private:
 
 public:
 
+    /**
+     * @brief Create an instance of robot if does not exist, and return it.
+     * @return Robot, the current instance of the robot.
+     */
     static Robot * getInstance();
+
+    /**
+     * @brief Initialize the current instance of robot
+     * @param name
+     * @param sensors
+     * @param actuators
+     * @param mact
+     */
+    void init(std::string name, std::list<Sensor*> sensors, std::list<Actuator*> actuators, MovementActuator * mact);
 
     /**
      * @brief Destructor

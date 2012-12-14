@@ -9,6 +9,7 @@
 
 #include "robot.h"
 #include "gestionnaireMap.h"
+#include "mission_parser.h"
 
 /**
  * @brief Constructs a new MapMenu.
@@ -76,7 +77,7 @@ void MapMenu::on_loadPushButton_clicked()
     Robot::getInstance()->clear(); //clear the old version of the robot
 
     // Call the parser of mission to initialize the current robot.
-    //TODO
+
 
     emit askLoadRobot();
 

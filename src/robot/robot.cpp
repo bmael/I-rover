@@ -32,6 +32,10 @@ Robot *Robot::getInstance()
     return _instance;
 }
 
+void Robot::init(std::string name, std::list<Sensor*> sensors, std::list<Actuator*> actuators, MovementActuator *mact)
+{
+}
+
 
 Robot::~Robot(){
     for (list<Sensor*>::iterator it = getSensors()->begin(); it != getSensors()->end() ; ++it )
