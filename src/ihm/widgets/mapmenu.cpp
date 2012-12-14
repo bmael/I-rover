@@ -84,16 +84,14 @@ void MapMenu::on_loadPushButton_clicked()
     Robot::getInstance()->clear(); //clear the old version of the robot
 
     // Call the parser of mission to initialize the current robot.
-    const char * missionPath = ui->missionLineEdit->text().toStdString().c_str();
     Robot::getInstance()->init(std::string(""),
-                               parse_sensors(missionPath),
-                               parse_actuators(missionPath),
-                               parse_movementActuator(missionPath),
-                               parse_start_position(missionPath));
+                               parse_sensors((char *)ui->missionLineEdit->text().toStdString().c_str()),
+                               parse_actuators((char *)ui->missionLineEdit->text().toStdString().c_str()),
+                               parse_movementActuator((char *)ui->missionLineEdit->text().toStdString().c_str()),
+                               parse_start_position((char *)ui->missionLineEdit->text().toStdString().c_str()));
 
     emit askLoadRobot();
-    qDebug() << "[MapMenu] " << QString::fromStdString(parse_description(missionPath)) ;
-    emit askLoadMission(QString::fromStdString(parse_description(missionPath)));
+    emit askLoadMission(QString::fromStdString(parse_description((char *)ui->missionLineEdit->text().toStdString().c_str())));
 }
 
 /**
