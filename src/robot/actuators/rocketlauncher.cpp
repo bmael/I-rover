@@ -14,6 +14,6 @@ RocketLauncher::~RocketLauncher(){
 
 void RocketLauncher::doAction(const int &x, const int &y)
 {
-    //Non-exhaustif list to complete (waiting for Guillaume and Noemie part)
-    //    GestionnaireMap.deleteObject(coord.first-1, coord.second);
+ //   GestionnaireMap gestionnaire = GestionnaireMap::getInstance();
+ //   gestionnaire.deleteObject(x, y);
 }

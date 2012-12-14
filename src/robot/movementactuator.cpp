@@ -1,4 +1,5 @@
 #include "movementactuator.h"
+#include "robot.h"
 using namespace std;
 
 MovementActuator::MovementActuator()
@@ -20,46 +21,38 @@ void MovementActuator::doAction(const int &x, const int &y)
 
 void MovementActuator::goNorth()
 {
+    int y = Robot::getInstance()->getPosition().first;
     if(canGoNorth())
     {
-        //map->goNorth() ; //Utiliser méthode de la map pour faire "bouger" le robot !
-        lastDirection_ = N ;
+       Robot::getInstance()->setX(y-1);
     }
-    else
-        lastDirection_ = Dir ;
 }
 
 void MovementActuator::goSouth()
 {
-    if(canGoSouth())
+    int y = Robot::getInstance()->getPosition().first;
+    if(canGoNorth())
     {
-        //map->goSouth() ;
-        lastDirection_ = S ;
+       Robot::getInstance()->setX(y+1);
     }
-    else
-        lastDirection_ = Dir ;
 }
 
 void MovementActuator::goEast()
 {
-    if(canGoEast())
+    int x = Robot::getInstance()->getPosition().first;
+    if(canGoNorth())
     {
-        //map->goEast() ;
-        lastDirection_ = E ;
+       Robot::getInstance()->setX(x+1);
     }
-    else
-        lastDirection_ = Dir ;
 }
 
 void MovementActuator::goWest()
 {
-    if(canGoWest())
+    int x = Robot::getInstance()->getPosition().first;
+    if(canGoNorth())
     {
-        //map->goWest() ;
-        lastDirection_ = W ;
+       Robot::getInstance()->setX(x-1);
     }
-    else
-        lastDirection_ = Dir ;
 }
 
 Direction MovementActuator::lastDirection() const

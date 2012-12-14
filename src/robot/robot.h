@@ -182,8 +182,8 @@ public:
     /**
      * @brief Activate an activator to a given direction
      * @param a : the actuator to activate
-     * @param x : the ordonnee where the actuator need to be activate
-     * @param y : the abcisse where the actuator need to be activate
+     * @param x : the abcissa where the actuator need to be activate
+     * @param y : the ordinate where the actuator need to be activate
      */
     void doAction(Actuator * a, const int &x, const int &y);
 
@@ -196,14 +196,14 @@ public:
     //  void addObject(Objects object);
 
     /**
-     * @brief Ordonnee of the robot
-     * @return the ordonnee of the robot
+     * @brief Abcissa robot
+     * @return the abcissa of the robot
      */
     int getX();
 
     /**
-     * @brief Abscisse of the robot
-     * @return The abcisse of the robot
+     * @brief Ordinate of the robot
+     * @return The ordinate of the robot
      */
     int getY();
 
@@ -221,14 +221,14 @@ public:
     MovementActuator* getMovementActuator();
 
      /**
-     * @brief Modify the Ordonnee
-     * @param newX : the new Ordonnee
+     * @brief Modify the Abcissa
+     * @param newX : the new Abcissa
      */
     void setX(int newX);
 
     /**
-     * @brief Modify the Abcisse
-     * @param new : the new Abcisse
+     * @brief Modify the ordinate
+     * @param new : the new ordinate
      */
     void setY(int newY);
 

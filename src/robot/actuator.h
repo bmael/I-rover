@@ -44,8 +44,8 @@ public :
 
     /**
       * @brief Activate the action of the actuator
-      * @param x : the ordonnee where the actuator need to be activate
-      * @param y : the abcisse where the actuator need to be activate
+      * @param x : the abcissa where the actuator need to be activate
+      * @param y : the ordinate where the actuator need to be activate
       * @return True if the action has been done, false otherwise
       */
     virtual void doAction(const int &x, const int &y) = 0;
