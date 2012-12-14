@@ -71,7 +71,7 @@ void MapMenu::on_loadPushButton_clicked()
 {
     // Initialize the map
     try{
-        GestionnaireMap * g = new GestionnaireMap((char *)ui->mapLineEdit->text().toStdString().c_str());
+        GestionnaireMap::getInstance((char *)ui->mapLineEdit->text().toStdString().c_str());
 
     }catch(int e){
         qDebug() << "map initialization error";
