@@ -38,7 +38,7 @@ MapMenu::~MapMenu()
   */
 void MapMenu::on_browseMapPushButton_clicked()
 {
-    QString file = QFileDialog::getOpenFileName(this, "Open a map", QString());
+    QString file = QFileDialog::getOpenFileName(this, "Open a map", QString(),QString("*.tmx"));
     ui->mapLineEdit->setText(file);
 }
 
@@ -50,7 +50,7 @@ void MapMenu::on_browseMapPushButton_clicked()
   */
 void MapMenu::on_browseMissionPushButton_clicked()
 {
-    QString file = QFileDialog::getOpenFileName(this, "Open a mission", QString());
+    QString file = QFileDialog::getOpenFileName(this, "Open a mission", QString(),QString("*.xml"));
     ui->missionLineEdit->setText(file);
 }
 
@@ -60,7 +60,7 @@ void MapMenu::on_browseMissionPushButton_clicked()
  */
 void MapMenu::on_strategyPushButton_clicked()
 {
-    QString file = QFileDialog::getOpenFileName(this, "Open a strategy", QString());
+    QString file = QFileDialog::getOpenFileName(this, "Open a strategy", QString(),QString("*.py"));
     ui->strategyLineEdit->setText(file);
 }
 
@@ -70,13 +70,13 @@ void MapMenu::on_strategyPushButton_clicked()
 void MapMenu::on_loadPushButton_clicked()
 {
     // Initialize the map
-//    try{
+    try{
         GestionnaireMap * g = new GestionnaireMap((char *)ui->mapLineEdit->text().toStdString().c_str());
 
-//    }catch(int e){
-//        qDebug() << "map initialization error";
-//        QMessageBox::warning(this,"Error for map","Error during map initialization");
-//    }
+    }catch(int e){
+        qDebug() << "map initialization error";
+        QMessageBox::warning(this,"Error for map","Error during map initialization");
+    }
     // Ask to load the map to the scene.
     emit askLoadMap(ui->mapLineEdit->text());
 
