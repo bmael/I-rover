@@ -50,7 +50,7 @@ public:
      * @param actuators
      * @param mact
      */
-    void init(std::string name, std::list<Sensor*> sensors, std::list<Actuator*> actuators, MovementActuator * mact);
+    void init(std::string name, std::list<Sensor*> sensors, std::list<Actuator*> actuators, std::list<MovementActuator*> mact);
 
     /**
      * @brief Destructor
