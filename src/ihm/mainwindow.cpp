@@ -101,7 +101,7 @@ void MainWindow::unloadMap()
 void MainWindow::loadRobot()
 {
     _robotItem->setPixmap(QPixmap(":/robot/robot").scaled(60,60));
-    _robotItem->translate(Robot::getInstance()->getPosition().first*SIZE_SQUARE,Robot::getInstance()->getPosition().second*SIZE_SQUARE);
+    _robotItem->setPos(Robot::getInstance()->getPosition().first*SIZE_SQUARE,Robot::getInstance()->getPosition().second*SIZE_SQUARE);
     qDebug() << "robot pixmap set";
 }
 
@@ -112,6 +112,7 @@ void MainWindow::loadRobot()
 void MainWindow::unloadRobot()
 {
     _robotItem->setPixmap(QPixmap());
+    _robotItem->setPos(0,0);
 }
 
 /**
