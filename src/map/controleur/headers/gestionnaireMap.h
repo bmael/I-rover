@@ -20,7 +20,7 @@ class GestionnaireMap
 {
 	public:
 	
-		static GestionnaireMap* getInstance(char* tmxpath);
+    static GestionnaireMap* getInstance(char* tmxpath = "");
 		
 		static void kill();
 	

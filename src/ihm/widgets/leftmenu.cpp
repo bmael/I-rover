@@ -10,7 +10,7 @@
  * @param parent
  * @param hide false by default
  */
-LeftMenu::LeftMenu(QWidget *parent, bool hide) :
+LeftMenu::LeftMenu(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::LeftMenu)
 {

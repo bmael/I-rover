@@ -12,6 +12,7 @@
 #include "robot.h"
 #include "gestionnaireMap.h"
 #include "mission_parser.h"
+#include "loadingwidget.h"
 
 /**
  * @brief Constructs a new MapMenu.
@@ -69,6 +70,10 @@ void MapMenu::on_strategyPushButton_clicked()
   */
 void MapMenu::on_loadPushButton_clicked()
 {
+
+    // Open the LoadingWidget
+
+
     // Initialize the map
     try{
         GestionnaireMap::getInstance((char *)ui->mapLineEdit->text().toStdString().c_str());
