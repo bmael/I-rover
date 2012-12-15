@@ -11,6 +11,8 @@
 #include <iostream>
 #include <list>
 #include "sensor.h"
+#include "robot.h"
+#include "gestionnaireMap.h"
 
 /**
  * @class ProximitySensor
