@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <robot>
-    <startPosition coordinateX="3" coordinateY="5"/>
+    <startPosition coordinateX="1" coordinateY="1"/>
     <sensors>
 		<sensor type="Gps"/>
 		<sensor type="Proximity" sensibility="3"/>

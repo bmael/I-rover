@@ -12,7 +12,7 @@ class LeftMenu : public QWidget
     Q_OBJECT
     
 public:
-    explicit LeftMenu(QWidget *parent = 0, bool hide = false);
+    explicit LeftMenu(QWidget *parent = 0);
     ~LeftMenu();
     
 signals:

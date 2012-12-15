@@ -175,6 +175,11 @@ public:
     std::list<Sensor*>* getSensors();
 
     /**
+     * @brief Reset the robot's coordonate to zero
+     */
+    void resetCoordinates();
+    
+    /**
      * @brief Last Position occuped by the robot
      */
     int lastDirection() const;

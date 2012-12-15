@@ -190,8 +190,15 @@ int Robot::lastDirection() const
     return movementActuator_->lastDirection();
 }
 
+void Robot::resetCoordinates(){
+    this->setX(0);
+    this->setY(0);
+}
+
 void Robot::clear()
-{
+{  
+    resetCoordinates();
+    //Deleting all sensors and actuators in memory
     for (list<Sensor*>::iterator it = getSensors()->begin(); it != getSensors()->end() ; ++it )
     {
         delete *it;

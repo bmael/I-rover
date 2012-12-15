@@ -10,7 +10,7 @@
  * @param parent
  * @param hide false by default
  */
-LeftMenu::LeftMenu(QWidget *parent, bool hide) :
+LeftMenu::LeftMenu(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::LeftMenu)
 {
@@ -21,10 +21,13 @@ LeftMenu::LeftMenu(QWidget *parent, bool hide) :
     connect(ui->mapMenuWidget, SIGNAL(askUnloadMap()), this, SIGNAL(askUnloadMap()));
 
     // Connection for loading/unloading the robot
-//    connect(ui->mapMenuWidget,SIGNAL(askLoadRobot()), this, SIGNAL(askLoadRobot()));
+    connect(ui->mapMenuWidget,SIGNAL(askLoadRobot()), this, SIGNAL(askLoadRobot()));
     connect(ui->mapMenuWidget,SIGNAL(askLoadRobot()), ui->robotInformationWidget, SIGNAL(askLoadRobot()));
     connect(ui->robotInformationWidget,SIGNAL(askUnloadRobot()), this, SIGNAL(askUnloadRobot()));
     connect(ui->robotInformationWidget,SIGNAL(askUnloadMap()), this, SIGNAL(askUnloadMap()));
+
+    // Connect to allow the loading after a click on stop mission
+    connect(ui->robotInformationWidget, SIGNAL(askUnloadMap()), ui->mapMenuWidget, SLOT(allowReloadButton()));
 
     // Connection to load/unloading the mission
     connect(ui->mapMenuWidget,SIGNAL(askLoadMission(QString)), ui->robotInformationWidget, SIGNAL(askLoadMission(QString)));

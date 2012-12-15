@@ -33,8 +33,7 @@ void Mission::loadMovementActuator(MovementActuator *act)
 void Mission::loadMissionDescription(QString description)
 {
     qDebug() << description;
-    ui->textBrowser->setText(description);
-//    ui->descriptionTextBrowser->setText(description);
+    ui->descriptionTextBrowser->setText(description);
 }
 
 /**
@@ -44,6 +43,7 @@ void Mission::loadMissionDescription(QString description)
 void Mission::on_stopPushButton_clicked()
 {
     emit askStopMission();
+    ui->descriptionTextBrowser->clear();
 }
 
 /** 

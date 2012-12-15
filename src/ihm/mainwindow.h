@@ -25,6 +25,7 @@ public slots:
     void unloadMap();               // Unload the map from the scene.
     void loadRobot();               // Load the robot on the scene.
     void unloadRobot();             // Unload the robot from the scene.
+    void moveRobot(int x, int y);               // Move the robot in position defined by x and y.
 
 private:
     Ui::MainWindow *ui;

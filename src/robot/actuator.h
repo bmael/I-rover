@@ -10,7 +10,14 @@
 
 #ifndef ACTUATOR_H
 #define	ACTUATOR_H
+
 #include <iostream>
+
+#define TRAIL "trail"
+#define BRIDGE "bridge"
+#define SNOW "snow"
+
+
 /**
  * @enum Direction
  * @brief Cardinal points

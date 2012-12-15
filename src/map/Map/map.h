@@ -28,9 +28,9 @@ public:
 	~Map();
 
 	//Getters
-	const int getTailleX() const;
-	const int getTailleY() const;
-	const MAPORIENTATION getMapOrientation() const;
+    int getTailleX() const;
+    int getTailleY() const;
+    MAPORIENTATION getMapOrientation() const;
 	Background* getBackground() const;
 	Field* getField() const;
 	std::vector<ObjectLayers*> getObjectLayers() const;

@@ -29,7 +29,7 @@ class GestionnaireMap
          *   \param tmxpath the tmx file path
          *	\return This MapFactory object if a instance allready exist, a new instance otherwise
          */
-		static GestionnaireMap* getInstance(char* tmxpath);
+	    static GestionnaireMap* getInstance(char* tmxpath = "");
 		
         /*!
          * \brief destroy this instance of GestionnaireMap object

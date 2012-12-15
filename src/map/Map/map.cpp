@@ -8,12 +8,12 @@ Map::~Map()
 
 }
 
-const int Map::getTailleX() const
+int Map::getTailleX() const
 {
 	return tailleX_;
 }
 
-const int Map::getTailleY() const
+int Map::getTailleY() const
 {
 	return tailleY_;
 }

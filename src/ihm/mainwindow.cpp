@@ -4,6 +4,11 @@
 #include <QPropertyAnimation>
 #include <QDebug>
 #include "widgets/aboutdialog.h"
+#include "mapRenderer.h"
+#include "gestionnaireMap.h"
+#include "robot.h"
+
+#define SIZE_SQUARE 60
 
 /**
  * @brief Constructs a new MainWindow widget. It's the main window of our application
@@ -75,7 +80,10 @@ void MainWindow::on_showHideLeftMenuPushButton_clicked()
   */
 void MainWindow::mapLoader(QString file)
 {
-    _mapItem->setPixmap(QPixmap(file));
+    MapRenderer renderer(GestionnaireMap::getInstance((char *)file.toStdString().c_str())->getMap());
+
+    _mapItem->setPixmap(renderer.createRendu()->pixmap().scaled(600,600));
+
 }
 
 /**
@@ -88,12 +96,12 @@ void MainWindow::unloadMap()
 }
 
 /**
- *@brief Load the curretn version of the robot to the map.
+ *@brief Load the current version of the robot to the map.
  */
 void MainWindow::loadRobot()
 {
-    _robotItem->setPixmap(QPixmap(":/robot/robot"));
-    qDebug() << "robot pixmap set";
+    _robotItem->setPixmap(QPixmap(":/robot/robot").scaled(60,60));
+    _robotItem->setPos(Robot::getInstance()->getPosition().first*SIZE_SQUARE,Robot::getInstance()->getPosition().second*SIZE_SQUARE);
 }
 
 /**
@@ -103,6 +111,17 @@ void MainWindow::loadRobot()
 void MainWindow::unloadRobot()
 {
     _robotItem->setPixmap(QPixmap());
+    _robotItem->setPos(0,0);
+}
+
+/**
+ * @brief Move the graphical representation of the robot in position defined by x and y;
+ * @param x
+ * @param y
+ */
+void MainWindow::moveRobot(int x, int y)
+{
+    _robotItem->translate(x*SIZE_SQUARE,y*SIZE_SQUARE);
 }
 
 
