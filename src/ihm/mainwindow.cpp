@@ -4,6 +4,8 @@
 #include <QPropertyAnimation>
 #include <QDebug>
 #include "widgets/aboutdialog.h"
+#include "mapRenderer.h"
+#include "gestionnaireMap.h"
 
 /**
  * @brief Constructs a new MainWindow widget. It's the main window of our application
@@ -75,7 +77,10 @@ void MainWindow::on_showHideLeftMenuPushButton_clicked()
   */
 void MainWindow::mapLoader(QString file)
 {
-    _mapItem->setPixmap(QPixmap(file));
+    MapRenderer renderer(GestionnaireMap::getInstance((char *)file.toStdString().c_str())->getMap());
+
+    _mapItem->setPixmap(renderer.createRendu()->pixmap());
+
 }
 
 /**
@@ -88,7 +93,7 @@ void MainWindow::unloadMap()
 }
 
 /**
- *@brief Load the curretn version of the robot to the map.
+ *@brief Load the current version of the robot to the map.
  */
 void MainWindow::loadRobot()
 {
