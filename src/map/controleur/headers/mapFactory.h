@@ -8,7 +8,7 @@
 *	\version 1.0
 */
 
-#include "tileSet.h"
+#include "../../tileset/headers/tileSet.h"
 #include "../../Map/map.h"
 #include <vector>
 
@@ -88,7 +88,7 @@ class MapFactory{
 		*	\param tileId the id of the tile
 		*	\return A new instance of Obstacle object
 		*/
-		Obstacle* createObstacle(TileSet * tileset, const int& tileId, const std::string& type, const std::map<std::string,std::string>& propriete);
+		Obstacle* createObstacle(Tile * tile, const int& tileId, const std::string& type, const std::map<std::string,std::string>& propriete);
 		
 		
 		

@@ -30,6 +30,11 @@ std::vector<ObjectLayers*> Map::getObjectLayers() const{
 	return objectLayers_;
 }
 
+std::vector<TileSet*> Map::getTileSets() const
+{
+	return tileSets_;
+}
+
 void Map::addObjectLayers(ObjectLayers* layer)
 {
 	objectLayers_.push_back(layer);
@@ -40,10 +45,17 @@ void Map::addTileSets(std::vector<TileSet*> tileSets)
 	tileSets_.insert(tileSets_.end(), tileSets.begin(), tileSets.end());
 }
 
-//std::vector<Layers*> Map::getLayers() const
-//{
-//	return layers_;
-//}
+std::vector<Layers*> Map::getAllLayers()
+{
+	std::vector<Layers*> layers;
+	layers.push_back(field_);
+	std::vector<ObjectLayers*>::iterator it;
+	for(it = objectLayers_.begin(); it != objectLayers_.end(); ++it)
+	{
+		layers.push_back((*it));
+	}
+	return layers;
+}
 
 std::ostream& operator<<(std::ostream& os, const Map& map)
 {

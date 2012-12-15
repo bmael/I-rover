@@ -26,9 +26,9 @@ public:
 	 * \brief Constructor with three parameters
 	 * \param x Abscissa
 	 * \param y Ordinate
-	 * \param tile Tile
+	 * \param obstacle Obstacle
 	 */
-	Cell(const int& x, const int& y, Obstacle * tile);
+	Cell(const int& x, const int& y, Obstacle * obstacle);
 	
 	/** 
 	  * \brief Constructor with two parameters
@@ -52,20 +52,20 @@ public:
 	//@{
 	int getX() const;
 	int getY() const;
-	Obstacle* getTile() const;
+	Obstacle* getObstacle() const;
 	//@}
 	
 	//! \name Setters
 	//@{
 	void setX(int& x);
 	void setY(int& y);
-	void setTile(Obstacle* tile);
+	void setObstacle(Obstacle* obstacle);
 	//@}
 	
 private:
 	int x_;  //! abscissa
 	int y_;  //! ordinate
-	Obstacle* tile_;
+	Obstacle* obstacle_;
 };
 
 std::ostream& operator<<(std::ostream& os, const Cell& c);

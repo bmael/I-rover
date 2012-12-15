@@ -53,7 +53,7 @@ Cell* MapFactory::createCell(const int& x, const int& y, Obstacle * tile)
 	return new Cell(x, y, tile);
 }
 
-Obstacle* MapFactory::createObstacle(TileSet * tileset, const int& tileId, const std::string& type, const std::map<std::string,std::string>& propriete)
+Obstacle* MapFactory::createObstacle(Tile * tile, const int& tileId, const std::string& type, const std::map<std::string,std::string>& propriete)
 {
-	return new Obstacle(tileset, tileId, type, propriete);
+	return new Obstacle(tile, tileId, type, propriete);
 }

@@ -5,6 +5,8 @@
 #include<vector>
 #include<string>
 
+class TileSet;
+
 template< typename T>
 struct point_less
 {
@@ -19,12 +21,16 @@ class Tile
 
 private:
 	const int tileId_;
+	TileSet* tileSet_;
 	std::map<std::string, std::string> properties_;
-
+	//tile position in the tileset
+	const int posX_; //tileId_ mod (number of tile in a row)
+	const int posY_; //tileId_ div (number of tile in a row)
+	
 public:
 	//un tile vide, quand le tile n'existe pas
 	Tile();
-	Tile(const int& tileId);
+	Tile(const int& tileId, TileSet* tileSet, const int& nbTileperRow);
 
 	void addProperty(std::string propertyName, std::string propertyValue);
 	void removeProperty(std::string propertyName);
@@ -34,6 +40,9 @@ public:
 	std::map<std::string, std::string> getProperties();
 
 	const int& getTileId();
+	TileSet* getTileSet();
+	int getTilePositionX() const;
+	int getTilePositionY() const;
 
 	bool operator<(const Tile& t) const;
 	bool operator>(const Tile& t) const;

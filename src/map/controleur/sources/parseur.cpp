@@ -7,7 +7,7 @@ using namespace pugi;
 Parseur::Parseur(char* chemin)
 {
 	doc_.load_file(chemin);
-	mapFactory_ = MapFactory::getInstance();
+    mapFactory_ = MapFactory::getInstance();
 }
 
 Parseur::~Parseur()
@@ -30,9 +30,9 @@ TileSetImage* Parseur::createTileSetImage(const char* source, const int& width, 
 	return new TileSetImage(source, width, height);
 }
 
-Tile* Parseur::createTile(const int& tileId)
+Tile* Parseur::createTile(const int& tileId, TileSet* tileSet, const int& nbTileperRow)
 {
-	return new Tile(tileId);
+	return new Tile(tileId, tileSet, nbTileperRow);
 }
 
 //TODO: implement this method
@@ -51,7 +51,7 @@ Map* Parseur::doParsing()
 	{
 		//create new tileSetImage
 		xml_node tilsetImageXml = aTileSet.child("image");
-		TileSetImage* tsi = createTileSetImage(tilsetImageXml.attribute("source").value(), tilsetImageXml.attribute("tilewidth").as_int(), tilsetImageXml.attribute("tileheight").as_int());
+		TileSetImage* tsi = createTileSetImage(tilsetImageXml.attribute("source").value(), tilsetImageXml.attribute("width").as_int(), tilsetImageXml.attribute("height").as_int());
 		
 		//create new tileSet with given attributs.
 		TileSet* ts = createTileSet(aTileSet.attribute("firstgid").as_int(), aTileSet.attribute("name").value(), aTileSet.attribute("tilewidth").as_int(), aTileSet.attribute("tileheight").as_int(), tsi);
@@ -61,7 +61,7 @@ Map* Parseur::doParsing()
 		for(xml_node aTile = firstTileXml; aTile; aTile = aTile.next_sibling("tile"))
 		{
 			//foreach tile tags create new tile
-			Tile* tile = createTile(aTile.attribute("id").as_int());
+			Tile* tile = createTile(aTile.attribute("id").as_int(), ts, ts->getNbTilePerRow());
 //			std::cout << "tileId : " << aTile.attribute("id").as_int() << " :" << std::endl;
 			xml_node firstTileProperty = aTile.child("properties").child("property");
 			for(xml_node aProperty = firstTileProperty; aProperty; aProperty = aProperty.next_sibling("property"))
@@ -86,7 +86,6 @@ Map* Parseur::doParsing()
 	Field* field;
 	int x;
 	int y;
-	ensCells cellsMap;
 	for(xml_node aLayer = firstLayerXml; aLayer; aLayer = aLayer.next_sibling("layer"))
 	{
 //		std::cout << aLayer.attribute("name").value() << std::endl;
@@ -110,7 +109,7 @@ Map* Parseur::doParsing()
 				currentTileSet = (*it);
 				if((*t)!=Tile())
 				{
-					obstacle = mapFactory_->createObstacle(currentTileSet, t->getTileId(), t->getPropertyValue("type"), t->getProperties());
+					obstacle = mapFactory_->createObstacle(t, t->getTileId(), t->getPropertyValue("type"), t->getProperties());
 					get = true;
 //					std::cout << t->getTileId() << std::endl;
 				}
@@ -130,11 +129,11 @@ Map* Parseur::doParsing()
 //			std::cout << "(" << x << ", " << y << ") : tileId = " << t->getTileId() << std::endl;
 //			
 ////			
-			y++;
-			if(y >= mapHeight)
+			x++;
+			if(x >= mapWidth)
 			{
-				y=0;
-				x++;
+				x=0;
+				y++;
 			}
 //			//normaly, when x=mapWidth and y=mapHeight we have finished to parse this layer
 		}
@@ -159,13 +158,15 @@ Map* Parseur::doParsing()
 	{
 		mapOrient = Map::MAPORIENTATION_ORTHOGONAL;
 	}
-	Map* theMap = mapFactory_->createMap(new Background(), fieldLayer, 300, 300, mapOrient);
+    Map* theMap = mapFactory_->createMap(new Background(), fieldLayer, mapWidth, mapHeight, mapOrient);
 	
 	std::vector<ObjectLayers*>::iterator itm;
 	for(itm = layersObjects.begin(); itm != layersObjects.end(); ++itm)
 	{
 		theMap->addObjectLayers((*itm));
 	}
+
+    theMap->addTileSets(ensTileSet);
 	
 //	std::cout << *theMap << std::endl;
 	

@@ -44,7 +44,7 @@ bool GestionnaireMap::proximitySensor(const int& x, const int& y){
 	// Parcour of the field layer
 	Cell* c = map_->getField()->findCellFromLayer(p);
 	if(c != NULL){
-			if (c->getTile()->getType() == "field"){
+			if (c->getObstacle()->getType() == "field"){
 				obstacle = false;
 			}
 	}
@@ -53,7 +53,7 @@ bool GestionnaireMap::proximitySensor(const int& x, const int& y){
 	for (int i = 0; i<map_->getObjectLayers().size();i++){
 		c = map_->getObjectLayers()[i]->findCellFromLayer(p);
 		if(c != NULL){
-			if (c->getTile()->getType() == "field"){
+			if (c->getObstacle()->getType() == "field"){
 				obstacle = false;
 			}
 		}
@@ -70,8 +70,8 @@ std::vector<std::string> GestionnaireMap::cameraSensor(const int& x, const int& 
 	for (int i = 0; i<map_->getObjectLayers().size();i++){
 	c = map_->getObjectLayers()[i]->findCellFromLayer(p);
 				//if (it->second->getTile()->getPropriete() != NULL){
-			itPropriete = c->getTile()->getPropriete().find("name");
-			if (itPropriete != c->getTile()->getPropriete().end()){
+			itPropriete = c->getObstacle()->getPropriete().find("name");
+			if (itPropriete != c->getObstacle()->getPropriete().end()){
 				value.push_back(itPropriete->second);
 			}
 				//}
@@ -86,13 +86,13 @@ std::string GestionnaireMap::getFieldValue(const int& x, const int& y){
 	Cell* c;
 	std::map<std::string,std::string>::iterator itPropriete;
 	c = map_->getField()->findCellFromLayer(p);
-			if (c->getTile()->getType() == "fixed"){
+			if (c->getObstacle()->getType() == "fixed"){
 				value = "fixed";
 			}
-			else if (c->getTile()->getType() == "field"){
+			else if (c->getObstacle()->getType() == "field"){
 				//if (it->second->getTile()->getPropriete() != NULL){
-				itPropriete = c->getTile()->getPropriete().find("name");
-				if (itPropriete != c->getTile()->getPropriete().end()){
+				itPropriete = c->getObstacle()->getPropriete().find("name");
+				if (itPropriete != c->getObstacle()->getPropriete().end()){
 					value = itPropriete->second;
 				}
 				//}
@@ -101,16 +101,17 @@ std::string GestionnaireMap::getFieldValue(const int& x, const int& y){
 }
 
 void GestionnaireMap::deleteObject(const int& x, const int& y){
-	bool deleteO = false;
-	std::pair<int,int> p(x,y);
-	Cell* c;
-	int i = map_->getObjectLayers().size() -1;
-	while (i > 0 && deleteO == false){
-		c = map_->getObjectLayers()[i]->findCellFromLayer(p);
-		if(*(c->getTile()) != Obstacle()){
-			c->setTile(new Obstacle());
-			deleteO = true;
-		}
-		i--;
-	}
+    bool deleteO = false;
+    std::pair<int,int> p(x,y);
+    Cell* c;
+    int i = map_->getObjectLayers().size() - 1;
+    while (i >= 0 && deleteO == false){
+        c = map_->getObjectLayers()[i]->findCellFromLayer(p);
+        if(*(c->getObstacle()) != Obstacle()){
+            delete c->getObstacle();
+            c->setObstacle(new Obstacle());
+            deleteO = true;
+        }
+        i--;
+    }
 }

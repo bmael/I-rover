@@ -4,7 +4,8 @@ TileSet::TileSet(const int& firstGid, const char* name, const int tileWidth, con
 															 name_(name),
 															 tileWidth_(tileWidth),
 															 tileHeight_(tileHeight),
-															 image_(image)
+															 image_(image),
+															 nbTilePerRow_(image->getWidth() / tileWidth)
 {
 }
 
@@ -46,6 +47,11 @@ int TileSet::getTileHeight() const
 const TileSetImage* TileSet::getTileSetImage() const
 {
 	return image_;
+}
+
+int TileSet::getNbTilePerRow()
+{
+	return nbTilePerRow_;
 }
 
 Tile* TileSet::getTile(const int& tileId) 

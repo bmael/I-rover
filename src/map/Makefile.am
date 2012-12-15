@@ -11,7 +11,8 @@ map_SOURCES = controleur/sources/gestionnaireMap.cpp \
 		Map/obstacle.cpp \
 		tileset/sources/tileSet.cpp \
 		tileset/sources/tileSetImage.cpp \
-		tileset/sources/tile.cpp 
+		tileset/sources/tile.cpp \
+		viewer/mapRenderer.cpp
 
 map_CXXFLAGS = $(AM_CXXFLAGS)
 map_CPPFLAGS = $(AM_CPPFLAGS)

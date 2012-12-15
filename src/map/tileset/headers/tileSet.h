@@ -5,6 +5,7 @@
 #include "tileSetImage.h"
 #include "tile.h"
 
+
 typedef std::set<Tile*, point_less<Tile> > ensTileTrie;
 
 class TileSet{
@@ -15,6 +16,7 @@ class TileSet{
 		const int tileWidth_;
 		const int tileHeight_;
 		const TileSetImage* image_;
+		const int nbTilePerRow_;
 		ensTileTrie tiles_;
 		
 	public:
@@ -30,6 +32,8 @@ class TileSet{
 		int getTileHeight() const;
 		const TileSetImage* getTileSetImage() const;
 		Tile* getTile(const int& tileId);
+		int getNbTilePerRow();
 };
+
 
 #endif

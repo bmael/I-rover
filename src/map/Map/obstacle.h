@@ -13,7 +13,7 @@
 #include <map>
 #include <iostream>
 
-#include "../tileset/headers/tileSet.h"
+#include "../tileset/headers/tile.h"
 
 /**
  * \class Obstacle
@@ -30,7 +30,7 @@ public:
 	 * \param tileId
 	 * \param propriete All the properties of the obstacle
 	 */
-	Obstacle(TileSet * tileset, const int& tileId, const std::string& type, const std::map<std::string,std::string>& propriete);
+	Obstacle(Tile * tile, const int& tileId, const std::string& type, const std::map<std::string,std::string>& propriete);
 	
 	/**
 	 * \brief Default constructor
@@ -50,7 +50,7 @@ public:
 	
 	//! \name Getters
 	//@{
-	TileSet* getTileset() const;
+	Tile* getTile() const;
 	int getTileId() const;
 	std::string getType() const;
 	std::map<std::string,std::string> getPropriete() const;
@@ -58,7 +58,7 @@ public:
 	
 	//! \name Setters
 	//@{
-	void setTileset(TileSet * tileset);
+	void setTile(Tile * tile);
 	void setTileId(int& tileId);
 	void setType(std::string& type);
 	void setPropriete(std::map<std::string,std::string>& propriete);
@@ -69,7 +69,7 @@ public:
 	bool operator!=(const Obstacle& o) const;
 private:
 	
-	TileSet * tileset_;
+	Tile * tile_;
 	int tileId_;
 	std::string type_;
 	std::map<std::string,std::string> propriete_;

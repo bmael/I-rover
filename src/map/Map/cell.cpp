@@ -8,12 +8,12 @@
 
 #include "cell.h"
 
-Cell::Cell(const int& x, const int& y, Obstacle* tile):
-x_(x), y_(y) , tile_(tile) {}
+Cell::Cell(const int& x, const int& y, Obstacle* obstacle):
+x_(x), y_(y) , obstacle_(obstacle) {}
 
 Cell::Cell(const int& x, const int& y):
 x_(x), y_(y) {
-	tile_=NULL;
+	obstacle_=NULL;
 }
 
 Cell::Cell(const Cell& c):
@@ -30,8 +30,8 @@ int Cell::getY() const{
 	return y_;
 }
 
-Obstacle* Cell::getTile() const{
-	return tile_;
+Obstacle* Cell::getObstacle() const{
+	return obstacle_;
 }
 
 void Cell::setX(int& x){
@@ -42,12 +42,12 @@ void Cell::setY(int& y){
 	y_=y;
 }
 
-void Cell::setTile(Obstacle* tile){
-	tile_=tile;
+void Cell::setObstacle(Obstacle* obstacle){
+	obstacle_=obstacle;
 }
 
 std::ostream& operator<<(std::ostream& os, const Cell& c)
 {
-	os << "Cellule à la position : (" << c.getX() << ", " << c.getY() << ") contient " << *(c.getTile()) << std::endl;
+	os << "Cellule à la position : (" << c.getX() << ", " << c.getY() << ") contient " << *(c.getObstacle()) << std::endl;
 	return os;
 }

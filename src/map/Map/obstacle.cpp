@@ -11,16 +11,16 @@
 Obstacle::Obstacle(): tileId_(-1)
 {}
 
-Obstacle::Obstacle(TileSet * tileset, const int& tileId, const std::string& type, const std::map<std::string,std::string>& propriete):
-tileset_(tileset), tileId_(tileId), type_(type), propriete_(propriete) {}
+Obstacle::Obstacle(Tile * tile, const int& tileId, const std::string& type, const std::map<std::string,std::string>& propriete):
+tile_(tile), tileId_(tileId), type_(type), propriete_(propriete) {}
 
 Obstacle::Obstacle(const Obstacle& o):
-tileset_(o.tileset_), tileId_(o.tileId_), type_(o.type_), propriete_(o.propriete_) {}
+tile_(o.tile_), tileId_(o.tileId_), type_(o.type_), propriete_(o.propriete_) {}
 
 Obstacle::~Obstacle(){}
 
-TileSet * Obstacle::getTileset() const{
-	return tileset_;
+Tile * Obstacle::getTile() const{
+	return tile_;
 }
 
 int Obstacle::getTileId() const{
@@ -35,8 +35,8 @@ std::map<std::string,std::string> Obstacle::getPropriete() const{
 	return propriete_;
 }
 
-void Obstacle::setTileset(TileSet * tileset){
-	tileset_=tileset;
+void Obstacle::setTile(Tile * tile){
+	tile_=tile;
 }
 
 void Obstacle::setTileId(int& tileId){

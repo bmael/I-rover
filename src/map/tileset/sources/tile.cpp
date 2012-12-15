@@ -1,11 +1,12 @@
 #include "../headers/tile.h"
 
-Tile::Tile(): tileId_(-1)
+Tile::Tile(): tileId_(-1), posX_(-1), posY_(-1)
 {
 }
 
-Tile::Tile(const int& id): tileId_(id)
-{}
+Tile::Tile(const int& id, TileSet* tileSet, const int& nbTileperRow): tileId_(id), tileSet_(tileSet), posX_(id % nbTileperRow), posY_(id / nbTileperRow)
+{
+}
 
 void Tile::addProperty(std::string propertyname, std::string propertyValue)
 {
@@ -43,6 +44,21 @@ std::map<std::string, std::string> Tile::getProperties()
 const int& Tile::getTileId()
 {
 	return tileId_;
+}
+
+TileSet* Tile::getTileSet()
+{
+	return tileSet_;
+}
+
+int Tile::getTilePositionX() const
+{
+	return posX_;
+}
+
+int Tile::getTilePositionY() const
+{
+	return posY_;
 }
 
 bool Tile::operator<(const Tile& t) const

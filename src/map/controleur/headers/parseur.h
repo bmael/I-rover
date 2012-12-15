@@ -13,8 +13,6 @@
 #include "mapFactory.h"
 #include <iostream>
 #include <string>
-#include "tile.h"
-
 
 /*!
 *	\class Parseur
@@ -36,7 +34,7 @@ public:
 		
 	TileSetImage* createTileSetImage(const char* source, const int& width, const int height);
 	
-	Tile* createTile(const int& tileId);
+	Tile* createTile(const int& tileId, TileSet* tileSet, const int& nbTileperRow);
 		
 	void testParsing() const;
 	
