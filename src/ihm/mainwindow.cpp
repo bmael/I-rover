@@ -8,7 +8,7 @@
 #include "gestionnaireMap.h"
 #include "robot.h"
 
-#define SIZE_SQUARE 30
+#define SIZE_SQUARE 60
 
 /**
  * @brief Constructs a new MainWindow widget. It's the main window of our application
@@ -82,7 +82,7 @@ void MainWindow::mapLoader(QString file)
 {
     MapRenderer renderer(GestionnaireMap::getInstance((char *)file.toStdString().c_str())->getMap());
 
-    _mapItem->setPixmap(renderer.createRendu()->pixmap());
+    _mapItem->setPixmap(renderer.createRendu()->pixmap().scaled(600,600));
 
 }
 
@@ -100,7 +100,7 @@ void MainWindow::unloadMap()
  */
 void MainWindow::loadRobot()
 {
-    _robotItem->setPixmap(QPixmap(":/robot/robot"));
+    _robotItem->setPixmap(QPixmap(":/robot/robot").scaled(60,60));
     _robotItem->translate(Robot::getInstance()->getPosition().first*SIZE_SQUARE,Robot::getInstance()->getPosition().second*SIZE_SQUARE);
     qDebug() << "robot pixmap set";
 }
@@ -121,7 +121,7 @@ void MainWindow::unloadRobot()
  */
 void MainWindow::moveRobot(int x, int y)
 {
-    _robotItem->translate(Robot::getInstance()->getPosition().first*SIZE_SQUARE,Robot::getInstance()->getPosition().second*SIZE_SQUARE);
+    _robotItem->translate(x*SIZE_SQUARE,y*SIZE_SQUARE);
 }
 
 
