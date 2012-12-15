@@ -9,12 +9,9 @@ Arms::Arms() : Actuator("Arms")
 Arms::~Arms(){
 }
 
-/**
- * @brief Arms::doAction
- *
- * @param direction : move the object on this direction
- */
 void Arms::doAction(const int &x, const int &y)
 {
-   GestionnaireMap::getInstance("")->deleteObject(x,y);
+   // Not implemented yet in map
+   // For example, this actuator move the object in (x, y+1) if robot do the action in South Direction
+   // GestionnaireMap::getInstance("")->moveObject(x,y);
 }

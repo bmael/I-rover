@@ -5,9 +5,6 @@ using namespace std;
 RocketLauncher::RocketLauncher() : Actuator("RocketLaucher")
 {
 }
-/**
- * @brief RocketLauncher::doAction
- */
 
 RocketLauncher::~RocketLauncher(){
 }
