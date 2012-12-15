@@ -15,27 +15,27 @@ bool Chains::canGoEast() const
 {
     Coord coord = Robot::getInstance()->getPosition();
 
-    return ((GestionnaireMap::getInstance("")->getFieldValue(coord.first+1, coord.second) == "trail") ||
-            (GestionnaireMap::getInstance("")->getFieldValue(coord.first+1, coord.second) == "bridge"));
+    return ((GestionnaireMap::getInstance()->getFieldValue(coord.first+1, coord.second) == TRAIL) ||
+            (GestionnaireMap::getInstance()->getFieldValue(coord.first+1, coord.second) == BRIDGE));
 }
 
 bool Chains::canGoNorth() const
 {
     Coord coord = Robot::getInstance()->getPosition();
-    return ((GestionnaireMap::getInstance("")->getFieldValue(coord.first, coord.second-1) == "trail") ||
-            (GestionnaireMap::getInstance("")->getFieldValue(coord.first, coord.second-1) == "bridge"));
+    return ((GestionnaireMap::getInstance()->getFieldValue(coord.first, coord.second-1) == TRAIL) ||
+            (GestionnaireMap::getInstance()->getFieldValue(coord.first, coord.second-1) == BRIDGE));
 }
 
 bool Chains::canGoSouth() const
 {
     Coord coord = Robot::getInstance()->getPosition();
-    return ((GestionnaireMap::getInstance("")->getFieldValue(coord.first, coord.second+1) == "trail") ||
-            (GestionnaireMap::getInstance("")->getFieldValue(coord.first, coord.second+1) == "bridge"));
+    return ((GestionnaireMap::getInstance()->getFieldValue(coord.first, coord.second+1) == TRAIL) ||
+            (GestionnaireMap::getInstance()->getFieldValue(coord.first, coord.second+1) == BRIDGE));
 }
 
 bool Chains::canGoWest() const
 {
     Coord coord = Robot::getInstance()->getPosition();
-    return ((GestionnaireMap::getInstance("")->getFieldValue(coord.first-1, coord.second) == "trail") ||
-            (GestionnaireMap::getInstance("")->getFieldValue(coord.first-1, coord.second) == "bridge"));
+    return ((GestionnaireMap::getInstance()->getFieldValue(coord.first-1, coord.second) == TRAIL) ||
+            (GestionnaireMap::getInstance()->getFieldValue(coord.first-1, coord.second) == BRIDGE));
 }

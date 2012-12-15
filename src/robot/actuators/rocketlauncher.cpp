@@ -11,5 +11,5 @@ RocketLauncher::~RocketLauncher(){
 
 void RocketLauncher::doAction(const int &x, const int &y)
 {
-    GestionnaireMap::getInstance("")->deleteObject(x,y);
+    GestionnaireMap::getInstance()->deleteObject(x,y);
 }

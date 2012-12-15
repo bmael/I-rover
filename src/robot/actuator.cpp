@@ -8,6 +8,7 @@
  * ***************************************************/
 
 #include "actuator.h"
+
 using namespace std;
 
 Actuator::Actuator()

@@ -29,7 +29,7 @@ std::list<std::pair<int,int> > ProximitySensor::doAction() {
     // Searching on the Cells arround the robot if there is an object
     for ( int x = positionX - sensibility_ ; x <= positionX + sensibility_ ; x++ ) {
     	for ( int y = positionY - sensibility_ ; y <= positionY + sensibility_ ; y++ ) {
-    		if ( GestionnaireMap::getInstance("")->proximitySensor(x,y) ) {
+            if ( GestionnaireMap::getInstance()->proximitySensor(x,y) ) {
     			res.push_back(std::pair<int,int>(x,y));
     		}
        	}
