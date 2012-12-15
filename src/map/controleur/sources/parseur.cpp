@@ -15,11 +15,6 @@ Parseur::~Parseur()
 	MapFactory::kill();
 }
 
-void Parseur::testParsing() const
-{
-	std::cout << "tile id : " << doc_.child("map").child("tileset").child("tile").attribute("id").value() << std::endl;
-}
-
 TileSet* Parseur::createTileSet(const int& firstGid, const char* name, const int tileWidth, const int tileHeight, const TileSetImage* image)
 {
 	return new TileSet(firstGid, name, tileWidth, tileHeight, image);
@@ -35,7 +30,6 @@ Tile* Parseur::createTile(const int& tileId, TileSet* tileSet, const int& nbTile
 	return new Tile(tileId, tileSet, nbTileperRow);
 }
 
-//TODO: implement this method
 Map* Parseur::doParsing()
 {
 	Field* fieldLayer;

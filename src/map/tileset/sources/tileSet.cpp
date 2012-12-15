@@ -12,6 +12,11 @@ TileSet::TileSet(const int& firstGid, const char* name, const int tileWidth, con
 TileSet::~TileSet()
 {
 	delete image_;
+    ensTileTrie::iterator it;
+    for(it = tiles_.begin(); it != tiles_.end(); ++it)
+    {
+        delete (*it);
+    }
 }
 
 void TileSet::addTile(Tile* tile)

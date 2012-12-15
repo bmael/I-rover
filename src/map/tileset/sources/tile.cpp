@@ -8,6 +8,11 @@ Tile::Tile(const int& id, TileSet* tileSet, const int& nbTileperRow): tileId_(id
 {
 }
 
+Tile::~Tile()
+{
+    tileSet_ = NULL;
+}
+
 void Tile::addProperty(std::string propertyname, std::string propertyValue)
 {
 	properties_.insert ( std::pair<std::string, std::string>(propertyname, propertyValue) );

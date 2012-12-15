@@ -20,12 +20,24 @@ class GestionnaireMap
 {
 	public:
 	
+        /*!
+         *	\brief get an instance of MapFactory
+         *
+         *   The parameter must be given for the first call of this method.
+         *   For other calls the parameter can be an empty string
+         *
+         *   \param tmxpath the tmx file path
+         *	\return This MapFactory object if a instance allready exist, a new instance otherwise
+         */
 		static GestionnaireMap* getInstance(char* tmxpath);
 		
+        /*!
+         * \brief destroy this instance of GestionnaireMap object
+         */
 		static void kill();
 	
 		/*!
-		 *	\brief Type of the cell
+         *	\brief Type of the cell
 		 *	\param x
 		 *	\param y
 		 *	Return true if the cell's type is different of field
@@ -68,7 +80,8 @@ class GestionnaireMap
 	
 		/*!
 		*	\brief Constructor
-		*
+        *
+        *   \param tmxpath the tmx file path
 		*	GestionnaireMap constructor
 		*/
 		GestionnaireMap(char* tmxpath);
