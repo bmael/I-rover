@@ -26,6 +26,9 @@ LeftMenu::LeftMenu(QWidget *parent, bool hide) :
     connect(ui->robotInformationWidget,SIGNAL(askUnloadRobot()), this, SIGNAL(askUnloadRobot()));
     connect(ui->robotInformationWidget,SIGNAL(askUnloadMap()), this, SIGNAL(askUnloadMap()));
 
+    // Connect to allow the loading after a click on stop mission
+    connect(ui->robotInformationWidget, SIGNAL(askUnloadMap()), ui->mapMenuWidget, SLOT(allowReloadButton()));
+
     // Connection to load/unloading the mission
     connect(ui->mapMenuWidget,SIGNAL(askLoadMission(QString)), ui->robotInformationWidget, SIGNAL(askLoadMission(QString)));
 

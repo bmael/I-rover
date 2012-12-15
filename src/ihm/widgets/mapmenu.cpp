@@ -95,6 +95,16 @@ void MapMenu::on_loadPushButton_clicked()
     QString desc = QString::fromStdString(parse_description((char *)ui->missionLineEdit->text().toStdString().c_str()));
     qDebug() << desc;
     emit askLoadMission(desc);
+
+    ui->loadPushButton->setEnabled(false);
+}
+
+/**
+ * @brief Sets the Load Button enabled.
+ */
+void MapMenu::allowReloadButton()
+{
+    ui->loadPushButton->setEnabled(true);
 }
 
 /**

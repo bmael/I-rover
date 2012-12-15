@@ -43,6 +43,7 @@ void Mission::loadMissionDescription(QString description)
 void Mission::on_stopPushButton_clicked()
 {
     emit askStopMission();
+    ui->descriptionTextBrowser->clear();
 }
 
 /** 

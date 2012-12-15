@@ -102,7 +102,6 @@ void MainWindow::loadRobot()
 {
     _robotItem->setPixmap(QPixmap(":/robot/robot").scaled(60,60));
     _robotItem->setPos(Robot::getInstance()->getPosition().first*SIZE_SQUARE,Robot::getInstance()->getPosition().second*SIZE_SQUARE);
-    qDebug() << "robot pixmap set";
 }
 
 /**

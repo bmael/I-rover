@@ -24,6 +24,9 @@ private slots:
     void on_strategyPushButton_clicked();       // Open a File Dialog to choose the strategy script
     void on_loadPushButton_clicked();           // Ask to load the map on the scene and mission information in RobotMenu
 
+public slots:
+    void allowReloadButton();       // Set Load Button enabled.
+
 signals:
     void askLoadMap(QString file);  // Emit to ask the loading of the map
     void askLoadMission(QString description); // Emit to ask the loading of the description
