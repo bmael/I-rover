@@ -33,7 +33,7 @@ void Mission::loadMovementActuator(MovementActuator *act)
 void Mission::loadMissionDescription(QString description)
 {
     qDebug() << description;
-    ui->textBrowser->setText(description);
+    //ui->textBrowser->setText(description);
 //    ui->descriptionTextBrowser->setText(description);
 }
 

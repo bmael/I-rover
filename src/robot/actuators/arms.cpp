@@ -16,6 +16,5 @@ Arms::~Arms(){
  */
 void Arms::doAction(const int &x, const int &y)
 {
-   // GestionnaireMap gestionnaire = GestionnaireMap::getInstance();
-   // gestionnaire.deleteObject(x, y);
+   GestionnaireMap::getInstance("")->deleteObject(x,y);
 }
