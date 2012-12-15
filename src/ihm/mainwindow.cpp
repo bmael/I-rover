@@ -6,6 +6,9 @@
 #include "widgets/aboutdialog.h"
 #include "mapRenderer.h"
 #include "gestionnaireMap.h"
+#include "robot.h"
+
+#define SIZE_SQUARE 30
 
 /**
  * @brief Constructs a new MainWindow widget. It's the main window of our application
@@ -98,6 +101,7 @@ void MainWindow::unloadMap()
 void MainWindow::loadRobot()
 {
     _robotItem->setPixmap(QPixmap(":/robot/robot"));
+    _robotItem->translate(Robot::getInstance()->getPosition().first*SIZE_SQUARE,Robot::getInstance()->getPosition().second*SIZE_SQUARE);
     qDebug() << "robot pixmap set";
 }
 
@@ -108,6 +112,16 @@ void MainWindow::loadRobot()
 void MainWindow::unloadRobot()
 {
     _robotItem->setPixmap(QPixmap());
+}
+
+/**
+ * @brief Move the graphical representation of the robot in position defined by x and y;
+ * @param x
+ * @param y
+ */
+void MainWindow::moveRobot(int x, int y)
+{
+    _robotItem->translate(Robot::getInstance()->getPosition().first*SIZE_SQUARE,Robot::getInstance()->getPosition().second*SIZE_SQUARE);
 }
 
 
