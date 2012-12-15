@@ -32,6 +32,7 @@ signals:
     void askLoadMission(QString description); // Emit to ask the loading of the description
     void askUnloadMap();            // Emit to ask the unloading of the map from the scene
     void askLoadRobot();            // Emit to ask the loading of the robot on the scene
+    void askUpdateLoading(int percent, QString status); // Emit to ask the status of a loading widget.
 
 private:
     Ui::MapMenu *ui;

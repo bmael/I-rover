@@ -8,6 +8,8 @@
 #include <QStyle>
 #include <QMessageBox>
 #include <QDebug>
+#include <QThread>
+#include <QDesktopWidget>
 
 #include "robot.h"
 #include "gestionnaireMap.h"
@@ -72,23 +74,44 @@ void MapMenu::on_loadPushButton_clicked()
 {
 
     // Open the LoadingWidget
+    LoadingWidget * loading = new LoadingWidget(this);
+    connect(this, SIGNAL(askUpdateLoading(int,QString)), loading, SLOT(update(int,QString)));
+    loading->setWindowFlags(Qt::WindowStaysOnTopHint);
+    loading->setWindowTitle("Loading...");
+    loading->setModal(false);
+    loading->show();
 
+        // New Thread for the loadingWidget
+        QThread * loadingThread = new QThread(this);
+
+        connect(loadingThread,SIGNAL(started()),loading, SLOT(show()));
+        connect(loadingThread,SIGNAL(finished()),loading,SLOT(deleteLater()));
+
+
+        loadingThread->start();
 
     // Initialize the map
     try{
+        emit askUpdateLoading(0,"Parsing the tmx file...");
         GestionnaireMap::getInstance((char *)ui->mapLineEdit->text().toStdString().c_str());
-
+        emit askUpdateLoading(60,"Parsing the tmx file done");
     }catch(int e){
         qDebug() << "map initialization error";
         QMessageBox::warning(this,"Error for map","Error during map initialization");
     }
+
     // Ask to load the map to the scene.
+    emit askUpdateLoading(61,"Loading the map on the scene...");
     emit askLoadMap(ui->mapLineEdit->text());
+    emit askUpdateLoading(70,"Map loaded on the scene.");
 
     // Initialize the robot
+    emit askUpdateLoading(71,"Cleaning Robot instance if exists...");
     Robot::getInstance()->clear(); //clear the old version of the robot
+    emit askUpdateLoading(72,"Robot cleaned.");
 
     // Call the parser of mission to initialize the current robot.
+    emit askUpdateLoading(73,"Initializing Robot with mission selected...");
     Robot::getInstance()->init(std::string(""),
                                parse_sensors((char *)ui->missionLineEdit->text().toStdString().c_str()),
                                parse_actuators((char *)ui->missionLineEdit->text().toStdString().c_str()),
@@ -96,12 +119,18 @@ void MapMenu::on_loadPushButton_clicked()
                                parse_start_position((char *)ui->missionLineEdit->text().toStdString().c_str()));
 
     emit askLoadRobot();
+    emit askUpdateLoading(75,"Robot initialized.");
 
+    emit askUpdateLoading(76,"Loading mission information....");
     QString desc = QString::fromStdString(parse_description((char *)ui->missionLineEdit->text().toStdString().c_str()));
     qDebug() << desc;
     emit askLoadMission(desc);
 
     ui->loadPushButton->setEnabled(false);
+
+    emit askUpdateLoading(100,"Done.");
+    delete loading;
+
 }
 
 /**
