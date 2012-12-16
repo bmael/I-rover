@@ -61,21 +61,17 @@ int TileSet::getNbTilePerRow()
 
 Tile* TileSet::getTile(const int& tileId) 
 {
-	Tile* t = new Tile();
+    Tile* t = new Tile();
 	ensTileTrie::iterator it=tiles_.begin();
-	t->getTileId();
 	while(it!=tiles_.end() && (**it).getTileId()!=tileId)
 	{
 		++it;
 	}
 	
-	if(it==tiles_.end())
-	{
-		t = new Tile();
-	}
-	else
-	{
-		t = (*it);
+    if(it!=tiles_.end())
+    {
+        delete t;
+        t = (*it);
 	}
 	return t;
 }
