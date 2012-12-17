@@ -1,9 +1,12 @@
-/* 
- * File:   ProximitySensor.h
- * Author: julien
- *
- * Created on 10 décembre 2012, 17:01
- */
+/* ***************************************************
+ * File proximity.h
+ * Project I-Rover
+ * Florian FAGNIEZ - Mael BARBIN - JULIEN Bizeul -
+ * Thibaut ROBERGE - Noémie RULLIER - Brian GOHIER -
+ * Guillaume COUTABLE
+ * M1 ALMA - Université de Nantes
+ * 2012-2013
+ * ***************************************************/
 
 #ifndef PROXIMITYSENSOR_H
 #define	PROXIMITYSENSOR_H

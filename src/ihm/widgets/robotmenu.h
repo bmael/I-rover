@@ -1,3 +1,13 @@
+/* ***************************************************
+ * File robotmenu.h
+ * Project I-Rover
+ * Florian FAGNIEZ - Mael BARBIN - JULIEN Bizeul -
+ * Thibaut ROBERGE - Noémie RULLIER - Brian GOHIER -
+ * Guillaume COUTABLE
+ * M1 ALMA - Université de Nantes
+ * 2012-2013
+ * ***************************************************/
+
 #ifndef ROBOTMENU_H
 #define ROBOTMENU_H
 
