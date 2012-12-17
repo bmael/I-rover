@@ -72,6 +72,7 @@ protected:
 	int tailleX_;
 	int tailleY_;
 	ensCells cellsMap_;	
+
 };
 
 
