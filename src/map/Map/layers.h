@@ -22,7 +22,6 @@ typedef struct std::map<std::pair<int, int>, Cell*> ensCells;
  * \class Layers
  * \brief Representation of a layer on a map
  */
-// TODO: Doxygen classe abstraite
 class Layers
 {
 public:
@@ -68,25 +67,11 @@ public:
 	
 	virtual Cell* findCellFromLayer(const std::pair<int, int>& p);
 	
-//	virtual std::ostream& operator<<(std::ostream& os, const Layer& ly) = 0;
-//	virtual std::ostream& operator<<(std::ostream& os, const Background& bg) = 0;
-//	virtual std::ostream& operator<<(std::ostream& os, const Field& fd) = 0;
-//	virtual std::ostream& operator<<(std::ostream& os, const ObjectLayers& ol) = 0;
-	
 protected:
 
 	int tailleX_;
 	int tailleY_;
 	ensCells cellsMap_;
-	/*
-	std::map<Pair<int,int>, Cell*> cellsMap_;
-	std::pair<int,int> représente la position (x et y) de la cellule sur le layer.
-	
-	Avec un vecteur de cellule, a chaque fois que le robot avance d'une case, nous sommes obligés de parcourir
-	tout le vecteur pour avoir accès à la cellule voulue.
-	Alors qu'avec une map, on donne la position voulue et instantanement, on récupère la cellule.
-	Bien plus rapide en temps d'exécution.*/
-	
 };
 
 

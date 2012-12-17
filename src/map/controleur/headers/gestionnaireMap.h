@@ -81,8 +81,9 @@ class GestionnaireMap
 		/*!
 		*	\brief Constructor
         *
+        *   GestionnaireMap constructor
+        *
         *   \param tmxpath the tmx file path
-		*	GestionnaireMap constructor
 		*/
 		GestionnaireMap(char* tmxpath);
 		
